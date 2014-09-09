@@ -1,0 +1,89 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @project.title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @project.body %>
+</p>
+
+<p>
+  <strong>Published at:</strong>
+  <%= @project.published_at %>
+</p>
+
+
+<% if @project.partnerships.find_by_user_id(current_user.id).nil? == true %>
+	
+
+	<%= button_to 'Join Project', partnerships_path(:partnership => {:project_id => @project.id, :created_at => Date.today, :updated_at => Date.today, :role => 'Observer', :user_id => current_user.id}) , :method => 'POST' %>
+
+<% else %>
+
+	<table border style = "hairline">
+	  <thead>
+		<tr>
+
+			<th>Your Roles</th>
+
+		</tr>
+	  </thead>
+
+	  <tbody>
+		  <tr>
+
+			<td>
+		<% @project.partnerships.each do |r| %>
+<%=  link_to r.role, r, :method => 'get' if r.user_id == current_user.id %> 
+			  <% end %>
+				
+			  </td>		  
+
+
+		  </tr>
+
+	  </tbody>
+	</table>
+
+<br>
+
+
+<% end  %>
+
+<table border style = "hairline">
+	  <thead>
+		<tr>
+
+			<th colspan="2">All Project Partnerships</th>
+
+		</tr>
+		  <tr><th>Partner</th>
+			  <th>Role</th>
+		  </tr>
+	  </thead>
+
+	  <tbody>
+		  <% @project.partnerships.each do |r| %>
+		  <tr>
+			  
+			  <td><%= User.all.find(r.user_id).email %></td>
+		
+			 <td><%=  link_to r.role, r %> </td>		  
+
+
+		  </tr>
+<% end %>
+	  </tbody>
+	</table>
+
+<%= link_to 'Back to Projects', projects_path %> | 
+<%= link_to 'Edit Project', edit_project_path(@project) %>
+
+<% if 'pigs' == 'fly' %>
+
+<%= button_to 'Delete', @project, method: :delete, data: { confirm: 'Are you sure?' } %>
+
+<% end %>
