@@ -1,0 +1,37 @@
+<table>
+<h3>
+		</h3>
+
+<%if @parent.nil? %>
+	<% @parent = @user %>
+<% end %>
+
+
+<% @self_profile_headers = @parent.profiles %>
+		
+<% @self_profile_headers.group(:name).where("profiles.made_public_at IS NOT NULL").each do |p| %>
+<td>
+<table>
+	<th><%= p.name %></th>
+
+	
+	<% @self_profile_headers.each do |b| %>
+
+		<% if b.name == p.name %>
+
+			<tr><td>
+
+				<%= link_to b.bio, b  %>
+		
+
+			</td>
+
+			</tr>
+
+		<% end %>
+	<% end %>
+</table>
+</td>
+<% end %>
+	
+</table>

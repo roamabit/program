@@ -1,69 +1,13 @@
-<h1>My projects</h1>
-
-<table border style="hairline">
-  <thead>
-    <tr>
-      <th>Title		</th>
-      <th>Abstract	</th>
-	  <th>Role		</th>
-    </tr>
-  </thead>
-
-  <tbody>
-
-    <% current_user.projects.uniq.each do |p| %>
-      <tr>
-        <td><%= link_to p.title, p %></td>
-        <td><%= p.body %></td>
-	 
-		  
-		<td><% p.partnerships.each do |r| %>
-			
-		<%= link_to r.role,r if r.user_id == current_user.id %>
-			
-			
-			<% end %>
-			
-			  
-			  </td>		
-      
-
-      </tr>
-    <% end %>
-	  
-	   
-	  
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Project', new_project_path %>
-
-<h1>Explore projects</h1>
-
-<table border style="hairline">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Abstract</th>
-
-   
-      
-    </tr>
-  </thead>
-
-  <tbody>
+<table borderstyle="hairline">
 	
-    <% @projects.each do |project| %>
-      <tr>
-        <td><%= link_to project.title, project %></td>
-        <td><%= project.body %></td>
-		  
-       </tr>
-    <% end %>
-	  
-	   
-	  
-  </tbody>
-</table>
+	<tr><td colspan="2">
+		<h3>
+<%= link_to 'New Project', new_project_path %></h3>
+
+<%= render 'myindex'%>
+<%= render 'randomindex'%>
+<%= render 'recentindex'%>
+<h1>Popular Projects</h1>
+
+
+<list><li>Define Project List</li></list>

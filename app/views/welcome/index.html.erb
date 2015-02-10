@@ -1,17 +1,16 @@
+<table border="2"><tr>
+	
+	<td>
 <h1>Hello, Friend!</h1>
 <p>Thanks for helping out.
-    Feel free to look around and mess with the projects sections. 
-    Try deleting and updating stuff 
-
+    Feel free to look around. 
+  
 </p>
 
  <h3> your IP address is: <%= request.remote_ip %></h3>
-<tr>
-    <td>
+
  You came here from: <%= request.referer %>
-</td>
-<td><%= link_to 'Retreat!', request.referer %></td>
-    </tr>
 
-<p><h2><%= link_to 'Advance', controller: 'projects' %></h2></p>
-
+<%= link_to 'Retreat!', request.referer %>
+ 
+<% link_to 'About', '' %>

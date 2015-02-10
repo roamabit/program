@@ -1,0 +1,32 @@
+<li class="comment">
+
+  <h3><%= comment.title %></h3>
+ 	
+	<%= comment.subject %>
+	
+  <div class="body">
+    <%= comment.body %>
+  </div>
+	
+<div>
+	<% comment.parent_id %>
+	
+	</div>
+   
+	<div>
+	<% comment.attributes  %>
+	</div>
+	
+  <p><%= link_to 'Add a Reply', new_comment_comment_path(comment) %></p>
+  	
+    <ul class="comment_list">
+      <%= render :partial => 'comments/comment', 
+:collection => comment.children %>
+    </ul>
+ 
+</li>
+
+
+
+<% #http://kconrails.com/2011/01/26/nested-comments-in-ruby-on-rails-controllers-and-views/ 
+%>

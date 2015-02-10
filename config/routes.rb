@@ -1,7 +1,47 @@
 Rails.application.routes.draw do
-  resources :partnerships
+  
+  resources :search_problems do 
+	  resources :comments
+	  end
 
-  resources :projects
+  resources :comments do
+    resources :comments
+  end
+	
+  resources :simtags  do
+	resources :comments 
+	  end
+
+  resources :simvols  do
+	resources :comments
+	  end
+
+  resources :solutions  do
+	resources :comments 
+	  end
+
+  resources :problems do
+	resources :comments
+	resources :profiles
+
+	  end
+
+  resources :partnerships do
+	resources :comments 
+	  end
+
+  resources :projects do
+	resources :comments 
+	resources :profiles
+	  end
+
+  resource :user do
+	resources :profiles
+	end
+	
+  resources :users do 
+	  resources :profiles
+	  end
 
   devise_for :users
 	  get 'welcome/index'
@@ -12,15 +52,49 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
 Teamup::Application.routes.draw do
  
-  resources :partnerships
+  resources :search_problems
 
-  resources :projects
+  resources :comments do
+	resources :comments 
+	  end
+	
+  resources :simtags  do
+	resources :comments 
+	  end
+	
+  resources :solutions  do
+	resources :comments 
+	  end
 
-  resource :user do
-      resources :projects
-      end
+  resources :problems do
+	resources :comments
+	  end
+
+  resources :partnerships do
+	resources :comments 
+	  end
+
+  resources :problems do
+	resources :comments
+	resources :profiles
+
+	  end
+	
+  resources :profiles do
+	resources :comments
+	  end
+	
+	resource :user do
+	resources :profiles
+	end
+	
+  resource :users do
+	resources :comments
+	resources :profiles
+	  end
  
   root 'welcome#index'
+	
 end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

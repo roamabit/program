@@ -6,12 +6,16 @@ class User < ActiveRecord::Base
 
 	has_many :projects, :through => :partnerships
 	#, :order => :published_at DESC,  :title ASC
-	
-		
+	has_many :comments
+
 	devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 	
-	has_one :profile, dependent: :destroy
-
+	has_many :profiles, :as => :profileable, dependent: :destroy
 	
+	has_many :comments, :as => :commentable, dependent: :destroy
+	
+	acts_as_commentable
+
+
 end

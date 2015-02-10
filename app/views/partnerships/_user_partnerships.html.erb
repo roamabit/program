@@ -1,0 +1,35 @@
+<% if @project.partnerships.find_by_user_id(current_user.id).nil? == true %>
+	
+
+	<%= button_to 'Join Project', partnerships_path(:partnership => {:project_id => @project.id, :created_at => Date.today, :updated_at => Date.today, :role => 'Observer', :user_id => current_user.id}) , :method => 'POST' %>
+
+<% else %>
+
+	<table border style = "hairline">
+	  <thead>
+		<tr>
+
+			<th>Your Roles</th>
+
+		</tr>
+	  </thead>
+
+	  <tbody>
+		  <tr>
+
+			<td>
+		<% @project.partnerships.each do |r| %>
+<%=  link_to r.role, r, :method => 'get' if r.user_id == current_user.id %> 
+				
+		<% end %>
+				
+	
+				
+			  </td>		  
+
+
+		  </tr>
+
+	  </tbody>
+	</table>
+<% end  %>

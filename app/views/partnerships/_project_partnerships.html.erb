@@ -1,0 +1,24 @@
+
+
+<table border style = "hairline">
+	  <thead>
+		<tr>
+
+			<th colspan="2">All Project Partnerships</th>
+
+		</tr>
+		  <tr><th>Partner</th>
+			  <th>Role</th>
+		  </tr>
+	  </thead>
+
+	  <tbody>
+		  <% @project.partnerships.each do |r| %>
+		  <tr>
+			  
+			  <td><%= User.all.find(r.user_id).email %></td>
+		
+			 <td><%=  link_to r.role, r %> </td>		 </tr>
+<% end %>
+	  </tbody>
+	</table>

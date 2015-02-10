@@ -1,0 +1,35 @@
+<h3><%= link_to 'New Problem', new_problem_path %></h3>
+
+<%= render 'search_poblems_input' %>
+<table>
+
+<tr>
+	<td>
+	<a href="http://xkcd.com/1232/"> <img src="http://imgs.xkcd.com/comics/realistic_criteria.png"> </a>
+	
+	</td>
+	
+	<td>
+	
+		<%= render 'map' %>
+	
+	</td>
+	
+	
+	
+</tr>
+
+
+
+
+</table>
+
+
+<h1>Listing problems</h1>
+
+	<table>
+  <%= render @problems %>
+		</table>
+
+
+

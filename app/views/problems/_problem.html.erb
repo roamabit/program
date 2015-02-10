@@ -1,0 +1,17 @@
+	<tr>
+<div class="problem">
+<td>
+  <h2><%= link_to problem.statement, problem %></h2>
+</td>
+</tr>
+<tr>
+<td>
+  <div class="details">
+    <%= problem.location %>
+</td>
+<td>
+	<%= problem.published_at.to_formatted_s(:long)  %>  
+</td>
+  </div>
+</div>
+		</tr>

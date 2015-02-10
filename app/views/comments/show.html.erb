@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<%= render 'form'  %>
+
+<%= link_to 'Edit', edit_comment_path(@comment) %> |
+<% strobject = @comment.commentable_type.downcase!.to_s %>
+
+<% if strobject == 'project' %>
+	<%= link_to 'Back', project_path(Project.find(@comment.commentable_id)) %>
+<% elsif strobject == 'comment' %>
+	<%= link_to 'Back', comment_path(Comment.find(@comment.commentable_id)) %>
+<% end %>
+
+<%= @comment.acts_as_nested_set_options %>

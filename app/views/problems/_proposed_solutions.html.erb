@@ -1,0 +1,21 @@
+<h3>Proposed Solutions - (User)</h3>
+
+<% if  @problem.solutions.count == 0 %>
+	<%='No Solutions Proposed'  %>
+<% else %>
+	<% @problem.solutions.each do |solution| %>
+		<list>
+
+			<% proposedproject = Project.find(solution.project_id) %>
+
+			<li>
+				<%= link_to proposedproject.title, proposedproject  %>
+				-
+				<%= solution.solution_abstract %>
+			</li>
+
+
+
+		</list>
+	<% end %>
+<% end %>

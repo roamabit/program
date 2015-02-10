@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  problem_id: 1
+  project_id: 1
+  solution_abstract: MyText
+  published_at: 
+
+two:
+  problem_id: 1
+  project_id: 1
+  solution_abstract: MyText
+  published_at: 

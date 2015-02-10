@@ -3,13 +3,15 @@
 
 
 <p>
-		<% if @partnership.user_id == current_user.id %>
-  <strong>Your Role:</strong>
-	<% else  %>
-	  <strong>Role:</strong>
+<% if @partnership.user_id == current_user.id %>
+	<strong>Your Role:</strong>
+<% else  %>
+	<strong>Role:</strong>
 	<%= User.all.find(@partnership.user_id).email %>
-	<% end %>
-  <%= @partnership.role %>
+<% end %>
+  
+<%= @partnership.role %>
+
 </p>
 
 <p>
@@ -36,3 +38,10 @@
 	<% end %>
 </h2>
 
+<h2>Comments</h2>
+ 
+<p><%= link_to 'Add a Comment', new_partnership_comment_path(@partnership) %></p>
+ 
+<ul class="comment_list">
+  <%= render :partial => 'comments/comment', :collection => @partnership.comments.find_comments_for_commentable("Partnership",@partnership.id) %>
+</ul>

@@ -1,0 +1,35 @@
+<h1>Listing search_problems</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Keywords</th>
+      <th>Date min</th>
+      <th>Date max</th>
+      <th>Location</th>
+      <th>Location distance</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @search_problems.each do |search_problem| %>
+      <tr>
+        <td><%= search_problem.user_id %></td>
+        <td><%= search_problem.keywords %></td>
+        <td><%= search_problem.date_min %></td>
+        <td><%= search_problem.date_max %></td>
+        <td><%= search_problem.location %></td>
+        <td><%= search_problem.location_distance %></td>
+        <td><%= link_to 'Show', search_problem %></td>
+        <td><%= link_to 'Edit', edit_search_problem_path(search_problem) %></td>
+        <td><%= link_to 'Destroy', search_problem, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Search problem', new_search_problem_path %>

@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Problem:</strong>
+  <%= @solution.problem_id %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @solution.project_id %>
+</p>
+
+<p>
+  <strong>Solution abstract:</strong>
+  <%= @solution.solution_abstract %>
+</p>
+
+<p>
+  <strong>Published at:</strong>
+  <%= @solution.published_at %>
+</p>
+
+
+<%= link_to 'Edit', edit_solution_path(@solution) %> |
+<%= link_to 'Back', solutions_path %>
+
+
+<h2>Comments</h2>
+ 
+<p><%= link_to 'Add a Comment', new_solution_comment_path(@solution) %></p>
+ 
+<ul class="comment_list">
+  <%= render :partial => 'comments/comment', :collection => @solution.comments.find_comments_for_commentable("Solution",@solution.id) %>
+</ul>

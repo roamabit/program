@@ -6,6 +6,8 @@ class Partnership < ActiveRecord::Base
   	#attr_accessor :current_user
 	belongs_to :project
 	belongs_to :user
+	has_many :comments, :as => :commentable, dependent: :destroy
+	acts_as_commentable
 	
 	#default_scope -> {where :user_id == current_user.id}
 	
@@ -13,5 +15,6 @@ class Partnership < ActiveRecord::Base
 	validates :project_id, :presence => true
 	validates :user_id, :presence => true
 	validates :role, :presence => true
-	
+
+
 end

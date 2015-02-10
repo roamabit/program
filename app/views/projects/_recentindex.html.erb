@@ -1,0 +1,33 @@
+<h1>Recent Projects</h1>
+
+<table border style="hairline" >
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Abstract</th>
+		<th>User Count</th>
+		<th>Created At</th>
+   
+      
+    </tr>
+  </thead>
+
+  <tbody>
+	<% i=0 %>
+    <% @recentprojects.each do |project| %>
+	  <% if i<5 %>
+	  <% i=i+1 %>
+      <tr>
+        <td><%= link_to project.title, project %></td>
+        <td><%= project.body %></td>
+		<td align="center"><%= project.partnerships.count %></td>
+		  <td><%= project.created_at %></td>
+		  
+       </tr>
+	  <% end %>
+    <% end %>
+	  
+	   
+	  
+  </tbody>
+</table>

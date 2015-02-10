@@ -1,0 +1,32 @@
+
+<h1>5 random projects</h1>
+
+<table border style="hairline">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Abstract</th>
+		<th>User Count</th>
+   
+      
+    </tr>
+  </thead>
+
+  <tbody>
+	<% i=0 %>
+    <% @projects.each do |project| %>
+	  <% if i<5 %>
+	  <% i=i+1 %>
+      <tr>
+        <td><%= link_to project.title, project %></td>
+        <td><%= project.body %></td>
+		<td align="center"><%= project.partnerships.count %></td>
+		  
+       </tr>
+	  <% end %>
+    <% end %>
+	  
+	   
+	  
+  </tbody>
+	</table>

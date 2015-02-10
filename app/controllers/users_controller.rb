@@ -11,14 +11,19 @@ class UsersController < ApplicationController
     def create
         @user = User.new(user_params)
        if @user.save
-        redirect_to @user
+        	redirect_to @user
         else 
            render 'new'
          end  
     end
 	
     def show
-        @user = User.find(params[:id])
+		if params[:format]
+	   @user = User.find(params[:format])
+			else
+			@user = User.find(params[:id])
+
+			end
     end
     
     def edit
@@ -42,7 +47,7 @@ class UsersController < ApplicationController
      end
     
 	#dorothy Lake
-    
+	
     
     
     private

@@ -5,6 +5,19 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+	<% #Scripts added for google maps 
+%>
+		
+	<%= javascript_include_tag 'http://maps.googleapis.com/maps/api/js?sensor=false' %>
+<%= javascript_include_tag 'application' %>
+	
+	<script src="/assets/gmaps4rails/gmaps4rails.base.js?body=1" type="text/javascript"></script>
+<script src="/assets/gmaps4rails/gmaps4rails.bing.js?body=1" type="text/javascript"></script>
+<script src="/assets/gmaps4rails/gmaps4rails.googlemaps.js?body=1" type="text/javascript"></script>
+<script src="/assets/gmaps4rails/gmaps4rails.mapquest.js?body=1" type="text/javascript"></script>
+<script src="/assets/gmaps4rails/gmaps4rails.openlayers.js?body=1" type="text/javascript"></script>
+	
+	
 </head>
 <body>
 
@@ -21,14 +34,23 @@
 </ul>
 <p class="navbar-text pull-right">
 <% if user_signed_in? %>
-  Logged in as <strong><%= current_user.email %></strong>.
-  <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-<% else %>
-  <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
-  <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
-<% end %>
+
+	&zeta;
+	Logged in as <strong><%= current_user.email %></strong>.
+	<%= link_to 'Edit Login', edit_user_registration_path, :class => 'navbar-link' %> |
+	<%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
 	
+	<%= render 'layouts/navbarmenu' %> 
+	
+<% else %>
+	
+	<%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
+	<%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+	
+<% end %>
+
+		
+
 	<%= yield %>
 
 </body>

@@ -1,0 +1,33 @@
+<h1>My Profile</h1>
+
+<hr>
+<table>
+<% @profile = Profile.find(current_user.id) %>
+
+<% @user_profile_headers = current_user.profiles %>
+		
+<% @user_profile_headers.group(:name).where("profiles.made_public_at IS NOT NULL").each do |p| %>
+<td>
+<table>
+	<th><%= p.name %></th>
+
+	
+	<% @user_profile_headers.each do |b| %>
+
+		<% if b.name == p.name %>
+
+			<tr><td>
+
+				<%= link_to b.bio, b  %>
+		
+
+			</td>
+
+			</tr>
+
+		<% end %>
+	<% end %>
+</table>
+</td>
+<% end %>
+</table>

@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @search_problem.user_id %>
+</p>
+
+<p>
+  <strong>Keywords:</strong>
+  <%= @search_problem.keywords %>
+</p>
+
+<p>
+  <strong>Date min:</strong>
+  <%= @search_problem.date_min %>
+</p>
+
+<p>
+  <strong>Date max:</strong>
+  <%= @search_problem.date_max %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @search_problem.location %>
+</p>
+
+<p>
+  <strong>Location distance:</strong>
+  <%= @search_problem.location_distance %>
+</p>
+
+<%= link_to 'Edit', edit_search_problem_path(@search_problem) %> |
+<%= link_to 'Back', search_problems_path %>
+
+<%= render :partial => @search_problem.problems %>
+
+
+<%   @search_problem.problems.each do |a| %>
+<%= a.statement %>
+<% end %>
+
+<h2>Comments</h2>
+ 
+<p><%= link_to 'Add a Comment', new_search_problem_comment_path(@search_problem) %></p>
+ 
+<ul class="comment_list">
+  <%= render :partial => 'comments/comment', :collection => @search_problem.comments.find_comments_for_commentable("Search_problem",@search_problem.id) %>
+</ul>

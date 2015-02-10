@@ -1,0 +1,30 @@
+<%= form_for Simvol.new do |f| %>
+  <% if @simvol.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@simvol.errors.count, "error") %> prohibited this solution from being saved:</h2>
+
+      <ul>
+      <% @simvol.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label 'Tell me more about ' +  @simvol.name.capitalize %><br>
+    <%= f.text_field :name %>
+	  
+  </div>
+
+  <div class="field">
+	<%= f.text_field :currentsimvol, :value => @simvol.name, :name => 'currentsimvol',  :type => 'hidden' %>
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit 'Submit' %>
+	  
+  </div>
+
+<% end %>

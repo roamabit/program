@@ -1,0 +1,59 @@
+<h2>Profiles Index</h2>
+
+
+<h1>User Profiles</h1>
+
+<text>Index Tree table?
+User Name||Name Item||Skill Item||Interests
+</text>
+<% i=0 %>
+<table>
+
+<% @users = User.all %>
+
+<% @users.each do |u| %>
+
+	<tr>
+		
+		<td>
+		
+<table border style ="hairline">
+	<tr><td>
+<%= u.email.first(u.email.index('@'))  %>
+</td></tr>	</table> 
+		
+		</td>
+	
+<% u.profiles.group(:name).where("profiles.made_public_at IS NOT NULL").each do |p| %>
+	<td>
+<table border style ="hairline">
+
+<th><%= p.name %></th>
+
+	<% u.profiles.each do |b| %>
+
+		<% if b.name==p.name %>
+		<tr><td>
+			
+			<% if u.id == current_user.id %>
+				<%= link_to b.bio, b  %>
+			<% else %>
+				<%=b.bio %>
+			<% end %>
+
+		</td>
+
+		</tr>
+	<% end %>
+
+			<% end %>
+</table></td>
+	<% end %>
+		
+	</tr>
+<% end %>
+
+</table>
+
+
+<%= link_to 'New Entry', new_user_profile_path(current_user.id)  %>

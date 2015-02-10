@@ -1,0 +1,13 @@
+ <h3>Nearby Problems</h3>
+	<% if @problem.location.nil? == false %>
+<ul>
+
+<% for problem in @problem.nearbys(10) %>
+  <li><%= link_to problem.statement, problem %> (<%= problem.distance.round(2) %> miles)</li>
+<% end %>
+</ul>
+<% else %>
+
+<%= 'Specify a location to see nearby problems.' %>
+
+<% end %>

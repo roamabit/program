@@ -1,0 +1,41 @@
+<hr>
+	<h2>Possible Solutions - (Auto)</h2>
+
+<% @projects = Project.all %>
+<list>
+	
+
+	
+<% @projects.where(:title => 'Sierras Project').each  do |proposedproject| %>
+
+<li>
+	
+<%= link_to proposedproject.title, solutions_path(:solution => {:problem_id => @problem.id, :created_at => Date.today, :project_id => proposedproject.id}), :method => 'POST' %>
+	
+</li>
+	
+<% end %>
+	
+	</list>
+
+Problem Statment (parse by word)
+
+	<% @problem.body.split(/\W+/).each do |ws| %>
+<%= ws  %>:
+ <% if Simvol.find_by_name(ws).nil? == false %>
+	<% Simvol.find_by_name(ws).tags.each do |tag| %>
+		
+		<% @simvol = tag %>
+		<%= render '/simvols/graph3T_IDArray' %>
+	
+
+	<% end %>
+<% else %>
+
+Create Simvol:	<%= button_to ws, simvols_path(:simvol => {:name => ws,  :created_at => Date.today, :updated_at => Date.today}, ) %>
+
+<% end %>
+
+<hr>
+	<% end %>
+

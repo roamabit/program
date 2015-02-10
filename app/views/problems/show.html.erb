@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+	<p>
+		<strong>Statement:</strong>
+		<%= @problem.statement %>
+	</p>
+
+	<p>
+		<strong>Body:</strong>
+		<%= @problem.body %>
+	</p>
+
+	<p>
+		<strong>Published at:</strong>
+		<%= @problem.published_at %>
+	</p>
+
+	<p>
+		<strong>Location:</strong>
+		<%= @problem.location %>
+	</p>
+
+	<%= link_to 'I have this same problem', problems_path(:problem => {:statement => @problem.statement, :body => @problem.body}), :method => 'clone' %>
+
+	<%= link_to 'Edit', edit_problem_path(@problem) %> |
+
+	<%= link_to 'Back', problems_path %>
+
+	<%= render 'profiles/self_profiles' %>
+
+	<%= link_to 'New Profile Entry', new_problem_profile_path(@problem.id)  %>
+
+ 	<%= render 'nearby_problems' %>
+
+	<%= render 'problem_comments'%>
+
+	<%= render 'possible_solutions' %>
+
+	<%= render 'proposed_solutions' %>
+
+	<%= render 'problem_process' %>
+
+

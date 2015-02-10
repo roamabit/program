@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  keywords: MyString
+  date_min: 2014-12-10 07:31:25
+  date_max: 2014-12-10 07:31:25
+  location: MyString
+  location_distance: 1
+
+two:
+  user_id: 1
+  keywords: MyString
+  date_min: 2014-12-10 07:31:25
+  date_max: 2014-12-10 07:31:25
+  location: MyString
+  location_distance: 1
