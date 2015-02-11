@@ -14,16 +14,19 @@ class UsersController < ApplicationController
         	redirect_to @user
         else 
            render 'new'
-         end  
+        end  
     end
 	
     def show
-		if params[:format]
-	   @user = User.find(params[:format])
-			else
-			@user = User.find(params[:id])
+		
+	#	unless params[:id] == ("sign_up" or "log_in" or "sign_in")
 
+			if params[:format]
+				@user = User.find(params[:format])
+			else
+				@user = User.find(params[:id])
 			end
+	#	end
     end
     
     def edit

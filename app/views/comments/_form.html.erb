@@ -32,20 +32,18 @@
     <%= f.text_area :body %>
   </div>
 
-
-<% f.methods  %>
-
 <div>
-	<%= f.text_field :commentable_type, :type = 'hidden'  %>
+	<%= f.text_field :commentable_type, :type => 'hidden' %>
 	</div>
 
 <div>
-	<%= f.text_field :commentable_id, :type = 'hidden'  %>
+	<%= f.text_field :commentable_id, :type => 'hidden'  %>
 	</div>
 
 <div>
 	<% if params[:comment_id] %>
 <%= f.hidden_field :parent_id, :value => @comment.commentable_id %> 	<% end %>
+	
 </div>
 
 
@@ -58,4 +56,6 @@
 
 <% @comment.attributes  %>
 <% @comment.methods %>
+<% f.methods %>
+
 <% end %>

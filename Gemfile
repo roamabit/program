@@ -55,4 +55,4 @@ gem 'geocoder'
 
 #gem 'dinosaurus'
 
-gem 'passenger'
+#gem 'passenger'

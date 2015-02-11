@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   resources :comments do
     resources :comments
-  end
+	  end
 	
   resources :simtags  do
 	resources :comments 
@@ -39,12 +39,14 @@ Rails.application.routes.draw do
 	resources :profiles
 	end
 	
-  resources :users do 
-	  resources :profiles
-	  end
+#  resources :users do 
+#	  resources :profiles
+#	  end
 
   devise_for :users
+	
 	  get 'welcome/index'
+	
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -88,11 +90,11 @@ Teamup::Application.routes.draw do
 	resources :profiles
 	end
 	
-  resource :users do
+  resources :users do
 	resources :comments
 	resources :profiles
-	  end
- 
+  end
+	
   root 'welcome#index'
 	
 end
