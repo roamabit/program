@@ -53,6 +53,8 @@ gem 'underscore-rails'
 
 gem 'geocoder'
 
+gem 'mysql2'
+
 #gem 'dinosaurus'
 
 #gem 'passenger'

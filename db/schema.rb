@@ -27,13 +27,13 @@ ActiveRecord::Schema.define(version: 20141215204903) do
     t.datetime "updated_at"
   end
 
-  add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type"
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+  add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "partnerships", force: true do |t|
-    t.integer  "user_id",              null: false
-    t.integer  "project_id",           null: false
-    t.text     "role",       limit: 8, null: false
+    t.integer  "user_id"
+    t.integer  "project_id"
+    t.text     "role"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -43,19 +43,20 @@ ActiveRecord::Schema.define(version: 20141215204903) do
     t.text     "body"
     t.datetime "published_at"
     t.string   "location"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.float    "latitude"
-    t.float    "longitude"
+    t.float    "latitude",     limit: 24
+    t.float    "longitude",    limit: 24
   end
 
   create_table "profiles", force: true do |t|
     t.integer  "user_id"
     t.string   "name"
     t.text     "bio"
+    t.datetime "made_public_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.datetime "made_public_at"
     t.integer  "profileable_id"
     t.string   "profileable_type"
   end
@@ -78,8 +79,8 @@ ActiveRecord::Schema.define(version: 20141215204903) do
     t.integer  "location_distance"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.float    "latitude"
-    t.float    "longitude"
+    t.float    "latitude",          limit: 24
+    t.float    "longitude",         limit: 24
   end
 
   create_table "simtags", force: true do |t|
@@ -95,8 +96,6 @@ ActiveRecord::Schema.define(version: 20141215204903) do
     t.datetime "updated_at"
   end
 
-  add_index "simvols", ["name"], name: "sqlite_autoindex_simvols_1", unique: true
-
   create_table "solutions", force: true do |t|
     t.integer  "problem_id"
     t.integer  "project_id"
@@ -107,6 +106,7 @@ ActiveRecord::Schema.define(version: 20141215204903) do
   end
 
   create_table "users", force: true do |t|
+    t.string   "password_salt"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "email",                  default: "", null: false
@@ -119,9 +119,13 @@ ActiveRecord::Schema.define(version: 20141215204903) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

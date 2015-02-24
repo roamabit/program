@@ -3,22 +3,20 @@ class ProfilesController < ApplicationController
 	before_filter :get_parent, only: [:new, :create]
 attr_accessor :user_id, :new_profile_name
 	before_action :set_profile, only: [:show, :edit, :update, :destroy]
-
 		
 	def index
 		get_parent
+		
 		@profiles = Profile.all
-	#@profiles = @parent.profiles.all
-    #render :template => @template_prefix + 'index'
+		
+		if params[:search]
+			#@profiles = Profile.users
+			@profiles = Profile.search(params[:search])		
+		end
 		
 	end
 	
-	
-	  def search_setup
-	 	# part of index
-  		@profiles = parent.profiles.search(params[:search])
-  	end
-	
+		
 	def show
 	end
 		
@@ -130,8 +128,11 @@ attr_accessor :user_id, :new_profile_name
 			@parent_object = @profile_lookup.profileable_type.constantize
 			@parent = @parent_object.find(@profile_lookup.profileable_id)
 		
+	#	elsif params[:search]
+	#		request.referer
 #		else 
 #		  @parent = Profile.find(params[:id]).profileable_type.constantize
+	
 		end
     end
 		

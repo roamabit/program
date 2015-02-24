@@ -3,57 +3,56 @@
 
 <h1>User Profiles</h1>
 
-<text>Index Tree table?
-User Name||Name Item||Skill Item||Interests
-</text>
 <% i=0 %>
-<table>
-
-<% @users = User.all %>
-
-<% @users.each do |u| %>
-
-	<tr>
-		
-		<td>
-		
-<table border style ="hairline">
-	<tr><td>
-<%= u.email.first(u.email.index('@'))  %>
-</td></tr>	</table> 
-		
-		</td>
+<table> 
 	
-<% u.profiles.group(:name).where("profiles.made_public_at IS NOT NULL").each do |p| %>
-	<td>
-<table border style ="hairline">
+	
+<% @profiles.each do |profile| %>
+	
+	<% u = User.find(profile.user_id) %>
+			<tr>
 
-<th><%= p.name %></th>
+				<td>
 
-	<% u.profiles.each do |b| %>
+		<table border style ="hairline">
+			<tr><td>
+		<%= u.email.first(u.email.index('@'))  %>
+		</td></tr>	</table> 
 
-		<% if b.name==p.name %>
-		<tr><td>
+				</td>
+
+		<% u.profiles.group(:name).where("profiles.made_public_at IS NOT NULL").each do |p| %>
+			<td>
+		<table border style ="hairline">
+
+		<th><%= p.name %></th>
+
+			<% u.profiles.each do |b| %>
+
+				<% if b.name==p.name %>
+					<tr><td>
+
+						<% if u.id == current_user.id %>
+							<%= link_to b.bio, b  %>
+						<% else %>
+							<%=b.bio %>
+						<% end %>
+
+					</td>
+
+					</tr>
+				<% end %>
 			
-			<% if u.id == current_user.id %>
-				<%= link_to b.bio, b  %>
-			<% else %>
-				<%=b.bio %>
 			<% end %>
+		</table></td>
+		<% end %>
 
-		</td>
+			</tr>
 
-		</tr>
-	<% end %>
-
-			<% end %>
-</table></td>
-	<% end %>
-		
-	</tr>
+	
 <% end %>
 
 </table>
 
 
-<%= link_to 'New Entry', new_user_profile_path(current_user.id)  %>
+<%= link_to 'New Entry', new_user_profile_path(:user_id => current_user.id)  %>
