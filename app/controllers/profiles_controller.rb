@@ -11,13 +11,22 @@ attr_accessor :user_id, :new_profile_name
 		
 		if params[:search]
 			#@profiles = Profile.users
-			@profiles = Profile.search(params[:search])		
+			profile_search
+			
 		end
 		
 	end
 	
+	def profile_search
 		
+		@profiles = Profile.search(params[:search], params[:profileable_type])
+		
+		
+	end
+	
+	
 	def show
+		
 	end
 		
 	def create
@@ -95,8 +104,8 @@ attr_accessor :user_id, :new_profile_name
 		
 		elsif  params[:profileable_type]
 		  @p_type = params[:profileable_type].singularize.capitalize.constantize
-		  @parent = @p_type.find(profile_params[:profileable_id])
-		  @template_prefix = 'problem/profiles/'
+		  @parent = @p_type.find(profile_params[:profileable_id]) unless params[:search]
+		  @template_prefix = "#{@p_type.to_s.downcase}" + '/profiles/'
 					
 		elsif params[:profile_id]
 		  @parent = Profile.find(params[:profile_id])

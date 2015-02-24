@@ -20,6 +20,6 @@ private
 		problems = problems.where("published_at <= ?", date_max) if date_max.present?
 		problems = problems.near(location,location_distance)
 		problems
-	end
+	end 
 	
 end

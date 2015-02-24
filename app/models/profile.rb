@@ -8,12 +8,12 @@ class Profile < ActiveRecord::Base
 	acts_as_commentable
 	
 	
-	def self.search(keywords)
+	def self.search(keywords, profileable_type)
     profiles = order(:name)
     profiles = profiles.where("bio like ?", "%#{keywords}%") if keywords.present?
+	profiles = profiles.where("profileable_type =?", "#{profileable_type}")
     profiles
-  end
-	
+  end	
 	
 	def self.find_profileable(profileable_str, profileable_id)
     profileable_str.constantize.find(profileable_id)
