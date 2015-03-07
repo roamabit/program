@@ -16,7 +16,7 @@ class UsersController < ApplicationController
            render 'new'
         end  
     end
-	
+	 
     def show
 		
 	#	unless params[:id] == ("sign_up" or "log_in" or "sign_in")
@@ -51,7 +51,19 @@ class UsersController < ApplicationController
     
 	#dorothy Lake
 	
-    
+    #************Voting
+	def upvote
+		@user = User.find(params[:format])
+		@user.upvote_by current_user
+		redirect_to @user
+	end
+	
+	def downvote
+	  @user = User.find(params[:format])
+	  @user.downvote_by current_user
+	  redirect_to @user
+	end
+	
     
     private
       def user_params

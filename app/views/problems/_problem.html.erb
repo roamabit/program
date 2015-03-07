@@ -15,3 +15,15 @@
   </div>
 </div>
 		</tr>
+<tr>
+<td>
+	<%= link_to "upvote", like_problem_path(problem), method: :put %>
+
+
+	<%= link_to "downvote", dislike_problem_path(problem), method: :put %>
+
+<%= problem.get_upvotes.size - problem.get_downvotes.size%>
+
+	</td>
+
+</tr>

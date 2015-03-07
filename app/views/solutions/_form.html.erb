@@ -13,21 +13,26 @@
 
   <div class="field">
     <%= f.label :problem_id %><br>
-    <%= f.number_field :problem_id %>
+    <%= f.number_field :problem_id, :value => params[:problem_id].to_i %>
   </div>
+
   <div class="field">
     <%= f.label :project_id %><br>
-    <%= f.number_field :project_id %>
+    <%= f.number_field :project_id, :value => params[:project_id].to_i %>
   </div>
+
   <div class="field">
     <%= f.label :solution_abstract %><br>
-    <%= f.text_area :solution_abstract %>
+    <%= f.text_area :solution_abstract, :value => params[:solution_abstract].to_s %>
   </div>
+
   <div class="field">
     <%= f.label :published_at %><br>
-    <%= f.text_field :published_at %>
+    <%= f.text_field :published_at, :value => params[:published_at] %>
   </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
+
 <% end %>

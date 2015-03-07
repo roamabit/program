@@ -58,3 +58,5 @@ gem 'mysql2'
 #gem 'dinosaurus'
 
 #gem 'passenger'
+
+gem 'acts_as_votable'

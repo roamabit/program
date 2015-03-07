@@ -32,6 +32,7 @@ GEM
       activerecord (>= 4.0)
       activesupport (>= 4.0)
       awesome_nested_set (>= 3.0)
+    acts_as_votable (0.10.0)
     arel (5.0.1.20140414130214)
     awesome_nested_set (3.0.1)
       activerecord (>= 4.0.0, < 5)
@@ -138,6 +139,7 @@ PLATFORMS
 DEPENDENCIES
   acts_as_commentable
   acts_as_commentable_with_threading
+  acts_as_votable
   coffee-rails (~> 4.0.0)
   devise
   geocoder

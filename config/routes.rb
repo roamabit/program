@@ -58,6 +58,10 @@ Teamup::Application.routes.draw do
 
   resources :comments do
 	resources :comments 
+	  	member do
+		put "like", to: "comments#upvote"
+		put "dislike", to: "comments#downvote"
+		end
 	  end
 	
   resources :simtags  do
@@ -65,29 +69,44 @@ Teamup::Application.routes.draw do
 	  end
 	
   resources :solutions  do
-	resources :comments 
+	resources :comments
+	  
 	  end
 
-  resources :problems do
-	resources :comments
-	  end
 
   resources :partnerships do
-	resources :comments 
+	resources :comments
+	  	member do
+		put "like", to: "partnerships#upvote"
+		put "dislike", to: "partnerships#downvote"
+		end
+	  
 	  end
 
   resources :problems do
 	resources :comments
 	resources :profiles
-
+	member do
+		put "like", to: "problems#upvote"
+		put "dislike", to: "problems#downvote"
+		end
+	  
 	  end
 	
   resources :profiles do
 	resources :comments
+	member do
+		put "like", to: "profiles#upvote"
+		put "dislike", to: "profiles#downvote"
+		end
 	  end
 	
 	resource :user do
 	resources :profiles
+		  	member do
+		put "like", to: "users#upvote"
+		put "dislike", to: "users#downvote"
+		end
 	end
 	
   resources :users do
@@ -98,6 +117,7 @@ Teamup::Application.routes.draw do
   root 'welcome#index'
 	
 end
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
@@ -146,4 +166,5 @@ end
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
 end

@@ -17,19 +17,29 @@
     <%= f.label :title %><br>
     <%= f.text_field :title %>
   </div>
+
   <div class="field">
-    <%= f.label :body %><br>
+    <%= 'What is the project?' %><br>
     <%= f.text_area :body %>
   </div>
-  <div class="field">
-    <%= f.label :published_at %><br>
-    <%= f.datetime_select :published_at %>
+
+<div>
+	<%= 'What why does this solve the problem?' %>
+	<%= text_area_tag :solution_abstract %>
+</div>
+
+<div class="field">
+	<%= f.label :published_at %><br>
+	<%= f.datetime_select :published_at %>
 </div>
 
   <div class="field">
     <%= f.text_field :user_id, :value => current_user.id, :type => "hidden" %>
   </div>
 
+<div class="field">
+	<%= text_field_tag :problem_id,  params[:problem_id], :type => 'hidden' %>
+</div>
 
 
    <div class="actions">

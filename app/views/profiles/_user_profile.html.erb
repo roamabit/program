@@ -34,3 +34,8 @@
 </td>
 <% end %>
 </table>
+
+<%= link_to "upvote", like_user_path(@user), method: :put %>
+<%= link_to "downvote", dislike_user_path(@user), method: :put %>
+
+<%= @user.get_upvotes.size - @user.get_downvotes.size%> <br>

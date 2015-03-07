@@ -7,7 +7,7 @@
 	<strong>Your Role:</strong>
 <% else  %>
 	<strong>Role:</strong>
-	<%= User.all.find(@partnership.user_id).email %>
+	<%= User.find(@partnership.user_id).email %>
 <% end %>
   
 <%= @partnership.role %>
@@ -45,3 +45,17 @@
 <ul class="comment_list">
   <%= render :partial => 'comments/comment', :collection => @partnership.comments.find_comments_for_commentable("Partnership",@partnership.id) %>
 </ul>
+
+
+
+
+<% if Partnership.find_by_project_id_and_user_id(@partnership.project_id, current_user.id).nil? == false %>
+
+	<%= link_to "upvote", like_partnership_path(@partnership), method: :put %>
+	<%= link_to "downvote", dislike_partnership_path(@partnership), method: :put %>
+
+<% end %>
+
+
+
+<%= @partnership.get_upvotes.size - @partnership.get_downvotes.size %>

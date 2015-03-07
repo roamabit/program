@@ -40,6 +40,11 @@
 	</p>
 
 
+<%= link_to "upvote", like_profile_path(@profile), method: :put %>
+<%= link_to "downvote", dislike_profile_path(@profile), method: :put %>
+
+<%= @profile.get_upvotes.size - @profile.get_downvotes.size%>
+
 <h2>Comments</h2>
  
 <p><%= link_to 'Add a Comment', new_profile_comment_path(@profile) %></p>

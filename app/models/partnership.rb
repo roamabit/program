@@ -8,7 +8,7 @@ class Partnership < ActiveRecord::Base
 	belongs_to :user
 	has_many :comments, :as => :commentable, dependent: :destroy
 	acts_as_commentable
-	
+	acts_as_votable
 	#default_scope -> {where :user_id == current_user.id}
 	
 	

@@ -5,14 +5,22 @@ class Profile < ActiveRecord::Base
 	belongs_to :profileable, :polymorphic =>true
 	
 	has_many :comments, :as => :commentable, dependent: :destroy
+	
 	acts_as_commentable
+	acts_as_votable
+	
+	#@profile.liked_by @user
+	#@profile.votes_for.size
+	
+	
+	
 	
 	
 	def self.search(keywords, profileable_type)
-    profiles = order(:name)
-    profiles = profiles.where("bio like ?", "%#{keywords}%") if keywords.present?
-	profiles = profiles.where("profileable_type =?", "#{profileable_type}")
-    profiles
+		profiles = order(:name)
+		profiles = profiles.where("bio like ?", "%#{keywords}%") if keywords.present?
+		profiles = profiles.where("profileable_type =?", "#{profileable_type}")
+		profiles
   end	
 	
 	def self.find_profileable(profileable_str, profileable_id)

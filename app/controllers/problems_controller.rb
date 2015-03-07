@@ -95,6 +95,19 @@ class ProblemsController < ApplicationController
     end
   end
 
+	 #************Voting
+	def upvote
+		@problem = Problem.find(params[:id])
+		@problem.upvote_by current_user
+		redirect_to @problem
+	end
+	
+	def downvote
+	  @problem = Problem.find(params[:id])
+	  @problem.downvote_by current_user
+	  redirect_to @problem
+	end
+	
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_problem
@@ -106,3 +119,4 @@ class ProblemsController < ApplicationController
       params.require(:problem).permit(:statement, :body, :published_at, :location)
     end
 end
+

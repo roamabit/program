@@ -27,7 +27,7 @@ class PartnershipsController < ApplicationController
   # POST /partnerships
   # POST /partnerships.json
   def create
-	 
+	  
     @partnership = Partnership.new(partnership_params)
 
     respond_to do |format|
@@ -65,7 +65,20 @@ class PartnershipsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+	 #************Voting
+	def upvote
+		@partnership = Partnership.find(params[:id])
+		@partnership.upvote_by current_user
+		redirect_to @partnership
+	end
+	
+	def downvote
+	  @partnership = Partnership.find(params[:id])
+	  @partnership.downvote_by current_user
+	  redirect_to @partnership
+	end
+	
+	
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_partnership

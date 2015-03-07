@@ -20,6 +20,7 @@
 		<%= @problem.location %>
 	</p>
 
+
 	<%= link_to 'I have this same problem', problems_path(:problem => {:statement => @problem.statement, :body => @problem.body}), :method => 'clone' %>
 
 	<%= link_to 'Edit', edit_problem_path(@problem) %> |
@@ -28,13 +29,27 @@
 
 	<%= render 'profiles/self_profiles' %>
 
+
 	<%= link_to 'New Profile Entry', new_problem_profile_path(@problem.id)  %>
 
- 	<%= render 'nearby_problems' %>
+<p>
+
+		<%= link_to "upvote", like_problem_path(@problem), method: :put %>
+
+
+	<%= link_to "downvote", dislike_problem_path(@problem), method: :put %>
+
+<%= @problem.get_upvotes.size - @problem.get_downvotes.size%>
+
+
+</p>
 
 	<%= render 'problem_comments'%>
 
-	<%= render 'possible_solutions' %>
+ 	<%= render 'nearby_problems' %>
+
+
+	<% render 'possible_solutions' %>
 
 	<%= render 'proposed_solutions' %>
 

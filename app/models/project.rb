@@ -15,7 +15,9 @@ class Project < ActiveRecord::Base
 	validates :user_id, :presence => true
 	
 	has_many :comments, :as => :commentable, dependent: :destroy
+	
 	acts_as_commentable
+	#acts_as_votable
 	
 	def long_title
 		"#{title} - #{created_at}"

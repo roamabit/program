@@ -5,6 +5,7 @@ attr_accessor :user_id, :new_profile_name
 	before_action :set_profile, only: [:show, :edit, :update, :destroy]
 		
 	def index
+		
 		get_parent
 		
 		@profiles = Profile.all
@@ -22,6 +23,11 @@ attr_accessor :user_id, :new_profile_name
 		@profiles = Profile.search(params[:search], params[:profileable_type])
 		
 		
+		#ideas: Pass the buck to another controller 
+		#polymorph right here and output the right parent collection
+		#... user_profiles search should be able to do this... 
+		
+				
 	end
 	
 	
@@ -86,7 +92,7 @@ attr_accessor :user_id, :new_profile_name
       format.json { head :no_content }
     end
   end
-	
+ 
 	
 	def get_parent
 
@@ -179,9 +185,20 @@ attr_accessor :user_id, :new_profile_name
 		 end 
 
 	end
-	
-	
 
+#************Voting
+	def upvote
+		@profile = Profile.find(params[:id])
+		@profile.upvote_by current_user
+		redirect_to @profile
+	end
+	
+	def downvote
+	  @profile = Profile.find(params[:id])
+	  @profile.downvote_by current_user
+	  redirect_to @profile
+	end
+	
 	 def profile_params
 	  	params.require(:profile).permit(:user_id, :name, :bio, :created_at, :updated_at, :made_public_at, :profileable_id, :profileable_type, :new_profile_name)
 	end

@@ -154,7 +154,21 @@ class CommentsController < ApplicationController
       format.json { head :no_content }
     end
   end
- 
+	
+ #************Voting
+	def upvote
+		@comment = Comment.find(params[:id])
+		@comment.upvote_by current_user
+		redirect_to @comment
+	end
+	
+	def downvote
+	  @comment = Comment.find(params[:id])
+	  @comment.downvote_by current_user
+	  redirect_to @comment
+	end
+	
+	
   private
     # Use callbacks to share common setup or constraints between actions.
 	def set_comment

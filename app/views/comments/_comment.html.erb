@@ -25,7 +25,10 @@
     </ul>
  
 </li>
+<%= link_to "upvote", like_comment_path(comment), method: :put %>
+<%= link_to "downvote", dislike_comment_path(comment), method: :put %>
 
+<%= comment.get_upvotes.size - comment.get_downvotes.size%>
 
 
 <% #http://kconrails.com/2011/01/26/nested-comments-in-ruby-on-rails-controllers-and-views/ 
