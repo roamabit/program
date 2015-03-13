@@ -1,3 +1,7 @@
+#added for openshift
+#source 'http://mirror1.prod.rhcloud.com/mirror/ruby/'
+
+
 source 'https://rubygems.org'
 
 
@@ -57,6 +61,6 @@ gem 'mysql2'
 
 #gem 'dinosaurus'
 
-#gem 'passenger'
+gem 'passenger'
 
 gem 'acts_as_votable'
