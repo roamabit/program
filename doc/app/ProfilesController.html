@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8">
+
+<title>class ProfilesController - Rails Application Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="ApplicationController.html">ApplicationController</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-create">#create</a>
+    
+    <li ><a href="#method-i-destroy">#destroy</a>
+    
+    <li ><a href="#method-i-downvote">#downvote</a>
+    
+    <li ><a href="#method-i-get_options_list">#get_options_list</a>
+    
+    <li ><a href="#method-i-get_parent">#get_parent</a>
+    
+    <li ><a href="#method-i-index">#index</a>
+    
+    <li ><a href="#method-i-new">#new</a>
+    
+    <li ><a href="#method-i-profile_params">#profile_params</a>
+    
+    <li ><a href="#method-i-profile_search">#profile_search</a>
+    
+    <li ><a href="#method-i-self_profiles">#self_profiles</a>
+    
+    <li ><a href="#method-i-set_profile">#set_profile</a>
+    
+    <li ><a href="#method-i-show">#show</a>
+    
+    <li ><a href="#method-i-update">#update</a>
+    
+    <li ><a href="#method-i-upvote">#upvote</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-ProfilesController">
+  <h1 id="class-ProfilesController" class="class">
+    class ProfilesController
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-new_profile_name" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">new_profile_name</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-user_id" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">user_id</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-create" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="create-source">
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 38</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
+        
+        <span class="ruby-ivar">@profile_hash</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:profile</span>]
+        
+        <span class="ruby-ivar">@obj</span> = <span class="ruby-ivar">@profile_hash</span>[<span class="ruby-value">:profileable_type</span>].<span class="ruby-identifier">constantize</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@profile_hash</span>[<span class="ruby-value">:profileable_id</span>])
+        
+                <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:new_profile_name</span>]<span class="ruby-operator">==</span><span class="ruby-string">&#39;&#39;</span>
+        <span class="ruby-ivar">@profile_name</span> = <span class="ruby-ivar">@profile_hash</span>[<span class="ruby-value">:name</span>]
+                <span class="ruby-keyword">else</span>
+
+        <span class="ruby-ivar">@profile_name</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:new_profile_name</span>]
+                <span class="ruby-keyword">end</span>
+        
+        <span class="ruby-ivar">@profile</span> = <span class="ruby-constant">Profile</span>.<span class="ruby-identifier">build_from</span>(<span class="ruby-ivar">@obj</span>, <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>,  <span class="ruby-ivar">@profile_hash</span>[<span class="ruby-value">:bio</span>], <span class="ruby-ivar">@profile_name</span>, <span class="ruby-ivar">@profile_hash</span>[<span class="ruby-value">:made_public_at</span>])
+
+
+
+        
+        <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+          <span class="ruby-keyword">if</span> <span class="ruby-ivar">@profile</span>.<span class="ruby-identifier">save</span>
+                <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@profile</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Profile was successfully created.&#39;</span> }
+                <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:show</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:created</span>, <span class="ruby-identifier">bio</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@profile</span> }
+          <span class="ruby-keyword">else</span>
+                <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:new</span> }
+                <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@profile</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:unprocessable_entity</span> }
+          <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-destroy" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">destroy</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="destroy-source">
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 87</span>
+       <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
+      <span class="ruby-identifier">get_parent</span>
+  <span class="ruby-ivar">@profile</span>.<span class="ruby-identifier">destroy</span>
+              <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@parent</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Profile was successfully destroyed.&#39;</span> }
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">head</span> <span class="ruby-value">:no_content</span> }
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-downvote" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">downvote</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="downvote-source">
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 196</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">downvote</span>
+  <span class="ruby-ivar">@profile</span> = <span class="ruby-constant">Profile</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-ivar">@profile</span>.<span class="ruby-identifier">downvote_by</span> <span class="ruby-identifier">current_user</span>
+  <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@profile</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_options_list" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_options_list</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_options_list-source">
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 165</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_options_list</span>
+        
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:user_id</span>]
+                 <span class="ruby-ivar">@list</span> = [<span class="ruby-string">&#39;Name&#39;</span>,<span class="ruby-string">&#39;Alias&#39;</span>,<span class="ruby-string">&#39;Location&#39;</span>,<span class="ruby-string">&#39;Skill&#39;</span>,<span class="ruby-string">&#39;Interest&#39;</span>,<span class="ruby-string">&#39;Passion&#39;</span>] 
+         <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:project_id</span>] 
+                 <span class="ruby-ivar">@list</span> = [<span class="ruby-string">&#39;Google Hangout&#39;</span>,<span class="ruby-string">&#39;Pinterest&#39;</span>,<span class="ruby-string">&#39;Facebook&#39;</span>,<span class="ruby-string">&#39;Meetup&#39;</span>,<span class="ruby-string">&#39;Trello&#39;</span>,<span class="ruby-string">&#39;GitHub&#39;</span>]        
+         <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:partnership_id</span>] 
+                 <span class="ruby-ivar">@list</span> = [<span class="ruby-string">&#39;I can help with&#39;</span>,<span class="ruby-string">&#39;I want to be involved in&#39;</span>] 
+         <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:problem_id</span>] 
+                 <span class="ruby-ivar">@list</span> = [<span class="ruby-string">&#39;Pinterest&#39;</span>,<span class="ruby-string">&#39;Legal&#39;</span>,<span class="ruby-string">&#39;Government Contact&#39;</span>,<span class="ruby-string">&#39;Hangout&#39;</span>] 
+         <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:profile_id</span>] 
+                 <span class="ruby-ivar">@list</span> = [<span class="ruby-string">&#39;Other&#39;</span>] 
+         <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:search_problem_id</span>] 
+                 <span class="ruby-ivar">@list</span> = [<span class="ruby-string">&#39;Other&#39;</span>] 
+         <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:simvol_id</span>] 
+                 <span class="ruby-ivar">@list</span> = [<span class="ruby-string">&#39;Other&#39;</span>] 
+         <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:solution_id</span>] 
+                 <span class="ruby-ivar">@list</span> = [<span class="ruby-string">&#39;Other&#39;</span>] 
+         <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:comment_id</span>] 
+                 <span class="ruby-ivar">@list</span> = [<span class="ruby-string">&#39;Other&#39;</span>] 
+         <span class="ruby-keyword">end</span> 
+
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_parent" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_parent</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_parent-source">
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 97</span>
+        <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_parent</span>
+
+                <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:project_id</span>] 
+                  <span class="ruby-ivar">@parent</span> = <span class="ruby-constant">Project</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:project_id</span>])
+                  <span class="ruby-ivar">@template_prefix</span> = <span class="ruby-string">&#39;project/profiles/&#39;</span>
+                
+                <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:partnership_id</span>]
+                  <span class="ruby-ivar">@parent</span> = <span class="ruby-constant">Partnership</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:partnership_id</span>])
+                  <span class="ruby-ivar">@template_prefix</span> = <span class="ruby-string">&#39;partnership/profiles/&#39;</span>
+                
+                <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:problem_id</span>]
+                  <span class="ruby-ivar">@parent</span> = <span class="ruby-constant">Problem</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:problem_id</span>])
+                  <span class="ruby-ivar">@template_prefix</span> = <span class="ruby-string">&#39;problem/profiles/&#39;</span>
+                
+                <span class="ruby-keyword">elsif</span>  <span class="ruby-identifier">params</span>[<span class="ruby-value">:profileable_type</span>]
+                  <span class="ruby-ivar">@p_type</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:profileable_type</span>].<span class="ruby-identifier">singularize</span>.<span class="ruby-identifier">capitalize</span>.<span class="ruby-identifier">constantize</span>
+                  <span class="ruby-ivar">@parent</span> = <span class="ruby-ivar">@p_type</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">profile_params</span>[<span class="ruby-value">:profileable_id</span>]) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:search</span>]
+                  <span class="ruby-ivar">@template_prefix</span> = <span class="ruby-node">&quot;#{@p_type.to_s.downcase}&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;/profiles/&#39;</span>
+                                        
+                <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:profile_id</span>]
+                  <span class="ruby-ivar">@parent</span> = <span class="ruby-constant">Profile</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:profile_id</span>])
+                  <span class="ruby-ivar">@template_prefix</span> = <span class="ruby-string">&#39;profile/profiles/&#39;</span>
+                        
+                <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:search_problem_id</span>]
+                  <span class="ruby-ivar">@parent</span> = <span class="ruby-constant">Search_problem</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:search_problem_id</span>])
+                  <span class="ruby-ivar">@template_prefix</span> = <span class="ruby-string">&#39;search_problem/profiles/&#39;</span>       
+                
+                <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:simvol_id</span>]
+                  <span class="ruby-ivar">@parent</span> = <span class="ruby-constant">Simvol</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:simvol_id</span>])
+                  <span class="ruby-ivar">@template_prefix</span> = <span class="ruby-string">&#39;simvol/profiles/&#39;</span>               
+                
+                <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:solution_id</span>]
+                  <span class="ruby-ivar">@parent</span> = <span class="ruby-constant">Solution</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:solution_id</span>])
+                  <span class="ruby-ivar">@template_prefix</span> = <span class="ruby-string">&#39;solution/profiles/&#39;</span>             
+
+                <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:comment_id</span>]
+                  <span class="ruby-ivar">@parent</span> = <span class="ruby-constant">Comment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:comment_id</span>])
+                  <span class="ruby-ivar">@template_prefix</span> = <span class="ruby-string">&#39;comment/profiles/&#39;</span>
+                  <span class="ruby-ivar">@parentid</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:commentable_id</span>]
+                
+                <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:user_id</span>]
+                  <span class="ruby-ivar">@parent</span> = <span class="ruby-identifier">current_user</span>
+                  <span class="ruby-ivar">@template_prefix</span> = <span class="ruby-string">&#39;user/profiles/&#39;</span>
+                
+                <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]
+                        <span class="ruby-ivar">@profile_lookup</span> = <span class="ruby-constant">Profile</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+                        <span class="ruby-ivar">@parent_object</span> = <span class="ruby-ivar">@profile_lookup</span>.<span class="ruby-identifier">profileable_type</span>.<span class="ruby-identifier">constantize</span>
+                        <span class="ruby-ivar">@parent</span> = <span class="ruby-ivar">@parent_object</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@profile_lookup</span>.<span class="ruby-identifier">profileable_id</span>)
+                
+        <span class="ruby-comment">#      elsif params[:search]</span>
+        <span class="ruby-comment">#              request.referer</span>
+<span class="ruby-comment">#               else </span>
+<span class="ruby-comment">#                 @parent = Profile.find(params[:id]).profileable_type.constantize</span>
+        
+                <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-index" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">index</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="index-source">
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 7</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
+        
+        <span class="ruby-identifier">get_parent</span>
+        
+        <span class="ruby-ivar">@profiles</span> = <span class="ruby-constant">Profile</span>.<span class="ruby-identifier">all</span>
+        
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:search</span>]
+                <span class="ruby-comment">#@profiles = Profile.users</span>
+                <span class="ruby-identifier">profile_search</span>
+                
+        <span class="ruby-keyword">end</span>
+        
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 69</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
+        <span class="ruby-identifier">get_parent</span>
+        <span class="ruby-identifier">get_options_list</span>
+        <span class="ruby-ivar">@profile</span> = <span class="ruby-ivar">@parent</span>.<span class="ruby-identifier">profiles</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-profile_params" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">profile_params</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="profile_params-source">
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 202</span>
+ <span class="ruby-keyword">def</span> <span class="ruby-identifier">profile_params</span>
+       <span class="ruby-identifier">params</span>.<span class="ruby-identifier">require</span>(<span class="ruby-value">:profile</span>).<span class="ruby-identifier">permit</span>(<span class="ruby-value">:user_id</span>, <span class="ruby-value">:name</span>, <span class="ruby-value">:bio</span>, <span class="ruby-value">:created_at</span>, <span class="ruby-value">:updated_at</span>, <span class="ruby-value">:made_public_at</span>, <span class="ruby-value">:profileable_id</span>, <span class="ruby-value">:profileable_type</span>, <span class="ruby-value">:new_profile_name</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-profile_search" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">profile_search</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="profile_search-source">
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">profile_search</span>
+        
+        <span class="ruby-ivar">@profiles</span> = <span class="ruby-constant">Profile</span>.<span class="ruby-identifier">search</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:search</span>], <span class="ruby-identifier">params</span>[<span class="ruby-value">:profileable_type</span>])
+        
+        
+        <span class="ruby-comment">#ideas: Pass the buck to another controller </span>
+        <span class="ruby-comment">#polymorph right here and output the right parent collection</span>
+        <span class="ruby-comment">#... user_profiles search should be able to do this... </span>
+        
+                        
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-self_profiles" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">self_profiles</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="self_profiles-source">
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 155</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">self_profiles</span>
+        <span class="ruby-identifier">get_parent</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-set_profile" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">set_profile</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="set_profile-source">
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 159</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">set_profile</span>
+<span class="ruby-comment">#      get_parent</span>
+        <span class="ruby-ivar">@profile</span> = <span class="ruby-constant">Profile</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-show" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">show</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="show-source">
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 34</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
+        
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-update" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="update-source">
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 75</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
+          <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+                  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@profile</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">profile_params</span>)
+                        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@profile</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;profile was successfully updated.&#39;</span> }
+                        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:show</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:ok</span>, <span class="ruby-identifier">location</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@profile</span> }
+                  <span class="ruby-keyword">else</span>
+                        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:edit</span> }
+                        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@profile</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:unprocessable_entity</span> }
+                  <span class="ruby-keyword">end</span>
+          <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-upvote" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">upvote</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>************Voting</p>
+          
+          
+
+          
+          <div class="method-source-code" id="upvote-source">
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 190</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">upvote</span>
+        <span class="ruby-ivar">@profile</span> = <span class="ruby-constant">Profile</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+        <span class="ruby-ivar">@profile</span>.<span class="ruby-identifier">upvote_by</span> <span class="ruby-identifier">current_user</span>
+        <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@profile</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

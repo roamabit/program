@@ -65,6 +65,7 @@ if defined?(JRUBY_VERSION)
   gem 'activerecord-jdbcmysql-adapter', '=1.1.3'
 else
   gem 'mysql2'
+  gem 'sqlite3'
 end
 
 #gem 'dinosaurus'
