@@ -8,7 +8,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.4'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+#gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -57,10 +57,20 @@ gem 'underscore-rails'
 
 gem 'geocoder'
 
-gem 'mysql2'
+#gem 'mysql2', '~> 0.3.18'
+
+if defined?(JRUBY_VERSION)
+  gem 'activerecord-jdbc-adapter', '=1.1.3'
+  gem 'jdbc-mysql', :require=>false
+  gem 'activerecord-jdbcmysql-adapter', '=1.1.3'
+else
+  gem 'mysql2'
+end
 
 #gem 'dinosaurus'
 
-gem 'passenger'
+#gem 'passenger'
 
 gem 'acts_as_votable'
+
+gem 'pg'
