@@ -1,15 +1,15 @@
 Rails.application.routes.draw do
-  
-  resources :search_problems do 
+
+  resources :search_problems do
 	  resources :comments
 	  end
 
   resources :comments do
     resources :comments
 	  end
-	
+
   resources :simtags  do
-	resources :comments 
+	resources :comments
 	  end
 
   resources :simvols  do
@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 	  end
 
   resources :solutions  do
-	resources :comments 
+	resources :comments
 	  end
 
   resources :problems do
@@ -27,50 +27,50 @@ Rails.application.routes.draw do
 	  end
 
   resources :partnerships do
-	resources :comments 
+	resources :comments
 	  end
 
   resources :projects do
-	resources :comments 
+	resources :comments
 	resources :profiles
 	  end
 
   resource :user do
 	resources :profiles
 	end
-	
-#  resources :users do 
+
+#  resources :users do
 #	  resources :profiles
 #	  end
 
   devise_for :users
-	
+
 	  get 'welcome/index'
-	
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
 Teamup::Application.routes.draw do
- 
+
   resources :search_problems
 
   resources :comments do
-	resources :comments 
+	resources :comments
 	  	member do
 		put "like", to: "comments#upvote"
 		put "dislike", to: "comments#downvote"
 		end
 	  end
-	
+
   resources :simtags  do
-	resources :comments 
+	resources :comments
 	  end
-	
+
   resources :solutions  do
 	resources :comments
-	  
+
 	  end
 
 
@@ -80,7 +80,7 @@ Teamup::Application.routes.draw do
 		put "like", to: "partnerships#upvote"
 		put "dislike", to: "partnerships#downvote"
 		end
-	  
+
 	  end
 
   resources :problems do
@@ -90,9 +90,9 @@ Teamup::Application.routes.draw do
 		put "like", to: "problems#upvote"
 		put "dislike", to: "problems#downvote"
 		end
-	  
+
 	  end
-	
+
   resources :profiles do
 	resources :comments
 	member do
@@ -100,22 +100,23 @@ Teamup::Application.routes.draw do
 		put "dislike", to: "profiles#downvote"
 		end
 	  end
-	
+
 	resource :user do
 	resources :profiles
 		  	member do
 		put "like", to: "users#upvote"
 		put "dislike", to: "users#downvote"
+  resources :problems
 		end
 	end
-	
+
   resources :users do
 	resources :comments
 	resources :profiles
   end
-	
+
   root 'welcome#index'
-	
+
 end
 
   # Example of regular route:

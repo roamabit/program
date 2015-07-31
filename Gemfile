@@ -73,4 +73,4 @@ end
 
 gem 'acts_as_votable'
 
-gem 'pg'
+#gem 'pg'

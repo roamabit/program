@@ -1,13 +1,35 @@
  <h3>Nearby Problems</h3>
-	<% if @problem.location.nil? == false %>
-<ul>
+	<% if @problem.location.empty? == false %>
 
-<% for problem in @problem.nearbys(10) %>
-  <li><%= link_to problem.statement, problem %> (<%= problem.distance.round(2) %> miles)</li>
-<% end %>
-</ul>
-<% else %>
+    <ul>
+        <%
+        if @problem.nearbys(10).to_a.empty? == false
+        #Null set returns true
 
-<%= 'Specify a location to see nearby problems.' %>
+          for problem in @problem.nearbys(10)
+          #for each local problem do this
+          %>
 
-<% end %>
+          <li>
+            <%= link_to problem.statement, problem %>
+            (<%= problem.distance.round(2) %> miles)
+          </li>
+
+          <% end %>
+
+        <% else %>
+
+          <notice>
+            <%= 'There are no problems reported nearby' %>
+          </notice>
+
+        <% end %>
+
+    </ul>
+  <% else %>
+
+    <notice>
+    <%= 'Specify a location to see nearby problems.' %>
+    </notice>
+
+  <% end %>

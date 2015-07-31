@@ -1,8 +1,8 @@
-	<tr>
-<div class="problem">
-<td>
-  <h2><%= link_to problem.statement, problem %></h2>
-</td>
+<tr>
+    <div class="problem">
+      <td>
+        <h2><%= link_to problem.statement, problem %></h2>
+      </td>
 </tr>
 <tr>
 <td>
@@ -10,7 +10,7 @@
     <%= problem.location %>
 </td>
 <td>
-	<%= problem.published_at.to_formatted_s(:long)  %>  
+	<%=  problem.published_at %>
 </td>
   </div>
 </div>
