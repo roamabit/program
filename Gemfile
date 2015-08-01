@@ -73,7 +73,6 @@ end
 end
 
 #gem 'dinosaurus'
-
 #gem 'passenger'
 
 gem 'acts_as_votable'
