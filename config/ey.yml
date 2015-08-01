@@ -1,7 +1,4 @@
 #ey.yml
 environments:
-  myapp_staging:
-   copy_exclude:
-   - .git
-    branch: master
-    precompile_assets: true
+  production:
+    migrate: false
