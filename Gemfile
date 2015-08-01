@@ -76,5 +76,3 @@ end
 #gem 'passenger'
 
 gem 'acts_as_votable'
-
-#gem 'pg'
