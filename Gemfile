@@ -70,7 +70,6 @@ end
 
 end
 
-#there is no spoon!
 #gem 'dinosaurus'
 #gem 'passenger'
 
