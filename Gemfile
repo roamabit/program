@@ -62,7 +62,7 @@ if defined?(JRUBY_VERSION)
   gem 'jdbc-mysql', :require=>false
   gem 'activerecord-jdbcmysql-adapter', '=1.1.3'
 else
-  gem 'mysql2'
+  #gem 'mysql2'
 
   gem 'mysql'
 
