@@ -1,9 +1,0 @@
-.bundle
-.DS_Store
-config/*.yml
-db/*.sqlite3*
-log/*.log
-tmp/restart.txt
-tmp/**/*
-.sass-cache
-public/_test.html
