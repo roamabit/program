@@ -2,3 +2,4 @@
 environments:
   production:
     migrate: false
+     precompile_assets: false # disable asset compilation.
