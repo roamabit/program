@@ -45,7 +45,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 #authentication gem
 gem 'devise'
 
-gem 'sqlserver'
+#gem 'sqlserver'
 
 gem 'acts_as_commentable_with_threading'
 
