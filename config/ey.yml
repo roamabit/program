@@ -1,5 +1,5 @@
-#ey.yml
-environments:
-  production:
-    migrate: false
-     precompile_assets: false # disable asset compilation.
+defaults:
+  copy_exclude:
+  - .git
+  precompile_assets: true
+  ignore_gemfile_lock_warning: true
