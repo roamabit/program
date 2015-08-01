@@ -70,7 +70,6 @@ group :production do
   gem 'mysql'
 end
 
-
 end
 
 #gem 'dinosaurus'
