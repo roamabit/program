@@ -57,8 +57,6 @@ gem 'underscore-rails'
 
 gem 'geocoder'
 
-#gem 'mysql2', '~> 0.3.18'
-
 if defined?(JRUBY_VERSION)
   gem 'activerecord-jdbc-adapter', '=1.1.3'
   gem 'jdbc-mysql', :require=>false
