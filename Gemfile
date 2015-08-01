@@ -64,9 +64,8 @@ if defined?(JRUBY_VERSION)
 else
   gem 'mysql2'
 
-group :production do
   gem 'mysql'
-end
+
 
 end
 
