@@ -73,3 +73,6 @@ end
 #gem 'passenger'
 
 gem 'acts_as_votable'
+platforms :ruby do # linux
+gem 'unicorn'
+end
