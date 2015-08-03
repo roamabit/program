@@ -484,7 +484,7 @@ ERROR
 Devise.secret_key was not set. Please add the following to your Devise initializer:
 
   config.secret_key = '#{SecureRandom.hex(64)}'
-  config.secret_key = '#{f25945e23d0dcb66a00dd7e4fc394772ca1f265d8a70f81b2878af380fad07f484fe9a945c368979211f1bfad1de40ff440cf338ec036a605f8052d4161c36ff}'
+
 
 Please ensure you restarted your application after installing Devise or setting the key.
 ERROR
