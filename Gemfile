@@ -65,7 +65,7 @@ if defined?(JRUBY_VERSION)
 else
 
 
-    gem 'unicorn', :platform => 'ruby'
+    #gem 'unicorn', :platform => 'ruby'
     gem 'mysql', :platform => 'ruby'
 
     gem 'mysql2', platforms: [:mingw, :mswin]
