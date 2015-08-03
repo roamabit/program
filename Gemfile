@@ -28,7 +28,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+#gem 'bcrypt-ruby', '~> 3.0', :platform => 'ruby'
 
 # Use unicorn as the app server
 # gem 'unicorn'
@@ -61,10 +61,14 @@ if defined?(JRUBY_VERSION)
   gem 'activerecord-jdbc-adapter', '=1.1.3'
   gem 'jdbc-mysql', :require=>false
   gem 'activerecord-jdbcmysql-adapter', '=1.1.3'
-else
-  #gem 'mysql2'
 
-  gem 'mysql'
+else
+
+
+    gem 'unicorn', :platform => 'ruby'
+    gem 'mysql', :platform => 'ruby'
+
+    gem 'mysql2', platforms: [:mingw, :mswin]
 
 
 end
@@ -73,6 +77,4 @@ end
 #gem 'passenger'
 
 gem 'acts_as_votable'
-platforms :ruby do # linux
-gem 'unicorn'
-end
+
