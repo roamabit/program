@@ -1,6 +1,6 @@
 class ProblemsController < ApplicationController
   before_action :set_problem, only: [:show, :edit, :update, :destroy]
- attr_accessor :problem, :statement, :body, :problem_params
+ attr_accessor :problem, :statement, :body, :problem_params, :current_user
 
   # GET /problems
   # GET /problems.json
@@ -60,8 +60,9 @@ class ProblemsController < ApplicationController
   # POST /problems
   # POST /problems.json
   def create
-    @problem = current_user.problems.build(params[:problem])
-    #@problem = Problem.new(problem_params)
+    #@problem = current_user.problems.build(params[:problem])
+    @problem = Problem.new(problem_params)
+    #@problem.current_user = current_user
 
     problem_params[:user_id] = current_user.id
 
