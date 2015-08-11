@@ -6,15 +6,15 @@
 <%= link_to @user.email.first(@user.email.index('@')), @user  %>
 
 </h3>
-	
+
 <% @user_profile_headers = @user.profiles %>
-		
+
 <% @user_profile_headers.group(:name).where("profiles.made_public_at IS NOT NULL").each do |p| %>
 <td>
 <table>
 	<th><%= p.name %></th>
 
-	
+
 	<% @user_profile_headers.each do |b| %>
 
 		<% if b.name == p.name %>
@@ -22,7 +22,7 @@
 			<tr><td>
 
 				<%= link_to b.bio, b  %>
-		
+
 
 			</td>
 

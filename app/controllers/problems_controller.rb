@@ -1,9 +1,10 @@
 class ProblemsController < ApplicationController
-  before_action :set_problem, only: [:show, :edit, :update, :destroy]
- attr_accessor :problem, :statement, :body, :problem_params, :current_user
+ before_action :set_problem, only: [:show, :edit, :update, :destroy]
+  attr_accessor :problem, :statement, :body, :problem_params
 
   # GET /problems
   # GET /problems.json
+
 
   def index
     @problems = Problem.all
@@ -40,16 +41,16 @@ class ProblemsController < ApplicationController
 
   # GET /problems/new
   def new
-      @problem = current_user.problems.build
+      #@problem = current_user.problems.build
       @problem = Problem.new
 
   end
 
 	def clone
-  @problem = Problem.find(params[:id]) # find original object
-  @problem = Problem.new(@problem.attributes) # initialize duplicate (not saved)
-  render :new # render same view as "new",
-              #but with @problem attributes already filled in
+    @problem = Problem.find(params[:id]) # find original object
+    @problem = Problem.new(@problem.attributes) # initialize duplicate (not saved)
+    render :new # render same view as "new",
+                #but with @problem attributes already filled in
 	end
 
   # GET /problems/1/edit
@@ -60,25 +61,42 @@ class ProblemsController < ApplicationController
   # POST /problems
   # POST /problems.json
   def create
-    #@problem = current_user.problems.build(params[:problem])
-    @problem = Problem.new(problem_params)
-    #@problem.current_user = current_user
 
-    problem_params[:user_id] = current_user.id
+  @problem = Problem.new(problem_params)
 
-    respond_to do |format|
+
       if @problem.save
-        format.html { redirect_to @problem,
-          notice: 'Problem was successfully created.' }
-        format.json { render :show,
-          status: :created, location: @problem }
+
+        Supporter.create(:user_id => current_user.id, :problem_id => @problem.id, :role => 'Author')
+
+
+        if params[:user_id].nil? == false
+
+          @problem_id = problem_params[:id]
+          Supporter.create(:user_id => params[:user_id], :problem_id => @problem.id, :role => 'Supporter')
+
+        else
+
+          respond_to do |format|
+            format.html { redirect_to @problem,
+            notice: 'Problem was successfully created.' }
+            format.json { render :show,
+            status: :created, location: @problem }
+          end #format
+      end # user_id
+
       else
+        respond_to do |format|
         format.html { render :new }
         format.json { render json: @problem.errors,
-          status: :unprocessable_entity }
-      end
-    end
-  end
+        status: :unprocessable_entity }
+        end #format
+
+      end #save if
+
+  end #create
+
+
 
   # PATCH/PUT /problems/1
   # PATCH/PUT /problems/1.json
@@ -130,7 +148,7 @@ class ProblemsController < ApplicationController
 
     def problem_params
       params.require(:problem).permit(:statement, :body,
-        :published_at, :location)
+        :published_at, :location, :user_id)
     end
 end
 

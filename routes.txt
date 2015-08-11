@@ -1,4 +1,104 @@
-                      Prefix Verb   URI Pattern                                                     Controller#Action
+                     Prefix Verb   URI Pattern                                                     Controller#Action
+                       root GET    /                                                               welcome#index
+              welcome_index GET    /welcome/index(.:format)                                        welcome#index
+           new_user_session GET    /users/sign_in(.:format)                                        devise/sessions#new
+               user_session POST   /users/sign_in(.:format)                                        devise/sessions#create
+       destroy_user_session DELETE /users/sign_out(.:format)                                       devise/sessions#destroy
+              user_password POST   /users/password(.:format)                                       devise/passwords#create
+          new_user_password GET    /users/password/new(.:format)                                   devise/passwords#new
+         edit_user_password GET    /users/password/edit(.:format)                                  devise/passwords#edit
+                            PATCH  /users/password(.:format)                                       devise/passwords#update
+                            PUT    /users/password(.:format)                                       devise/passwords#update
+   cancel_user_registration GET    /users/cancel(.:format)                                         devise/registrations#cancel
+          user_registration POST   /users(.:format)                                                devise/registrations#create
+      new_user_registration GET    /users/sign_up(.:format)                                        devise/registrations#new
+     edit_user_registration GET    /users/edit(.:format)                                           devise/registrations#edit
+                            PATCH  /users(.:format)                                                devise/registrations#update
+                            PUT    /users(.:format)                                                devise/registrations#update
+                            DELETE /users(.:format)                                                devise/registrations#destroy
+              user_projects GET    /users/:user_id/projects(.:format)                              projects#index
+                            POST   /users/:user_id/projects(.:format)                              projects#create
+           new_user_project GET    /users/:user_id/projects/new(.:format)                          projects#new
+          edit_user_project GET    /users/:user_id/projects/:id/edit(.:format)                     projects#edit
+               user_project GET    /users/:user_id/projects/:id(.:format)                          projects#show
+                            PATCH  /users/:user_id/projects/:id(.:format)                          projects#update
+                            PUT    /users/:user_id/projects/:id(.:format)                          projects#update
+                            DELETE /users/:user_id/projects/:id(.:format)                          projects#destroy
+              user_problems GET    /users/:user_id/problems(.:format)                              problems#index
+                            POST   /users/:user_id/problems(.:format)                              problems#create
+           new_user_problem GET    /users/:user_id/problems/new(.:format)                          problems#new
+          edit_user_problem GET    /users/:user_id/problems/:id/edit(.:format)                     problems#edit
+               user_problem GET    /users/:user_id/problems/:id(.:format)                          problems#show
+                            PATCH  /users/:user_id/problems/:id(.:format)                          problems#update
+                            PUT    /users/:user_id/problems/:id(.:format)                          problems#update
+                            DELETE /users/:user_id/problems/:id(.:format)                          problems#destroy
+              user_comments GET    /users/:user_id/comments(.:format)                              comments#index
+                            POST   /users/:user_id/comments(.:format)                              comments#create
+           new_user_comment GET    /users/:user_id/comments/new(.:format)                          comments#new
+          edit_user_comment GET    /users/:user_id/comments/:id/edit(.:format)                     comments#edit
+               user_comment GET    /users/:user_id/comments/:id(.:format)                          comments#show
+                            PATCH  /users/:user_id/comments/:id(.:format)                          comments#update
+                            PUT    /users/:user_id/comments/:id(.:format)                          comments#update
+                            DELETE /users/:user_id/comments/:id(.:format)                          comments#destroy
+              user_profiles GET    /users/:user_id/profiles(.:format)                              profiles#index
+                            POST   /users/:user_id/profiles(.:format)                              profiles#create
+           new_user_profile GET    /users/:user_id/profiles/new(.:format)                          profiles#new
+          edit_user_profile GET    /users/:user_id/profiles/:id/edit(.:format)                     profiles#edit
+               user_profile GET    /users/:user_id/profiles/:id(.:format)                          profiles#show
+                            PATCH  /users/:user_id/profiles/:id(.:format)                          profiles#update
+                            PUT    /users/:user_id/profiles/:id(.:format)                          profiles#update
+                            DELETE /users/:user_id/profiles/:id(.:format)                          profiles#destroy
+                  like_user PUT    /users/:id/like(.:format)                                       users#upvote
+               dislike_user PUT    /users/:id/dislike(.:format)                                    users#downvote
+                      users GET    /users(.:format)                                                users#index
+                            POST   /users(.:format)                                                users#create
+                   new_user GET    /users/new(.:format)                                            users#new
+                  edit_user GET    /users/:id/edit(.:format)                                       users#edit
+                       user GET    /users/:id(.:format)                                            users#show
+                            PATCH  /users/:id(.:format)                                            users#update
+                            PUT    /users/:id(.:format)                                            users#update
+                            DELETE /users/:id(.:format)                                            users#destroy
+                            GET    /user/projects(.:format)                                        projects#index
+                            POST   /user/projects(.:format)                                        projects#create
+                            GET    /user/projects/new(.:format)                                    projects#new
+                            GET    /user/projects/:id/edit(.:format)                               projects#edit
+                            GET    /user/projects/:id(.:format)                                    projects#show
+                            PATCH  /user/projects/:id(.:format)                                    projects#update
+                            PUT    /user/projects/:id(.:format)                                    projects#update
+                            DELETE /user/projects/:id(.:format)                                    projects#destroy
+                            GET    /user/problems(.:format)                                        problems#index
+                            POST   /user/problems(.:format)                                        problems#create
+                            GET    /user/problems/new(.:format)                                    problems#new
+                            GET    /user/problems/:id/edit(.:format)                               problems#edit
+                            GET    /user/problems/:id(.:format)                                    problems#show
+                            PATCH  /user/problems/:id(.:format)                                    problems#update
+                            PUT    /user/problems/:id(.:format)                                    problems#update
+                            DELETE /user/problems/:id(.:format)                                    problems#destroy
+                            GET    /user/comments(.:format)                                        comments#index
+                            POST   /user/comments(.:format)                                        comments#create
+                            GET    /user/comments/new(.:format)                                    comments#new
+                            GET    /user/comments/:id/edit(.:format)                               comments#edit
+                            GET    /user/comments/:id(.:format)                                    comments#show
+                            PATCH  /user/comments/:id(.:format)                                    comments#update
+                            PUT    /user/comments/:id(.:format)                                    comments#update
+                            DELETE /user/comments/:id(.:format)                                    comments#destroy
+                            GET    /user/profiles(.:format)                                        profiles#index
+                            POST   /user/profiles(.:format)                                        profiles#create
+                            GET    /user/profiles/new(.:format)                                    profiles#new
+                            GET    /user/profiles/:id/edit(.:format)                               profiles#edit
+                            GET    /user/profiles/:id(.:format)                                    profiles#show
+                            PATCH  /user/profiles/:id(.:format)                                    profiles#update
+                            PUT    /user/profiles/:id(.:format)                                    profiles#update
+                            DELETE /user/profiles/:id(.:format)                                    profiles#destroy
+                            PUT    /user/like(.:format)                                            users#upvote
+                            PUT    /user/dislike(.:format)                                         users#downvote
+                            POST   /user(.:format)                                                 users#create
+                            GET    /user/new(.:format)                                             users#new
+                            GET    /user/edit(.:format)                                            users#edit
+                            GET    /user(.:format)                                                 users#show
+                            PATCH  /user(.:format)                                                 users#update
+                            PUT    /user(.:format)                                                 users#update
+                            DELETE /user(.:format)                                                 users#destroy
     search_problem_comments GET    /search_problems/:search_problem_id/comments(.:format)          comments#index
                             POST   /search_problems/:search_problem_id/comments(.:format)          comments#create
  new_search_problem_comment GET    /search_problems/:search_problem_id/comments/new(.:format)      comments#new
@@ -15,6 +115,14 @@ edit_search_problem_comment GET    /search_problems/:search_problem_id/comments/
                             PATCH  /search_problems/:id(.:format)                                  search_problems#update
                             PUT    /search_problems/:id(.:format)                                  search_problems#update
                             DELETE /search_problems/:id(.:format)                                  search_problems#destroy
+           comment_profiles GET    /comments/:comment_id/profiles(.:format)                        profiles#index
+                            POST   /comments/:comment_id/profiles(.:format)                        profiles#create
+        new_comment_profile GET    /comments/:comment_id/profiles/new(.:format)                    profiles#new
+       edit_comment_profile GET    /comments/:comment_id/profiles/:id/edit(.:format)               profiles#edit
+            comment_profile GET    /comments/:comment_id/profiles/:id(.:format)                    profiles#show
+                            PATCH  /comments/:comment_id/profiles/:id(.:format)                    profiles#update
+                            PUT    /comments/:comment_id/profiles/:id(.:format)                    profiles#update
+                            DELETE /comments/:comment_id/profiles/:id(.:format)                    profiles#destroy
            comment_comments GET    /comments/:comment_id/comments(.:format)                        comments#index
                             POST   /comments/:comment_id/comments(.:format)                        comments#create
         new_comment_comment GET    /comments/:comment_id/comments/new(.:format)                    comments#new
@@ -23,6 +131,8 @@ edit_search_problem_comment GET    /search_problems/:search_problem_id/comments/
                             PATCH  /comments/:comment_id/comments/:id(.:format)                    comments#update
                             PUT    /comments/:comment_id/comments/:id(.:format)                    comments#update
                             DELETE /comments/:comment_id/comments/:id(.:format)                    comments#destroy
+               like_comment PUT    /comments/:id/like(.:format)                                    comments#upvote
+            dislike_comment PUT    /comments/:id/dislike(.:format)                                 comments#downvote
                    comments GET    /comments(.:format)                                             comments#index
                             POST   /comments(.:format)                                             comments#create
                 new_comment GET    /comments/new(.:format)                                         comments#new
@@ -79,46 +189,6 @@ edit_search_problem_comment GET    /search_problems/:search_problem_id/comments/
                             PATCH  /solutions/:id(.:format)                                        solutions#update
                             PUT    /solutions/:id(.:format)                                        solutions#update
                             DELETE /solutions/:id(.:format)                                        solutions#destroy
-           problem_comments GET    /problems/:problem_id/comments(.:format)                        comments#index
-                            POST   /problems/:problem_id/comments(.:format)                        comments#create
-        new_problem_comment GET    /problems/:problem_id/comments/new(.:format)                    comments#new
-       edit_problem_comment GET    /problems/:problem_id/comments/:id/edit(.:format)               comments#edit
-            problem_comment GET    /problems/:problem_id/comments/:id(.:format)                    comments#show
-                            PATCH  /problems/:problem_id/comments/:id(.:format)                    comments#update
-                            PUT    /problems/:problem_id/comments/:id(.:format)                    comments#update
-                            DELETE /problems/:problem_id/comments/:id(.:format)                    comments#destroy
-           problem_profiles GET    /problems/:problem_id/profiles(.:format)                        profiles#index
-                            POST   /problems/:problem_id/profiles(.:format)                        profiles#create
-        new_problem_profile GET    /problems/:problem_id/profiles/new(.:format)                    profiles#new
-       edit_problem_profile GET    /problems/:problem_id/profiles/:id/edit(.:format)               profiles#edit
-            problem_profile GET    /problems/:problem_id/profiles/:id(.:format)                    profiles#show
-                            PATCH  /problems/:problem_id/profiles/:id(.:format)                    profiles#update
-                            PUT    /problems/:problem_id/profiles/:id(.:format)                    profiles#update
-                            DELETE /problems/:problem_id/profiles/:id(.:format)                    profiles#destroy
-                   problems GET    /problems(.:format)                                             problems#index
-                            POST   /problems(.:format)                                             problems#create
-                new_problem GET    /problems/new(.:format)                                         problems#new
-               edit_problem GET    /problems/:id/edit(.:format)                                    problems#edit
-                    problem GET    /problems/:id(.:format)                                         problems#show
-                            PATCH  /problems/:id(.:format)                                         problems#update
-                            PUT    /problems/:id(.:format)                                         problems#update
-                            DELETE /problems/:id(.:format)                                         problems#destroy
-       partnership_comments GET    /partnerships/:partnership_id/comments(.:format)                comments#index
-                            POST   /partnerships/:partnership_id/comments(.:format)                comments#create
-    new_partnership_comment GET    /partnerships/:partnership_id/comments/new(.:format)            comments#new
-   edit_partnership_comment GET    /partnerships/:partnership_id/comments/:id/edit(.:format)       comments#edit
-        partnership_comment GET    /partnerships/:partnership_id/comments/:id(.:format)            comments#show
-                            PATCH  /partnerships/:partnership_id/comments/:id(.:format)            comments#update
-                            PUT    /partnerships/:partnership_id/comments/:id(.:format)            comments#update
-                            DELETE /partnerships/:partnership_id/comments/:id(.:format)            comments#destroy
-               partnerships GET    /partnerships(.:format)                                         partnerships#index
-                            POST   /partnerships(.:format)                                         partnerships#create
-            new_partnership GET    /partnerships/new(.:format)                                     partnerships#new
-           edit_partnership GET    /partnerships/:id/edit(.:format)                                partnerships#edit
-                partnership GET    /partnerships/:id(.:format)                                     partnerships#show
-                            PATCH  /partnerships/:id(.:format)                                     partnerships#update
-                            PUT    /partnerships/:id(.:format)                                     partnerships#update
-                            DELETE /partnerships/:id(.:format)                                     partnerships#destroy
            project_comments GET    /projects/:project_id/comments(.:format)                        comments#index
                             POST   /projects/:project_id/comments(.:format)                        comments#create
         new_project_comment GET    /projects/:project_id/comments/new(.:format)                    comments#new
@@ -143,139 +213,66 @@ edit_search_problem_comment GET    /search_problems/:search_problem_id/comments/
                             PATCH  /projects/:id(.:format)                                         projects#update
                             PUT    /projects/:id(.:format)                                         projects#update
                             DELETE /projects/:id(.:format)                                         projects#destroy
-              user_profiles GET    /user/profiles(.:format)                                        profiles#index
-                            POST   /user/profiles(.:format)                                        profiles#create
-           new_user_profile GET    /user/profiles/new(.:format)                                    profiles#new
-          edit_user_profile GET    /user/profiles/:id/edit(.:format)                               profiles#edit
-               user_profile GET    /user/profiles/:id(.:format)                                    profiles#show
-                            PATCH  /user/profiles/:id(.:format)                                    profiles#update
-                            PUT    /user/profiles/:id(.:format)                                    profiles#update
-                            DELETE /user/profiles/:id(.:format)                                    profiles#destroy
-                       user POST   /user(.:format)                                                 users#create
-                   new_user GET    /user/new(.:format)                                             users#new
-                  edit_user GET    /user/edit(.:format)                                            users#edit
-                            GET    /user(.:format)                                                 users#show
-                            PATCH  /user(.:format)                                                 users#update
-                            PUT    /user(.:format)                                                 users#update
-                            DELETE /user(.:format)                                                 users#destroy
-           new_user_session GET    /users/sign_in(.:format)                                        devise/sessions#new
-               user_session POST   /users/sign_in(.:format)                                        devise/sessions#create
-       destroy_user_session DELETE /users/sign_out(.:format)                                       devise/sessions#destroy
-              user_password POST   /users/password(.:format)                                       devise/passwords#create
-          new_user_password GET    /users/password/new(.:format)                                   devise/passwords#new
-         edit_user_password GET    /users/password/edit(.:format)                                  devise/passwords#edit
-                            PATCH  /users/password(.:format)                                       devise/passwords#update
-                            PUT    /users/password(.:format)                                       devise/passwords#update
-   cancel_user_registration GET    /users/cancel(.:format)                                         devise/registrations#cancel
-          user_registration POST   /users(.:format)                                                devise/registrations#create
-      new_user_registration GET    /users/sign_up(.:format)                                        devise/registrations#new
-     edit_user_registration GET    /users/edit(.:format)                                           devise/registrations#edit
-                            PATCH  /users(.:format)                                                devise/registrations#update
-                            PUT    /users(.:format)                                                devise/registrations#update
-                            DELETE /users(.:format)                                                devise/registrations#destroy
-              welcome_index GET    /welcome/index(.:format)                                        welcome#index
-                            GET    /search_problems(.:format)                                      search_problems#index
-                            POST   /search_problems(.:format)                                      search_problems#create
-                            GET    /search_problems/new(.:format)                                  search_problems#new
-                            GET    /search_problems/:id/edit(.:format)                             search_problems#edit
-                            GET    /search_problems/:id(.:format)                                  search_problems#show
-                            PATCH  /search_problems/:id(.:format)                                  search_problems#update
-                            PUT    /search_problems/:id(.:format)                                  search_problems#update
-                            DELETE /search_problems/:id(.:format)                                  search_problems#destroy
-                            GET    /comments/:comment_id/comments(.:format)                        comments#index
-                            POST   /comments/:comment_id/comments(.:format)                        comments#create
-                            GET    /comments/:comment_id/comments/new(.:format)                    comments#new
-                            GET    /comments/:comment_id/comments/:id/edit(.:format)               comments#edit
-                            GET    /comments/:comment_id/comments/:id(.:format)                    comments#show
-                            PATCH  /comments/:comment_id/comments/:id(.:format)                    comments#update
-                            PUT    /comments/:comment_id/comments/:id(.:format)                    comments#update
-                            DELETE /comments/:comment_id/comments/:id(.:format)                    comments#destroy
-               like_comment PUT    /comments/:id/like(.:format)                                    comments#upvote
-            dislike_comment PUT    /comments/:id/dislike(.:format)                                 comments#downvote
-                            GET    /comments(.:format)                                             comments#index
-                            POST   /comments(.:format)                                             comments#create
-                            GET    /comments/new(.:format)                                         comments#new
-                            GET    /comments/:id/edit(.:format)                                    comments#edit
-                            GET    /comments/:id(.:format)                                         comments#show
-                            PATCH  /comments/:id(.:format)                                         comments#update
-                            PUT    /comments/:id(.:format)                                         comments#update
-                            DELETE /comments/:id(.:format)                                         comments#destroy
-                            GET    /simtags/:simtag_id/comments(.:format)                          comments#index
-                            POST   /simtags/:simtag_id/comments(.:format)                          comments#create
-                            GET    /simtags/:simtag_id/comments/new(.:format)                      comments#new
-                            GET    /simtags/:simtag_id/comments/:id/edit(.:format)                 comments#edit
-                            GET    /simtags/:simtag_id/comments/:id(.:format)                      comments#show
-                            PATCH  /simtags/:simtag_id/comments/:id(.:format)                      comments#update
-                            PUT    /simtags/:simtag_id/comments/:id(.:format)                      comments#update
-                            DELETE /simtags/:simtag_id/comments/:id(.:format)                      comments#destroy
-                            GET    /simtags(.:format)                                              simtags#index
-                            POST   /simtags(.:format)                                              simtags#create
-                            GET    /simtags/new(.:format)                                          simtags#new
-                            GET    /simtags/:id/edit(.:format)                                     simtags#edit
-                            GET    /simtags/:id(.:format)                                          simtags#show
-                            PATCH  /simtags/:id(.:format)                                          simtags#update
-                            PUT    /simtags/:id(.:format)                                          simtags#update
-                            DELETE /simtags/:id(.:format)                                          simtags#destroy
-                            GET    /solutions/:solution_id/comments(.:format)                      comments#index
-                            POST   /solutions/:solution_id/comments(.:format)                      comments#create
-                            GET    /solutions/:solution_id/comments/new(.:format)                  comments#new
-                            GET    /solutions/:solution_id/comments/:id/edit(.:format)             comments#edit
-                            GET    /solutions/:solution_id/comments/:id(.:format)                  comments#show
-                            PATCH  /solutions/:solution_id/comments/:id(.:format)                  comments#update
-                            PUT    /solutions/:solution_id/comments/:id(.:format)                  comments#update
-                            DELETE /solutions/:solution_id/comments/:id(.:format)                  comments#destroy
-                            GET    /solutions(.:format)                                            solutions#index
-                            POST   /solutions(.:format)                                            solutions#create
-                            GET    /solutions/new(.:format)                                        solutions#new
-                            GET    /solutions/:id/edit(.:format)                                   solutions#edit
-                            GET    /solutions/:id(.:format)                                        solutions#show
-                            PATCH  /solutions/:id(.:format)                                        solutions#update
-                            PUT    /solutions/:id(.:format)                                        solutions#update
-                            DELETE /solutions/:id(.:format)                                        solutions#destroy
-                            GET    /partnerships/:partnership_id/comments(.:format)                comments#index
+       partnership_profiles GET    /partnerships/:partnership_id/profiles(.:format)                profiles#index
+                            POST   /partnerships/:partnership_id/profiles(.:format)                profiles#create
+    new_partnership_profile GET    /partnerships/:partnership_id/profiles/new(.:format)            profiles#new
+   edit_partnership_profile GET    /partnerships/:partnership_id/profiles/:id/edit(.:format)       profiles#edit
+        partnership_profile GET    /partnerships/:partnership_id/profiles/:id(.:format)            profiles#show
+                            PATCH  /partnerships/:partnership_id/profiles/:id(.:format)            profiles#update
+                            PUT    /partnerships/:partnership_id/profiles/:id(.:format)            profiles#update
+                            DELETE /partnerships/:partnership_id/profiles/:id(.:format)            profiles#destroy
+       partnership_comments GET    /partnerships/:partnership_id/comments(.:format)                comments#index
                             POST   /partnerships/:partnership_id/comments(.:format)                comments#create
-                            GET    /partnerships/:partnership_id/comments/new(.:format)            comments#new
-                            GET    /partnerships/:partnership_id/comments/:id/edit(.:format)       comments#edit
-                            GET    /partnerships/:partnership_id/comments/:id(.:format)            comments#show
+    new_partnership_comment GET    /partnerships/:partnership_id/comments/new(.:format)            comments#new
+   edit_partnership_comment GET    /partnerships/:partnership_id/comments/:id/edit(.:format)       comments#edit
+        partnership_comment GET    /partnerships/:partnership_id/comments/:id(.:format)            comments#show
                             PATCH  /partnerships/:partnership_id/comments/:id(.:format)            comments#update
                             PUT    /partnerships/:partnership_id/comments/:id(.:format)            comments#update
                             DELETE /partnerships/:partnership_id/comments/:id(.:format)            comments#destroy
            like_partnership PUT    /partnerships/:id/like(.:format)                                partnerships#upvote
         dislike_partnership PUT    /partnerships/:id/dislike(.:format)                             partnerships#downvote
-                            GET    /partnerships(.:format)                                         partnerships#index
+               partnerships GET    /partnerships(.:format)                                         partnerships#index
                             POST   /partnerships(.:format)                                         partnerships#create
-                            GET    /partnerships/new(.:format)                                     partnerships#new
-                            GET    /partnerships/:id/edit(.:format)                                partnerships#edit
-                            GET    /partnerships/:id(.:format)                                     partnerships#show
+            new_partnership GET    /partnerships/new(.:format)                                     partnerships#new
+           edit_partnership GET    /partnerships/:id/edit(.:format)                                partnerships#edit
+                partnership GET    /partnerships/:id(.:format)                                     partnerships#show
                             PATCH  /partnerships/:id(.:format)                                     partnerships#update
                             PUT    /partnerships/:id(.:format)                                     partnerships#update
                             DELETE /partnerships/:id(.:format)                                     partnerships#destroy
-                            GET    /problems/:problem_id/comments(.:format)                        comments#index
+           problem_comments GET    /problems/:problem_id/comments(.:format)                        comments#index
                             POST   /problems/:problem_id/comments(.:format)                        comments#create
-                            GET    /problems/:problem_id/comments/new(.:format)                    comments#new
-                            GET    /problems/:problem_id/comments/:id/edit(.:format)               comments#edit
-                            GET    /problems/:problem_id/comments/:id(.:format)                    comments#show
+        new_problem_comment GET    /problems/:problem_id/comments/new(.:format)                    comments#new
+       edit_problem_comment GET    /problems/:problem_id/comments/:id/edit(.:format)               comments#edit
+            problem_comment GET    /problems/:problem_id/comments/:id(.:format)                    comments#show
                             PATCH  /problems/:problem_id/comments/:id(.:format)                    comments#update
                             PUT    /problems/:problem_id/comments/:id(.:format)                    comments#update
                             DELETE /problems/:problem_id/comments/:id(.:format)                    comments#destroy
-                            GET    /problems/:problem_id/profiles(.:format)                        profiles#index
+           problem_profiles GET    /problems/:problem_id/profiles(.:format)                        profiles#index
                             POST   /problems/:problem_id/profiles(.:format)                        profiles#create
-                            GET    /problems/:problem_id/profiles/new(.:format)                    profiles#new
-                            GET    /problems/:problem_id/profiles/:id/edit(.:format)               profiles#edit
-                            GET    /problems/:problem_id/profiles/:id(.:format)                    profiles#show
+        new_problem_profile GET    /problems/:problem_id/profiles/new(.:format)                    profiles#new
+       edit_problem_profile GET    /problems/:problem_id/profiles/:id/edit(.:format)               profiles#edit
+            problem_profile GET    /problems/:problem_id/profiles/:id(.:format)                    profiles#show
                             PATCH  /problems/:problem_id/profiles/:id(.:format)                    profiles#update
                             PUT    /problems/:problem_id/profiles/:id(.:format)                    profiles#update
                             DELETE /problems/:problem_id/profiles/:id(.:format)                    profiles#destroy
                like_problem PUT    /problems/:id/like(.:format)                                    problems#upvote
             dislike_problem PUT    /problems/:id/dislike(.:format)                                 problems#downvote
-                            GET    /problems(.:format)                                             problems#index
+                   problems GET    /problems(.:format)                                             problems#index
                             POST   /problems(.:format)                                             problems#create
-                            GET    /problems/new(.:format)                                         problems#new
-                            GET    /problems/:id/edit(.:format)                                    problems#edit
-                            GET    /problems/:id(.:format)                                         problems#show
+                new_problem GET    /problems/new(.:format)                                         problems#new
+               edit_problem GET    /problems/:id/edit(.:format)                                    problems#edit
+                    problem GET    /problems/:id(.:format)                                         problems#show
                             PATCH  /problems/:id(.:format)                                         problems#update
                             PUT    /problems/:id(.:format)                                         problems#update
                             DELETE /problems/:id(.:format)                                         problems#destroy
+           profile_profiles GET    /profiles/:profile_id/profiles(.:format)                        profiles#index
+                            POST   /profiles/:profile_id/profiles(.:format)                        profiles#create
+        new_profile_profile GET    /profiles/:profile_id/profiles/new(.:format)                    profiles#new
+       edit_profile_profile GET    /profiles/:profile_id/profiles/:id/edit(.:format)               profiles#edit
+            profile_profile GET    /profiles/:profile_id/profiles/:id(.:format)                    profiles#show
+                            PATCH  /profiles/:profile_id/profiles/:id(.:format)                    profiles#update
+                            PUT    /profiles/:profile_id/profiles/:id(.:format)                    profiles#update
+                            DELETE /profiles/:profile_id/profiles/:id(.:format)                    profiles#destroy
            profile_comments GET    /profiles/:profile_id/comments(.:format)                        comments#index
                             POST   /profiles/:profile_id/comments(.:format)                        comments#create
         new_profile_comment GET    /profiles/:profile_id/comments/new(.:format)                    comments#new
@@ -294,53 +291,29 @@ edit_search_problem_comment GET    /search_problems/:search_problem_id/comments/
                             PATCH  /profiles/:id(.:format)                                         profiles#update
                             PUT    /profiles/:id(.:format)                                         profiles#update
                             DELETE /profiles/:id(.:format)                                         profiles#destroy
-                            GET    /user/profiles(.:format)                                        profiles#index
-                            POST   /user/profiles(.:format)                                        profiles#create
-                            GET    /user/profiles/new(.:format)                                    profiles#new
-                            GET    /user/profiles/:id/edit(.:format)                               profiles#edit
-                            GET    /user/profiles/:id(.:format)                                    profiles#show
-                            PATCH  /user/profiles/:id(.:format)                                    profiles#update
-                            PUT    /user/profiles/:id(.:format)                                    profiles#update
-                            DELETE /user/profiles/:id(.:format)                                    profiles#destroy
-                  like_user PUT    /user/like(.:format)                                            users#upvote
-               dislike_user PUT    /user/dislike(.:format)                                         users#downvote
-                            GET    /user/problems(.:format)                                        problems#index
-                            POST   /user/problems(.:format)                                        problems#create
-                            GET    /user/problems/new(.:format)                                    problems#new
-                            GET    /user/problems/:id/edit(.:format)                               problems#edit
-                            GET    /user/problems/:id(.:format)                                    problems#show
-                            PATCH  /user/problems/:id(.:format)                                    problems#update
-                            PUT    /user/problems/:id(.:format)                                    problems#update
-                            DELETE /user/problems/:id(.:format)                                    problems#destroy
-                            POST   /user(.:format)                                                 users#create
-                            GET    /user/new(.:format)                                             users#new
-                            GET    /user/edit(.:format)                                            users#edit
-                            GET    /user(.:format)                                                 users#show
-                            PATCH  /user(.:format)                                                 users#update
-                            PUT    /user(.:format)                                                 users#update
-                            DELETE /user(.:format)                                                 users#destroy
-              user_comments GET    /users/:user_id/comments(.:format)                              comments#index
-                            POST   /users/:user_id/comments(.:format)                              comments#create
-           new_user_comment GET    /users/:user_id/comments/new(.:format)                          comments#new
-          edit_user_comment GET    /users/:user_id/comments/:id/edit(.:format)                     comments#edit
-               user_comment GET    /users/:user_id/comments/:id(.:format)                          comments#show
-                            PATCH  /users/:user_id/comments/:id(.:format)                          comments#update
-                            PUT    /users/:user_id/comments/:id(.:format)                          comments#update
-                            DELETE /users/:user_id/comments/:id(.:format)                          comments#destroy
-                            GET    /users/:user_id/profiles(.:format)                              profiles#index
-                            POST   /users/:user_id/profiles(.:format)                              profiles#create
-                            GET    /users/:user_id/profiles/new(.:format)                          profiles#new
-                            GET    /users/:user_id/profiles/:id/edit(.:format)                     profiles#edit
-                            GET    /users/:user_id/profiles/:id(.:format)                          profiles#show
-                            PATCH  /users/:user_id/profiles/:id(.:format)                          profiles#update
-                            PUT    /users/:user_id/profiles/:id(.:format)                          profiles#update
-                            DELETE /users/:user_id/profiles/:id(.:format)                          profiles#destroy
-                      users GET    /users(.:format)                                                users#index
-                            POST   /users(.:format)                                                users#create
-                            GET    /users/new(.:format)                                            users#new
-                            GET    /users/:id/edit(.:format)                                       users#edit
-                            GET    /users/:id(.:format)                                            users#show
-                            PATCH  /users/:id(.:format)                                            users#update
-                            PUT    /users/:id(.:format)                                            users#update
-                            DELETE /users/:id(.:format)                                            users#destroy
-                       root GET    /                                                               welcome#index
+         supporter_profiles GET    /supporters/:supporter_id/profiles(.:format)                    profiles#index
+                            POST   /supporters/:supporter_id/profiles(.:format)                    profiles#create
+      new_supporter_profile GET    /supporters/:supporter_id/profiles/new(.:format)                profiles#new
+     edit_supporter_profile GET    /supporters/:supporter_id/profiles/:id/edit(.:format)           profiles#edit
+          supporter_profile GET    /supporters/:supporter_id/profiles/:id(.:format)                profiles#show
+                            PATCH  /supporters/:supporter_id/profiles/:id(.:format)                profiles#update
+                            PUT    /supporters/:supporter_id/profiles/:id(.:format)                profiles#update
+                            DELETE /supporters/:supporter_id/profiles/:id(.:format)                profiles#destroy
+         supporter_comments GET    /supporters/:supporter_id/comments(.:format)                    comments#index
+                            POST   /supporters/:supporter_id/comments(.:format)                    comments#create
+      new_supporter_comment GET    /supporters/:supporter_id/comments/new(.:format)                comments#new
+     edit_supporter_comment GET    /supporters/:supporter_id/comments/:id/edit(.:format)           comments#edit
+          supporter_comment GET    /supporters/:supporter_id/comments/:id(.:format)                comments#show
+                            PATCH  /supporters/:supporter_id/comments/:id(.:format)                comments#update
+                            PUT    /supporters/:supporter_id/comments/:id(.:format)                comments#update
+                            DELETE /supporters/:supporter_id/comments/:id(.:format)                comments#destroy
+             like_supporter PUT    /supporters/:id/like(.:format)                                  supporters#upvote
+          dislike_supporter PUT    /supporters/:id/dislike(.:format)                               supporters#downvote
+                 supporters GET    /supporters(.:format)                                           supporters#index
+                            POST   /supporters(.:format)                                           supporters#create
+              new_supporter GET    /supporters/new(.:format)                                       supporters#new
+             edit_supporter GET    /supporters/:id/edit(.:format)                                  supporters#edit
+                  supporter GET    /supporters/:id(.:format)                                       supporters#show
+                            PATCH  /supporters/:id(.:format)                                       supporters#update
+                            PUT    /supporters/:id(.:format)                                       supporters#update
+                            DELETE /supporters/:id(.:format)                                       supporters#destroy
