@@ -28,11 +28,6 @@
 	<%= text_area_tag :solution_abstract %>
 </div>
 
-<div class="field">
-	<%= f.label :published_at %><br>
-	<%= f.datetime_select :published_at %>
-</div>
-
   <div class="field">
     <%= f.text_field :user_id, :value => current_user.id, :type => "hidden" %>
   </div>
@@ -41,10 +36,13 @@
 	<%= text_field_tag :problem_id,  params[:problem_id], :type => 'hidden' %>
 </div>
 
+<div class="field">
+  <%= f.datetime_select :published_at, :type => 'hidden' %>
+</div>
 
    <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
 
-	  
+

@@ -1,10 +1,10 @@
 <table border="2"><tr>
-	
+
 	<td>
 <h1>Hello, Friend!</h1>
-<p>Thanks for helping out.
-    Feel free to look around. 
-  
+<p>
+<%= puts 'manifesto.txt' %>
+
 </p>
 
  <h3> your IP address is: <%= request.remote_ip %></h3>
@@ -12,5 +12,5 @@
  You came here from: <%= request.referer %>
 
 <%= link_to 'Retreat!', request.referer %>
- 
+
 <% link_to 'About', '' %>
