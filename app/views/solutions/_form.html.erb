@@ -27,8 +27,7 @@
   </div>
 
   <div class="field">
-    <%= f.label :published_at %><br>
-    <%= f.text_field :published_at, :value => params[:published_at] %>
+    <%= f.datetime_field :published_at, :value => Time.now,:type => "hidden" %>
   </div>
 
   <div class="actions">

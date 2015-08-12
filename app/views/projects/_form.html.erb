@@ -36,9 +36,9 @@
 	<%= text_field_tag :problem_id,  params[:problem_id], :type => 'hidden' %>
 </div>
 
-<div class="field">
-  <%= f.datetime_select :published_at, :type => 'hidden' %>
-</div>
+  <div class="field">
+    <%= f.datetime_field :published_at, :value => Time.now,:type => "hidden" %>
+  </div>
 
    <div class="actions">
     <%= f.submit %>
