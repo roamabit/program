@@ -5,7 +5,7 @@ root 'welcome#index'
 get 'welcome/index'
 
 
-  devise_for :users, :paths => 'users'
+  devise_for :users #, :paths => 'users'
 
 
   resources :users do
