@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+
+
 	 def index
         @users = User.all
     end
@@ -18,8 +20,7 @@ class UsersController < ApplicationController
     #end
 
     def show
-
-	#	unless params[:id] == ("sign_up" or "log_in" or "sign_in")
+#		unless params[:id] == ("sign_up" or "log_in" or "sign_in")
 
 			if params[:format]
 				@user = User.find(params[:format])
