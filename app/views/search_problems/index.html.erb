@@ -22,9 +22,9 @@
         <td><%= search_problem.date_max %></td>
         <td><%= search_problem.location %></td>
         <td><%= search_problem.location_distance %></td>
-        <td><%= link_to 'Show', search_problem %></td>
-        <td><%= link_to 'Edit', edit_search_problem_path(search_problem) %></td>
-        <td><%= link_to 'Destroy', search_problem, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show Results', search_problem %></td>
+        <td><%= link_to 'Edit Criteria', edit_search_problem_path(search_problem) %></td>
+        <td><%= link_to 'Delete Search', search_problem, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
