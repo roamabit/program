@@ -7,8 +7,7 @@ get 'welcome/index'
 
   devise_for :users
 
-
-  resources :users do
+   resources :users do
    resources :projects
    resources :problems
    resources :comments
