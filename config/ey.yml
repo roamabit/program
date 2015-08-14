@@ -2,5 +2,5 @@ defaults:
   copy_exclude:
   - .git
   - secrets.yml
-  precompile_assets: true
+  precompile_assets: false
   ignore_gemfile_lock_warning: true
