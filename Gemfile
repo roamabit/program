@@ -50,18 +50,17 @@ gem 'acts_as_commentable_with_threading'
 
 gem 'acts_as_commentable'
 
-gem 'gmaps4rails'
+
+
+gem 'gmaps4rails',
+  require: 'gmaps4rails',
+  git:     'git://github.com/apneadiving/Google-Maps-for-Rails.git'
 
 gem 'underscore-rails'
 
 gem 'geocoder'
 
-if defined?(JRUBY_VERSION)
-  gem 'activerecord-jdbc-adapter', '=1.1.3'
-  gem 'jdbc-mysql', :require=>false
-  gem 'activerecord-jdbcmysql-adapter', '=1.1.3'
 
-else
 
 
     #gem 'unicorn', :platform => 'ruby'
@@ -70,7 +69,6 @@ else
     gem 'mysql2', platforms: [:mingw, :mswin]
 
 
-end
 
 #gem 'dinosaurus'
 #gem 'passenger'
