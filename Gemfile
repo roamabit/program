@@ -56,17 +56,16 @@ gem 'gmaps4rails',
   require: 'gmaps4rails',
   git:     'git://github.com/apneadiving/Google-Maps-for-Rails.git'
 
+
 gem 'underscore-rails'
 
 gem 'geocoder'
 
 
 
-
-    #gem 'unicorn', :platform => 'ruby'
-    gem 'mysql', :platform => 'ruby'
-    gem 'unicorn', '4.6.0', :platform => 'ruby'
-    gem 'mysql2', platforms: [:mingw, :mswin]
+gem 'mysql', :platform => 'ruby'
+gem 'unicorn', '4.6.0', :platform => 'ruby'
+gem 'mysql2', platforms: [:mingw, :mswin]
 
 
 
