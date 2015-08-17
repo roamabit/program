@@ -79,4 +79,8 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  #Precompile Javascript assests
+  config.assets.precompile += %w( *.js )
+
 end
