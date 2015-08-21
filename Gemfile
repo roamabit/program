@@ -63,9 +63,12 @@ gem 'geocoder'
 
 
 
-gem 'mysql', :platform => 'ruby'
+#gem 'mysql', :platform => 'ruby'
 gem 'unicorn', '4.6.0', :platform => 'ruby'
-gem 'mysql2', platforms: [:mingw, :mswin]
+gem 'mysql2'
+#, platforms: [:mingw, :mswin]
+
+#gem 'passenger', :platform => 'ruby'
 
 
 
@@ -75,3 +78,8 @@ gem 'mysql2', platforms: [:mingw, :mswin]
 gem 'acts_as_votable'
 
 gem 'seed_dump'
+
+gem 'aws-sdk-v1'
+gem 'aws-sdk', '~> 2'
+#use with original aws-sdk
+#spec.add_dependency('aws-sdk', '< 2.0')
