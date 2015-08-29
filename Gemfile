@@ -81,5 +81,7 @@ gem 'seed_dump'
 
 gem 'aws-sdk-v1'
 gem 'aws-sdk', '~> 2'
+gem 'execjs', :platforms => :ruby
+gem 'therubyracer', :platforms => :ruby
 #use with original aws-sdk
 #spec.add_dependency('aws-sdk', '< 2.0')
