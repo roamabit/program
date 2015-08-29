@@ -65,8 +65,9 @@ gem 'geocoder'
 
 #gem 'mysql', :platform => 'ruby'
 gem 'unicorn', '4.6.0', :platform => 'ruby'
-gem 'mysql2'
-#, platforms: [:mingw, :mswin]
+
+gem 'mysql', :platform => 'ruby'
+gem 'mysql2', platforms: [:mingw, :mswin]
 
 #gem 'passenger', :platform => 'ruby'
 
