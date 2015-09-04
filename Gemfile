@@ -64,14 +64,11 @@ gem 'geocoder'
 
 
 #gem 'mysql', :platform => 'ruby'
-gem 'unicorn', '4.6.0', :platforms => :ruby
-gem 'passenger', :platforms => :ruby
+
 
 #gem 'mysql', :platforms => :ruby
 gem 'mysql2'
 #, platforms: [:mingw, :mswin]
-
-#gem 'passenger', :platform => 'ruby'
 
 
 
@@ -86,5 +83,11 @@ gem 'aws-sdk-v1'
 gem 'aws-sdk', '~> 2'
 gem 'execjs', :platforms => :ruby
 gem 'therubyracer', :platforms => :ruby
+gem 'unicorn', '4.6.0', :platforms => :ruby
+gem 'passenger', :platforms => :ruby
+gem 'sinatra', :platforms => :ruby
+gem 'json', :platforms => :ruby
+gem 'rack-parser', :platforms => :ruby
+
 #use with original aws-sdk
 #spec.add_dependency('aws-sdk', '< 2.0')
