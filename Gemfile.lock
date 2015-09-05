@@ -206,6 +206,7 @@ DEPENDENCIES
   jquery-rails
   json
   mysql2
+  nokogiri
   passenger
   rack-parser
   rails (= 4.1.4)

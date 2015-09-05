@@ -88,6 +88,6 @@ gem 'passenger', :platforms => :ruby
 gem 'sinatra', :platforms => :ruby
 gem 'json', :platforms => :ruby
 gem 'rack-parser', :platforms => :ruby
-
+gem 'nokogiri', :platforms => :ruby
 #use with original aws-sdk
 #spec.add_dependency('aws-sdk', '< 2.0')
