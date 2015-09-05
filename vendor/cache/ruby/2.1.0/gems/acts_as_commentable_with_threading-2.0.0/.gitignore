@@ -1,0 +1,5 @@
+.rvmrc
+.ruby-version
+gemfiles/*.lock
+pkg/*
+spec/debug.log
