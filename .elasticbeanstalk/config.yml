@@ -1,6 +1,6 @@
 branch-defaults:
   master:
-    environment: Default-Environment
+    environment: Eightkm
 global:
   application_name: My First Elastic Beanstalk Application
   default_ec2_keyname: null
