@@ -44,22 +44,24 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 #authentication gem
 gem 'devise'
 
-#gem 'sqlserver'
+#gem 'sqlserver' #Old ref
 
+#Cant get this to work... Supposed to identify parent threads.
 gem 'acts_as_commentable_with_threading'
 
+#add comments to object
 gem 'acts_as_commentable'
 
 
-
+#For some reason requires download from external website.
 gem 'gmaps4rails',
   require: 'gmaps4rails',
   git:     'git://github.com/apneadiving/Google-Maps-for-Rails.git'
 
 
-gem 'underscore-rails'
+gem 'underscore-rails' #asset-pipeline
 
-gem 'geocoder'
+gem 'geocoder'  #Google api
 
 
 
@@ -75,19 +77,22 @@ gem 'mysql2'
 #gem 'dinosaurus'
 #gem 'passenger'
 
-gem 'acts_as_votable'
+gem 'acts_as_votable' #Add voting to object
 
-gem 'seed_dump'
+gem 'seed_dump' #DB Migration populate test data
 
-gem 'aws-sdk-v1'
-gem 'aws-sdk', '~> 2'
-gem 'execjs', :platforms => :ruby
-gem 'therubyracer', :platforms => :ruby
-gem 'unicorn', '4.6.0', :platforms => :ruby
-gem 'passenger', :platforms => :ruby
-gem 'sinatra', :platforms => :ruby
-gem 'json', :platforms => :ruby
-gem 'rack-parser', :platforms => :ruby
+gem 'aws-sdk-v1', platforms: [:mingw, :mswin] #AWS SDK for older command support
+gem 'aws-sdk', '~> 2', platforms: [:mingw, :mswin] #aws SDK New
+gem 'execjs', :platforms => :ruby #run JavaScript code from Ruby
+gem 'therubyracer', :platforms => :ruby #Java runtime live environment
+gem 'unicorn', '4.6.0', :platforms => :ruby #server request handler
+gem 'passenger', :platforms => :ruby #Server
+gem 'sinatra', :platforms => :ruby  #Rack web server interface
+gem 'json', :platforms => :ruby #server environment parser
+gem 'rack-parser', :platforms => :ruby #parse incoming post data into param hashes
+
+gem 'capistrano', '~> 3.4.0' #remote server automation tool
+
 #gem 'nokogiri', :platforms => :ruby
 #use with original aws-sdk
 #spec.add_dependency('aws-sdk', '< 2.0')
