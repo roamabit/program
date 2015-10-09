@@ -11,8 +11,8 @@ development:
   #encoding: utf8
   database: db/dbteamup_development
   username: root
-  #password: asdlkj10
-  #host: 127.0.0.1
+  password: asdlkj10
+  host: 127.0.0.1
   #port: 3306
   pool: 5
   timeout: 5000
@@ -26,8 +26,8 @@ test:
   #encoding: utf8
   database: db/dbteamup_development
   username: root
-  #password: asdlkj10
-  #host: 127.0.0.1
+  password: asdlkj10
+  host: 127.0.0.1
   #port: 3306
   pool: 5
   timeout: 5000
@@ -37,8 +37,8 @@ production:
   #encoding: utf8
   database: db/dbteamup_development
   username: root
-  #password: asdlkj10
-  #host: 127.0.0.1
+  password: asdlkj10
+  host: 127.0.0.1
   #port: 3306
   pool: 5
   timeout: 5000

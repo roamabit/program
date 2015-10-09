@@ -9,7 +9,7 @@ class PartnershipsController < ApplicationController
 
   # GET /partnerships/1
   # GET /partnerships/1.json
-	
+
   def show
 	   @partnerships = current_user.partnerships
   end
@@ -27,7 +27,7 @@ class PartnershipsController < ApplicationController
   # POST /partnerships
   # POST /partnerships.json
   def create
-	  
+
     @partnership = Partnership.new(partnership_params)
 
     respond_to do |format|
@@ -43,7 +43,7 @@ class PartnershipsController < ApplicationController
 
   # PATCH/PUT /partnerships/1
   # PATCH/PUT /partnerships/1.json
-	
+
   def update
     respond_to do |format|
       if @partnership.update(partnership_params)
@@ -71,14 +71,14 @@ class PartnershipsController < ApplicationController
 		@partnership.upvote_by current_user
 		redirect_to @partnership
 	end
-	
+
 	def downvote
 	  @partnership = Partnership.find(params[:id])
 	  @partnership.downvote_by current_user
 	  redirect_to @partnership
 	end
-	
-	
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_partnership
@@ -88,6 +88,6 @@ class PartnershipsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def partnership_params
    params.require(:partnership).permit(:user_id, :project_id, :created_at, :updated_at, :role)
-		
+
     end
 end

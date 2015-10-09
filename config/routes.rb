@@ -11,6 +11,7 @@ get 'welcome/index'
    resources :problems
    resources :comments
    resources :profiles
+   resources :partnerships
    member do
      put "like", to: "users#upvote"
      put "dislike", to: "users#downvote"
@@ -23,6 +24,7 @@ get 'welcome/index'
    resources :problems
    resources :comments
    resources :profiles
+   resources :partnerships
    member do
      put "like", to: "users#upvote"
      put "dislike", to: "users#downvote"

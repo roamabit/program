@@ -2,16 +2,16 @@
 
 <hr>
 <table>
-<% @profile = Profile.find(current_user.id) %>
+<%# @profile = Profile.find(current_user.id) %>
 
 <% @user_profile_headers = current_user.profiles %>
-		
+
 <% @user_profile_headers.group(:name).where("profiles.made_public_at IS NOT NULL").each do |p| %>
 <td>
 <table>
 	<th><%= p.name %></th>
 
-	
+
 	<% @user_profile_headers.each do |b| %>
 
 		<% if b.name == p.name %>
@@ -19,7 +19,7 @@
 			<tr><td>
 
 				<%= link_to b.bio, b  %>
-		
+
 
 			</td>
 
@@ -31,3 +31,5 @@
 </td>
 <% end %>
 </table>
+
+<%= link_to 'New Entry', new_user_profile_path(:user_id => current_user.id)  %>

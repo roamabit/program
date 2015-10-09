@@ -1,12 +1,14 @@
-<h1>User Listings</h1>
-
 <% i=0 %>
 
+<%= render 'profiles/my_profile' %>
+
+<h1>User Listings</h1>
+
 <% @users.each do |u| %>
-	
-	<% @user = u %>		
-	
-	<%= render 'profiles/user_profile' %>		
-		
-		
+
+	<% @user = u %>
+
+	<%= render 'profiles/user_profile' %>
+
+
 <% end %>
