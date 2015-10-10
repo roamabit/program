@@ -25,11 +25,38 @@ get 'welcome/index'
    resources :comments
    resources :profiles
    resources :partnerships
+
    member do
      put "like", to: "users#upvote"
      put "dislike", to: "users#downvote"
      end
  end
+
+  resources :projects do
+  resources :comments
+  resources :profiles
+  resources :partnerships
+  resources :solutions
+  member do
+    put "like", to: "projects#upvote"
+    put "dislike", to: "projects#downvote"
+    end
+
+  end
+
+
+  resources :problems do
+  resources :comments
+  resources :profiles
+  resources :solutions
+  resources :supporters
+  member do
+    put "like", to: "problems#upvote"
+    put "dislike", to: "problems#downvote"
+    end
+
+  end
+
 
   resources :search_problems do
 	  resources :comments
@@ -53,12 +80,8 @@ get 'welcome/index'
 	  end
 
   resources :solutions  do
+  resources :profiles
 	resources :comments
-	  end
-
-  resources :projects do
-	resources :comments
-	resources :profiles
 	  end
 
 
@@ -72,15 +95,6 @@ get 'welcome/index'
 
     end
 
-  resources :problems do
-  resources :comments
-  resources :profiles
-  member do
-    put "like", to: "problems#upvote"
-    put "dislike", to: "problems#downvote"
-    end
-
-  end
 
   resources :profiles do
   resources :profiles

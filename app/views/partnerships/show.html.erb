@@ -9,7 +9,7 @@
 	<strong>Role:</strong>
 	<%= User.find(@partnership.user_id).email %>
 <% end %>
-  
+
 <%= @partnership.role %>
 
 </p>
@@ -28,20 +28,22 @@
   <strong>Joined on:</strong>
   <%= @partnership.created_at %>
 </p>
+  <% if @partnership.user == current_user %>
 
-<%= link_to 'Edit Partnership', edit_partnership_path(@partnership) %> |
+<%= link_to 'Edit Partnership', edit_partnership_path(@partnership) %> <% end %>|
 <%= link_to 'Back to Project', project_path(Project.find(@partnership.project_id)) %>
 
 <h2 align="right">
-	<% if @partnership.user_id == current_user.id %>
+	<% if @partnership.user == current_user %>
+
 <%= button_to 'Dissolve Partnership', @partnership, method: :delete, data: { confirm: 'Are you sure you want to dissolve this partnership?' } %>
 	<% end %>
 </h2>
 
 <h2>Comments</h2>
- 
+
 <p><%= link_to 'Add a Comment', new_partnership_comment_path(@partnership) %></p>
- 
+
 <ul class="comment_list">
   <%= render :partial => 'comments/comment', :collection => @partnership.comments.find_comments_for_commentable("Partnership",@partnership.id) %>
 </ul>

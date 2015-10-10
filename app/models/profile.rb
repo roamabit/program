@@ -1,5 +1,5 @@
 class Profile < ActiveRecord::Base
-  belongs_to :user
+ # belongs_to :user
 	belongs_to :profileable, :polymorphic =>true
 
 	has_many :comments, :as => :commentable, dependent: :destroy

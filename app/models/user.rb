@@ -7,8 +7,10 @@ class User < ActiveRecord::Base
          #, :lockable, :timeoutable, :omniauthable
 
           has_many :search_problems
-          has_many :solutions
-          has_many :projects, :through => :solutions
+          has_many :partnerships
+          has_many :projects, :through => :partnerships
+          has_many :supporters
+          has_many :problems, :through => :supporters
           has_many :profiles, :as => :profileable, dependent: :destroy
           has_many :comments, :as => :commentable, dependent: :destroy
           acts_as_commentable

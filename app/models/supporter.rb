@@ -3,6 +3,7 @@ class Supporter < ActiveRecord::Base
   belongs_to :problem
   belongs_to :user
   has_many :comments, :as => :commentable, dependent: :destroy
+  has_many :profiles, :as => :profileable, dependent: :destroy
   acts_as_commentable
   acts_as_votable
 
