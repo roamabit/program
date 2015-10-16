@@ -1,0 +1,52 @@
+<h1>User Project Partnerships</h1>
+
+
+
+
+<% if @user.projects.nil? %>
+
+  <%= 'No user projects'  %>
+
+<% elsif @user.projects.count == '1' %>
+  <%= 'User has one project' %>
+<% else %>
+
+   <table>
+    <% @user.projects.each do |up| %>
+
+
+    <tr>
+      <td>
+
+      <%= link_to up.title, up %>
+
+      </td>
+
+      <td>
+        <%= up.body  %>
+      </td>
+      <td>
+
+        <% @userprojectpartnerships =  up.partnerships.find_by_user_id(@user.id) %>
+
+        <% if @userprojectpartnerships.kind_of? Array %>
+
+          <%  @userprojectpartnerships.each do |upp| %>
+
+          <%= upp.role %>
+
+
+          <% end %>
+        <% else %>
+          <%= @userprojectpartnerships.role %>
+        <% end %>
+      </td>
+
+
+    </tr>
+
+    <% end %>
+
+  </table>
+
+<% end %>

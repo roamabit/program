@@ -8,21 +8,34 @@
 
 
 <% @self_profile_headers = @parent.profiles %>
-		
+
 <% @self_profile_headers.group(:name).where("profiles.made_public_at IS NOT NULL").each do |p| %>
 <td>
 <table>
 	<th><%= p.name %></th>
 
-	
+
 	<% @self_profile_headers.each do |b| %>
 
 		<% if b.name == p.name %>
 
 			<tr><td>
+				<% if b.bio =~ /http/ or b.bio =~ /www/ %>
+					<table>
+					<tr><td>
+						<%= link_to b.bio, b.bio  %>
+					</td>
+					<td>
+						<%= link_to 'Link', b %>
+					</td>
 
-				<%= link_to b.bio, b  %>
-		
+				<% else %>
+
+					<%= link_to b.bio, b  %>
+
+
+				<% end %>
+
 
 			</td>
 
@@ -33,5 +46,5 @@
 </table>
 </td>
 <% end %>
-	
+
 </table>
