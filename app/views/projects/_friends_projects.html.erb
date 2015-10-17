@@ -1,0 +1,15 @@
+<h1>Friends Projects</h1>
+
+<% current_user.friends.each do |friend| %>
+
+  <% @user = friend %>
+
+  <h3>
+
+    <%= @user.email.first(@user.email.index('@')) %>
+
+  </h3>
+
+  <%= render 'user_projects' %>
+
+<% end %>

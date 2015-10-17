@@ -1,14 +1,14 @@
-<h2>Show</h2>
 <h1>User Profile</h1>
 
 <% if user_signed_in? %>
 
 <%= render 'profiles/user_profile' %>
-
+<br>
+<h1>User Projects</h1>
 <%= render 'projects/user_projects'  %>
-
+<br>
 <%= render 'user_friendships' %>
-
+<br>
 <%= link_to 'Back to user listings', users_path %>
 
 <% end %>

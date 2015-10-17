@@ -1,8 +1,3 @@
-<h1>User Project Partnerships</h1>
-
-
-
-
 <% if @user.projects.nil? %>
 
   <%= 'No user projects'  %>
@@ -12,6 +7,9 @@
 <% else %>
 
    <table>
+    <tr>
+      <th>Name</th><th>Body</th><th>Partnership</th>
+    </tr>
     <% @user.projects.each do |up| %>
 
 

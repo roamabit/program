@@ -36,7 +36,16 @@
 <% end %>
 </table>
 
-<%= link_to "upvote", like_user_path(@user), method: :put %>
-<%= link_to "downvote", dislike_user_path(@user), method: :put %>
+<% if @user == current_user %>
+  <%= link_to 'New Entry', new_user_profile_path(:user_id => current_user.id) %>
+<% end %>
 
-<%= @user.get_upvotes.size - @user.get_downvotes.size%> <br>
+<br>
+
+<% unless @user == current_user %>
+  <%= link_to "upvote", like_user_path(@user), method: :put %>
+  <%= link_to "downvote", dislike_user_path(@user), method: :put %>
+<% end %>
+
+<%= 'Rating: ' %>
+<%= @user.get_upvotes.size - @user.get_downvotes.size %> <br>

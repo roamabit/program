@@ -30,4 +30,5 @@ class User < ActiveRecord::Base
             active_friends | passive_friends
           end
 
+
 end
