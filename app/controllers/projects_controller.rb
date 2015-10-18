@@ -70,40 +70,40 @@ end
    @project = Project.new(project_params)
 
 
-     if @project.save
+  if @project.save
 
 
 		 Partnership.create(:user_id => current_user.id, :project_id => @project.id, :role => 'Author')
 
 
-		  if params[:problem_id].nil? == false
+    if params[:problem_id].nil? == false
 
-        @project_id = project_params[:id]
-        redirect_to new_solution_path(:problem_id => params[:problem_id], :project_id => @project.id, :published_at => Date.today, :solution_abstract => params[:solution_abstract])
+      @project_id = project_params[:id]
+      Solution.create(:problem_id => params[:problem_id], :project_id => @project.id, :published_at => Date.today, :solution_abstract => params[:solution_abstract])
 
-		  else #params[:problem_id]
+    end #params[:problem_id]
 
-        respond_to do |format|
-        format.html { redirect_to @project, notice: 'Project was successfully created.' }
-        format.json { render :show, status: :created, location: @project, user_id: @c_user }
-  		 	end #format do
+    respond_to do |format|
+      format.html { redirect_to @project, notice: 'Project was successfully created.' }
+      format.json { render :show, status: :created, location: @project, user_id: @c_user }
+    end #format do
 
-		  end #params[:problem_id]
 
-      else
-		   respond_to do |format|
-        format.html { render :new }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
-		 end #format do
+  else
 
-      end #if @project.save
+		respond_to do |format|
+      format.html { render :new }
+      format.json { render json: @project.errors, status: :unprocessable_entity }
+		end #format do
+
+  end #if @project.save
 
 
 
 	  #simvol = Simvol.create(:name => @project.title)
 	#simvol.tags << Simvol.find(13)
 
-  end #def create
+end #def create
 #*************************************************
 
 

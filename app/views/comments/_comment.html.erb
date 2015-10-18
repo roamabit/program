@@ -1,29 +1,33 @@
 <li class="comment">
 
-  <h3><%= comment.title %></h3>
- 	
-	<%= comment.subject %>
-	
+  <h3><%= comment.subject %></h3>
+
+	<%= comment.title %>
+
   <div class="body">
     <%= comment.body %>
   </div>
-	
-<div>
-	<% comment.parent_id %>
-	
-	</div>
-   
+
+  <div>
+    <%= 'User: '  %>
+    <%= comment.user.email  %>
+  </div>
+
+  <div>
+    <% comment.parent_id %>
+  </div>
+
 	<div>
-	<% comment.attributes  %>
+	 <% comment.attributes  %>
 	</div>
-	
+
   <p><%= link_to 'Add a Reply', new_comment_comment_path(comment) %></p>
-  	
-    <ul class="comment_list">
-      <%= render :partial => 'comments/comment', 
-:collection => comment.children %>
-    </ul>
- 
+
+  <ul class="comment_list">
+    <%= render :partial => 'comments/comment',
+    :collection => comment.children %>
+  </ul>
+
 </li>
 <%= link_to "upvote", like_comment_path(comment), method: :put %>
 <%= link_to "downvote", dislike_comment_path(comment), method: :put %>
@@ -31,5 +35,5 @@
 <%= comment.get_upvotes.size - comment.get_downvotes.size%>
 
 
-<% #http://kconrails.com/2011/01/26/nested-comments-in-ruby-on-rails-controllers-and-views/ 
+<% #http://kconrails.com/2011/01/26/nested-comments-in-ruby-on-rails-controllers-and-views/
 %>

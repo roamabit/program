@@ -10,7 +10,7 @@
 
 			<li>
 				<%= link_to proposedproject.title, proposedproject  %>
-				
+
 				<%= solution.solution_abstract %>
 			</li>
 
@@ -20,6 +20,6 @@
 	<% end %>
 <% end %>
 
-<%= link_to 'New Project as Solution', new_project_path(:problem_id => @problem.id) %>
+<%= link_to 'New Project as Solution', new_project_path %>
 
 <%= link_to 'Propose Existing Project as solution',  projects_path %>

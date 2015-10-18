@@ -1,11 +1,11 @@
 class SolutionsController < ApplicationController
   before_action :set_solution, only: [:show, :edit, :update, :destroy]
-	
+
 	attr_accessor :solution_abstract
 
   # GET /solutions
   # GET /solutions.json
-	
+
   def index
 
     @solutions = Solution.all
@@ -14,17 +14,17 @@ class SolutionsController < ApplicationController
 
   # GET /solutions/1
   # GET /solutions/1.json
-  
+
   def show
-	  
+
   end
 
   # GET /solutions/new
   def new
 	#@problem = Problem.find(params[:format])
-	  
+
 	@solution = Solution.new
-		
+
   end
 
   # GET /solutions/1/edit
@@ -34,7 +34,7 @@ class SolutionsController < ApplicationController
   # POST /solutions
   # POST /solutions.json
   def create
-	  
+
     @solution = Solution.new(solution_params)
 
     respond_to do |format|

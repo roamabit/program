@@ -3,7 +3,8 @@
 <%= form_for(@project) do |f| %>
   <% if @project.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+      <h2><%= pluralize(@project.errors.count, "error") %>
+        prohibited this project from being saved:</h2>
 
       <ul>
       <% @project.errors.full_messages.each do |message| %>
@@ -23,18 +24,27 @@
     <%= f.text_area :body %>
   </div>
 
-<div>
-	<%= 'What why does this solve the problem?' %>
-	<%= text_area_tag :solution_abstract %>
-</div>
+<% if Rails.application.routes.recognize_path(request.referrer)[:controller] == 'problems' %>
+
+  <div>
+  	<%= 'What why does this solve the problem?' %>
+  	<%= text_area_tag :solution_abstract %>
+  </div>
+
+  <div class="field">
+  <%# if request %>
+
+    <%= text_field_tag :problem_id, Rails.application.routes.recognize_path(request.referrer)[:id], :type => 'hidden' %>
+
+  </div>
+
+<% end %>
 
   <div class="field">
     <%= f.text_field :user_id, :value => current_user.id, :type => "hidden" %>
   </div>
 
-<div class="field">
-	<%= text_field_tag :problem_id,  params[:problem_id], :type => 'hidden' %>
-</div>
+
 
   <div class="field">
     <%= f.datetime_field :published_at, :value => Time.now,:type => "hidden" %>
@@ -44,5 +54,3 @@
     <%= f.submit %>
   </div>
 <% end %>
-
-

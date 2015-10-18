@@ -1,5 +1,5 @@
 class ProblemsController < ApplicationController
- before_action :set_problem, only: [:show, :edit, :update, :destroy]
+ before_action :set_problem, only: [:show, :edit, :update, :destroy, :clone]
   attr_accessor :problem, :statement, :body, :problem_params
 
   # GET /problems
@@ -67,13 +67,15 @@ class ProblemsController < ApplicationController
 
       if @problem.save
 
-        Supporter.create(:user_id => current_user.id, :problem_id => @problem.id, :role => 'Author')
+        Supporter.create(:user_id => current_user.id,
+          :problem_id => @problem.id, :role => 'Author')
 
 
         if params[:user_id].nil? == false
 
           @problem_id = problem_params[:id]
-          Supporter.create(:user_id => params[:user_id], :problem_id => @problem.id, :role => 'Supporter')
+          Supporter.create(:user_id => params[:user_id],
+            :problem_id => @problem.id, :role => 'Supporter')
 
         else
 
