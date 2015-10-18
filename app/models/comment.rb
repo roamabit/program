@@ -55,4 +55,12 @@ class Comment < ActiveRecord::Base
     commentable_str.constantize.find(commentable_id)
   end
 
+   def owner?(user)
+    if user.present?
+      return self.user_id == user.id
+    else
+      return false
+    end
+  end
+
 end

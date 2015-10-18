@@ -1,0 +1,3 @@
+<ul class="comment_list">
+  <%= render :partial => 'comments/comment', :collection => @user.comments.find_comments_for_commentable("User",@user.id) %>
+</ul>

@@ -1,5 +1,5 @@
 <p><%= link_to 'Add a Comment', new_problem_comment_path(@problem) %></p>
- 
+
 <ul class="comment_list">
-  <%= render :partial => 'comments/comment', :collection => @problem.comments.find_comments_for_commentable("Problem",@problem.id) %>
+  <%= render :partial => 'comments/comment', :collection => @problem.comments.find_comments_for_commentable("Problem",@problem.id).sort_by {:created_at} %>
 </ul>

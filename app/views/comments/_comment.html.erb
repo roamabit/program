@@ -10,15 +10,20 @@
 
   <div>
     <%= 'User: '  %>
-    <%= comment.user.email  %>
+    <%= link_to comment.user.email.first(comment.user.email.index('@')), comment.user  %>
+    <%= link_to 'Edit Comment', edit_comment_path(comment) %>
   </div>
 
   <div>
-    <% comment.parent_id %>
+<%=  'Posted ' + time_ago_in_words(comment.created_at) + ' ago' %>
+</div>
+
+  <div>
+    <% comment.parent_id #for dev%>
   </div>
 
 	<div>
-	 <% comment.attributes  %>
+	 <% comment.attributes  #for dev %>
 	</div>
 
   <p><%= link_to 'Add a Reply', new_comment_comment_path(comment) %></p>

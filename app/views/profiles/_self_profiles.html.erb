@@ -1,19 +1,17 @@
 <table>
-<h3>
-		</h3>
 
 <% if @parent.nil? %>
 	<% @parent = @user %>
 <% end %>
 
 
-<% @self_profile_headers = @parent.profiles %>
+<% @self_profile_headers = @parent.profiles.where("made_public_at IS NOT NULL or user_id = " + current_user.id.to_s) %>
 
-<% @self_profile_headers.group(:name).where("profiles.made_public_at IS NOT NULL").each do |p| %>
+<% @self_profile_headers.group(:name).each do |p| %>
+
 <td>
 <table>
 	<th><%= p.name %></th>
-
 
 	<% @self_profile_headers.each do |b| %>
 
@@ -31,11 +29,18 @@
 
 				<% else %>
 
-					<%= link_to b.bio, b  %>
+					<%= link_to b.bio, b %>
 
 
 				<% end %>
 
+					<small><br>
+						<% if b.made_public_at.nil? %>
+						<%= 'Private' %>
+						<% else %>
+						<%= b.made_public_at.to_date  %>
+						<% end %>
+					</small>
 
 			</td>
 
