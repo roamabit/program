@@ -1,55 +1,57 @@
 <table>
 
-<% if @parent.nil? %>
+	<% if @parent.nil? %>
 	<% @parent = @user %>
-<% end %>
+	<% end %>
 
 
-<% @self_profile_headers = @parent.profiles.where("made_public_at IS NOT NULL or user_id = " + current_user.id.to_s) %>
+	<% @self_profile_headers = @parent.profiles.where("made_public_at IS NOT NULL or user_id = " + current_user.id.to_s) %>
 
-<% @self_profile_headers.group(:name).each do |p| %>
+	<% @self_profile_headers.group(:name).each do |p| %>
 
-<td>
-<table>
-	<th><%= p.name %></th>
+	<td>
+		<table>
+			<th>
+			<%= p.name %>
+		</th>
 
-	<% @self_profile_headers.each do |b| %>
+			<% @self_profile_headers.each do |b| %>
 
-		<% if b.name == p.name %>
+			<% if b.name == p.name %>
 
-			<tr><td>
-				<% if b.bio =~ /http/ or b.bio =~ /www/ %>
-					<table>
-					<tr><td>
-						<%= link_to b.bio, b.bio  %>
-					</td>
+			<tr>
 					<td>
-						<%= link_to 'Link', b %>
-					</td>
+					<% if b.bio =~ /http/ or b.bio =~ /www/ %>
 
-				<% else %>
+
+					<%= link_to b.bio, b.bio  %>
+
+					<%= link_to 'Link', b %>
+
+					<% else %>
 
 					<%= link_to b.bio, b %>
 
+					<% end %>
 
-				<% end %>
+
 
 					<small><br>
-						<% if b.made_public_at.nil? %>
-						<%= 'Private' %>
-						<% else %>
-						<%= b.made_public_at.to_date  %>
-						<% end %>
+					<% if b.made_public_at.nil? %>
+					<%= 'Private' %>
+					<% else %>
+					<%= b.made_public_at.to_date  %>
+					<% end %>
 					</small>
 
-			</td>
+					</td>
 
-			</tr>
+				</tr>
 
-		<% end %>
+			<% end %>
+			<% end %>
+		</table>
+	</td>
 	<% end %>
-</table>
-</td>
-<% end %>
 
 </table>
