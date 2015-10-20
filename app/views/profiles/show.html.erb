@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 
-		
+
 	<p>
 		<strong>Name:</strong>
 		<%= @profile.name %>
@@ -24,19 +24,19 @@
 		<% else %>
 			<%= @profile.made_public_at %>
 		<% end %>
-		
+
 	</p>
 
-	<p><% @parent = @profile.profileable_type %>
-		
-		<%= link_to 'Back to '+@parent, @parent.constantize.find(@profile.profileable_id)  %>|
-		
+	<p><% @objparent = @profile.profileable_type %>
+
+		<%= link_to 'Back to '+@objparent, @objparent.constantize.find(@profile.profileable_id)  %>|
+
 	<% if @profile.user_id == current_user.id %>
 		<%= link_to 'Edit', edit_profile_path(@profile) %> |
 		<% end %>
-		
+
 		<%= link_to 'Delete' , @profile, method: :delete, data: {confirm: 'Are you sure you want to delete this profile entry?'} %>
-		
+
 	</p>
 
 
@@ -46,9 +46,9 @@
 <%= @profile.get_upvotes.size - @profile.get_downvotes.size%>
 
 <h2>Comments</h2>
- 
+
 <p><%= link_to 'Add a Comment', new_profile_comment_path(@profile) %></p>
- 
+
 <ul class="comment_list">
   <%= render :partial => 'comments/comment', :collection => @profile.comments.find_comments_for_commentable("Profile",@profile.id) %>
 </ul>

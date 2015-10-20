@@ -4,7 +4,7 @@
 
 <TITLE>Eliza, Computer Therapist</TITLE>
 
-<SCRIPT language="JavaScript"><!-- 
+<SCRIPT language="JavaScript"><!--
 // Chat Bot by George Dunlop, www.peccavi.com
 // Note - Eliza is a Classic Model of chat Bots.. but this implementation is mine :)
 // May be used/modified if credit line is retained (c) 1997 All rights reserved
@@ -34,7 +34,7 @@
    var conj2 = new Array(maxConj);
    var conj3 = new Array(max2ndConj);
    var conj4 = new Array(max2ndConj);
-   
+
 
 // Funtion to replaces all occurances of substring substr1 with substr2 within strng
 // if type == 0 straight string replacement
@@ -46,18 +46,18 @@
 
 	function replaceStr( strng, substr1, substr2, type){
 		var pntr = -1; aString = strng;
-		if( type == 0 ){  
+		if( type == 0 ){
 			if( strng.indexOf( substr1 ) >= 0 ){ pntr = strng.indexOf( substr1 );	}
-		} else if( type == 1 ){ 
-			if( strng.indexOf( " "+ substr1 +" " ) >= 0 ){ pntr = strng.indexOf( " " + substr1 + " " ) + 1; }	
-		} else if( type == 2 ){ 
+		} else if( type == 1 ){
+			if( strng.indexOf( " "+ substr1 +" " ) >= 0 ){ pntr = strng.indexOf( " " + substr1 + " " ) + 1; }
+		} else if( type == 2 ){
 			bstrng = strng.toUpperCase();
 			bsubstr1 = substr1.toUpperCase();
-			if( bstrng.indexOf( " "+ bsubstr1 +" " )>= 0 ){ pntr = bstrng.indexOf( " " + bsubstr1 + " " ) + 1; }	
+			if( bstrng.indexOf( " "+ bsubstr1 +" " )>= 0 ){ pntr = bstrng.indexOf( " " + bsubstr1 + " " ) + 1; }
 		} else {
 			bstrng = strng.toUpperCase();
 			bsubstr1 = substr1.toUpperCase();
-			if( bstrng.indexOf( bsubstr1 ) >= 0 ){ pntr = bstrng.indexOf( bsubstr1 ); }	
+			if( bstrng.indexOf( bsubstr1 ) >= 0 ){ pntr = bstrng.indexOf( bsubstr1 ); }
 		}
 		if( pntr >= 0 ){
 			RPstrg += strng.substring( 0, pntr ) + substr2;
@@ -67,7 +67,7 @@
 		aString =  RPstrg + aString;
 		RPstrg = "";
 		return aString;
-	}	
+	}
 
 
 // Function to pad a string.. head, tail & punctuation
@@ -98,25 +98,25 @@
 
 
 // Dress Input formatting i.e leading & trailing spaces and tail punctuation
-	
+
 	var ht = 0;												// head tail stearing
-	
+
 	function strTrim(strng){
 		if(ht == 0){ loc = 0; }									// head clip
-		else { loc = strng.length - 1; }						// tail clip  ht = 1 
+		else { loc = strng.length - 1; }						// tail clip  ht = 1
 		if( strng.charAt( loc ) == " "){
 			aString = strng.substring( - ( ht - 1 ), strng.length - ht);
 			aString = strTrim(aString);
-		} else { 
+		} else {
 			var flg = false;
 			for(i=0; i<=5; i++ ){ flg = flg || ( strng.charAt( loc ) == punct[i]); }
-			if(flg){	
+			if(flg){
 				aString = strng.substring( - ( ht - 1 ), strng.length - ht );
 			} else { aString = strng; }
 			if(aString != strng ){ strTrim(aString); }
 		}
-		if( ht ==0 ){ ht = 1; strTrim(aString); } 
-		else { ht = 0; }		
+		if( ht ==0 ){ ht = 1; strTrim(aString); }
+		else { ht = 0; }
 		return aString;
 	}
 
@@ -146,13 +146,13 @@
 
 	var pass = 0;
 	var thisstr = "";
-		
+
 	function phrase( sString, keyidx ){
 		idxmin = keyword[keyidx].idx;
 		idrange = keyword[keyidx].end - idxmin + 1;
 		choice = keyword[keyidx].idx + Math.floor( Math.random() * idrange );
-		if( choice == keyword[keyidx].last && pass < 5 ){ 
-			pass++; phrase(sString, keyidx ); 
+		if( choice == keyword[keyidx].last && pass < 5 ){
+			pass++; phrase(sString, keyidx );
 		}
 		keyword[keyidx].last = choice;
 		var rTemp = response[choice];
@@ -171,23 +171,23 @@
 		} else sTemp = rTemp;
 		return sTemp;
 	}
-	
+
 // returns array index of first key found
 
 		var keyid = 0;
 
 	function testkey(wString){
 		if( keyid < keyNotFound
-			&& !( wString.indexOf( " " + keyword[keyid].key + " ") >= 0 )){ 
-			keyid++; testkey(wString); 
+			&& !( wString.indexOf( " " + keyword[keyid].key + " ") >= 0 )){
+			keyid++; testkey(wString);
 		}
 	}
-	function findkey(wString){ 
+	function findkey(wString){
 		keyid = 0;
 		found = false;
 		testkey(wString);
 		if( keyid >= keyNotFound ){ keyid = keyNotFound; }
-  		return keyid;  		
+  		return keyid;
 	}
 
 // This is the entry point and the I/O of this code
@@ -196,7 +196,7 @@
 	var sTopic = "";											// Last worthy responce
 	var greet = false;
 	var wPrevious = "";        		    				// so we can check for repeats
-	var started = false;	
+	var started = false;
 
 	function listen(User){
   		sInput = User;
@@ -204,26 +204,26 @@
 		Rtimer = setTimeout("wakeup()", 180000);		// wake up call
 		started = true;										// needed for Rtimer
    	sInput = strTrim(sInput);							// dress input formating
-		if( sInput != "" ){ 
+		if( sInput != "" ){
 			wInput = padString(sInput.toUpperCase());	// Work copy
 			var foundkey = maxKey;         		  		// assume it's a repeat input
 			if (wInput != wPrevious){   					// check if user repeats himself
 				foundkey = findkey(wInput);   			// look for a keyword.
 			}
 			if( foundkey == keyNotFound ){
-				if( !greet ){ greet = true; return "Don't you ever say Hello?" } 
+				if( !greet ){ greet = true; return "Don't you ever say Hello?" }
 				else {
 					wPrevious = wInput;          			// save input to check repeats
 					if(( sInput.length < 10 ) && ( wTopic != "" ) && ( wTopic != wPrevious )){
 						lTopic = conjugate( sTopic ); sTopic = ""; wTopic = "";
 						return 'OK... "' + lTopic + '". Tell me more.';
 					} else {
-						if( sInput.length < 15 ){ 
-							return "Tell me more..."; 
+						if( sInput.length < 15 ){
+							return "Tell me more...";
 						} else { return phrase( sInput, foundkey ); }
 					}
 				}
-			} else { 
+			} else {
 				if( sInput.length > 12 ){ sTopic = sInput; wTopic = wInput; }
 				greet = true; wPrevious = wInput;  			// save input to check repeats
 				return phrase( sInput, foundkey );			// Get our response
@@ -235,22 +235,22 @@
 			var strng2 = "  I can't help you without a dialog!";
 			update(strng1,strng2);
 	}
-		
+
 // build our data base here
-                                 
+
     conj1[0]  = "are";   		conj2[0]  = "am";
     conj1[1]  = "am";   		conj2[1]  = "are";
     conj1[2]  = "were";  		conj2[2]  = "was";
     conj1[3]  = "was";  		conj2[3]  = "were";
-    conj1[4]  = "I";    		conj2[4]  = "you";    
-    conj1[5]  = "me";    		conj2[5]  = "you";    
+    conj1[4]  = "I";    		conj2[4]  = "you";
+    conj1[5]  = "me";    		conj2[5]  = "you";
     conj1[6]  = "you";   		conj2[6]  = "me";
-    conj1[7]  = "my";    		conj2[7]  = "your";    
+    conj1[7]  = "my";    		conj2[7]  = "your";
     conj1[8]  = "your";  		conj2[8]  = "my";
-    conj1[9]  = "mine";  		conj2[9]  = "your's";    
-    conj1[10] = "your's"; 	conj2[10] = "mine";    
+    conj1[9]  = "mine";  		conj2[9]  = "your's";
+    conj1[10] = "your's"; 	conj2[10] = "mine";
     conj1[11] = "I'm";   		conj2[11] = "you're";
-    conj1[12] = "you're";  	conj2[12] = "I'm";    
+    conj1[12] = "you're";  	conj2[12] = "I'm";
     conj1[13] = "I've";  		conj2[13] = "you've";
     conj1[14] = "you've"; 	conj2[14] = "I've";
     conj1[15] = "I'll"; 		conj2[15] = "you'll";
@@ -259,7 +259,7 @@
     conj1[18] = "yourself"; 	conj2[18] = "myself";
 
 // array to post process correct our tenses of pronouns such as "I/me"
-    
+
     conj3[0]  = "me am";   	conj4[0]  = "I am";
     conj3[1]  = "am me";   	conj4[1]  = "am I";
     conj3[2]  = "me can";   	conj4[2]  = "I can";
@@ -267,7 +267,7 @@
     conj3[4]  = "me have";  	conj4[4]  = "I have";
     conj3[5]  = "me will";   	conj4[5]  = "I will";
     conj3[6]  = "will me";   	conj4[6]  = "will I";
-   
+
 
 // Keywords
 
@@ -308,7 +308,7 @@
     keyword[34]=new key( "COMPUTER", 		99, 105);
     keyword[35]=new key( "NO KEY FOUND", 	106, 112);
     keyword[36]=new key( "REPEAT INPUT", 	113, 116);
-   
+
 
     response[  0]="ELIZA - Javascript Version by George Dunlop ( george@peccavi.com )"
     response[  1]="Don't you believe that I can<*";
@@ -430,7 +430,7 @@
 
 
     loaded = true;			// set the flag as load done
-               
+
 ///////////////////////////////////////////////////////////////
 //***********************************************************//
 //* everything below here was originally in dia_1.html      *//
@@ -441,7 +441,7 @@
 // May be used/modified if credit line is retained (c) 1997 All rights reserved
 
 // Put together an array for the dialog
-    
+
 	chatmax = 5;						// number of lines / 2
 	chatpoint = 0;
 	chatter = new Array(chatmax);
@@ -449,7 +449,7 @@
 // Wait function to allow our pieces to get here prior to starting
 
 	function hello(){
-		chatter[chatpoint] = "> Hello, I am Eliza."; 
+		chatter[chatpoint] = "> Hello, I am Eliza.";
 		chatpoint = 1;
 		return write();
 	}
@@ -457,36 +457,36 @@
 		for( i = 0; i < chatmax; i++){ chatter[i] = ""; }
 		chatter[chatpoint] = "  Loading...";
 		document.Eliza.input.focus();
-		write(); 			
+		write();
 		if( loaded ){ hello() }
 		else { setTimeout("start()", 1000); }
 	}
 
 // Fake time thinking to allow for user self reflection
 // And to give the illusion that some thinking is going on
-	
+
 	var elizaresponse = "";
-	
+
 	function think(){
-		document.Eliza.input.value = "";        
-		if( elizaresponse != "" ){ respond(); }		
+		document.Eliza.input.value = "";
+		if( elizaresponse != "" ){ respond(); }
 		else { setTimeout("think()", 250); }
 	}
 	function dialog(){
 		var Input = document.Eliza.input.value;	  // capture input and copy to log
-		document.Eliza.input.value = "";        
+		document.Eliza.input.value = "";
 		chatter[chatpoint] = " \n* " + Input;
 		elizaresponse = listen(Input);
 		setTimeout("think()", 1000 + Math.random()*3000);
-		chatpoint ++ ; 
+		chatpoint ++ ;
 		if( chatpoint >= chatmax ){ chatpoint = 0; }
 		return write();
 	}
 	function respond(){
-		chatpoint -- ; 
+		chatpoint -- ;
 		if( chatpoint < 0 ){ chatpoint = chatmax-1; }
 		chatter[chatpoint] += "\n> " + elizaresponse;
-		chatpoint ++ ; 
+		chatpoint ++ ;
 		if( chatpoint >= chatmax ){ chatpoint = 0; }
 		return write();
 	}
@@ -495,7 +495,7 @@
 	function update(str1,str2){
 		chatter[chatpoint] = " \n> " + str1;
 		chatter[chatpoint] += "\n> " + str2;
-		chatpoint ++ ; 
+		chatpoint ++ ;
 		if( chatpoint >= chatmax ){ chatpoint = 0; }
 		return write();
 	}
@@ -519,7 +519,7 @@
 
 
 <p align = "center">
-</p> 
+</p>
 <h1>Eliza, computer therapist</h1>
 
 
@@ -529,13 +529,13 @@
    tricks like string substitution and canned responses
    based on keywords. Yet when the original ELIZA first
    appeared in the 60's, some people actually mistook her for
-   human. The illusion of intelligence works best, however, 
-   if you limit your conversation to talking about yourself 
+   human. The illusion of intelligence works best, however,
+   if you limit your conversation to talking about yourself
    and your life.</p>
 
 <p>This javascript version of ELIZA was originally written by
-   Michal Wallace and 
-   significantly enhanced by 
+   Michal Wallace and
+   significantly enhanced by
    George Dunlop.
 </p>
 
@@ -568,7 +568,7 @@
 <p align="center"><br><small>
 &copy; 1999-2006 manifestation.com
 [&nbsp;PMB&nbsp;417&nbsp;..&nbsp;10800&nbsp;Alpharetta&nbsp;Hwy,&nbsp;Suite&nbsp;208&nbsp;..&nbsp;Roswell,&nbsp;GA&nbsp;30076&nbsp;]
-<br>webmaster: michal j wallace 
+<br>webmaster: michal j wallace
     [<a rel="nofollow" href="http://withoutane.com/">withoutane.com</a>]
 </small></p>
 </BODY></HTML>

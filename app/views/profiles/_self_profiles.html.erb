@@ -1,11 +1,11 @@
 <table>
 
-	<% if @parent.nil? %>
-	<% @parent = @user %>
+	<% if @objparent.nil? %>
+	<% @objparent = @user %>
 	<% end %>
 
 
-	<% @self_profile_headers = @parent.profiles.where("made_public_at IS NOT NULL or user_id = " + current_user.id.to_s) %>
+	<% @self_profile_headers = @objparent.profiles.where("made_public_at IS NOT NULL or user_id = " + current_user.id.to_s) %>
 
 	<% @self_profile_headers.group(:name).each do |p| %>
 
@@ -24,13 +24,13 @@
 					<% if b.bio =~ /http/ or b.bio =~ /www/ %>
 
 
-					<%= link_to b.bio, b.bio  %>
+					<%= link_to b.bio[0..25], b.bio  %>
 
 					<%= link_to 'Link', b %>
 
 					<% else %>
 
-					<%= link_to b.bio, b %>
+					<%= link_to b.bio[0..25], b %>
 
 					<% end %>
 

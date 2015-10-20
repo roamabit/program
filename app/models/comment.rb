@@ -1,8 +1,9 @@
 class Comment < ActiveRecord::Base
 
+  acts_as_commentable
   acts_as_nested_set :scope => [:commentable_id, :commentable_type]
 
-  acts_as_commentable
+
   acts_as_votable
 
   validates :body, :presence => true
@@ -16,19 +17,29 @@ class Comment < ActiveRecord::Base
 	belongs_to :commentable, :polymorphic => true
 
   # NOTE: Comments belong to a user
-    belongs_to :user
+  belongs_to :user
 
   # Helper class method that allows you to build a comment
   # by passing a commentable object, a user_id, and comment text
   # example in readme
-  def self.build_from(obj, user_id, comment, title, subject, parentid)
+  def self.build_from(obj, user_id, comment)
+
+    if (comment.has_key?(:parent_id))
+      @parent = Comment.find(comment[:parent_id])
+    end
+
+
+
     new \
       :commentable => obj,
-      :body        => comment,
+      :body        => comment[:body],
       :user_id     => user_id,
-	  :title		=> title,
-	  :subject		=> subject,
-	  :parent_id 	=> parentid
+	  :title		=> comment[:title],
+	  :subject		=> comment[:subject],
+    :parent_id => @parent
+	#  :parent_id 	=> parentid
+
+
 
   end
 

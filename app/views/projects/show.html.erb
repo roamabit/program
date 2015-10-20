@@ -16,7 +16,7 @@
 </p>
 
 
-<%= link_to 'Back to Projects', projects_path %> | 
+<%= link_to 'Back to Projects', projects_path %> |
 <%= link_to 'Edit Project', edit_project_path(@project) %>
 
 <table>
@@ -30,15 +30,15 @@
 
 <tr>
 	<td>
-			
+
 		<%= render 'partnerships/project_partnerships' %>
 	</td>
-	
+
 	<td>
 		<%= render 'partnerships/user_partnerships' %>
-		
+
 	</td>
-	
+
 	<td>
 		<% @project.partnerships.each do |r| %>
 			<%  if r.user_id = current_user.id and r.role == "Author"  %>
@@ -49,10 +49,10 @@
 	</td>
 </tr>
 	</table>
-	
-	
+
+
 <h2>Comments</h2>
- 
+
 <p><%= link_to 'Add a Comment', new_project_comment_path(@project) %></p>
 
 
@@ -61,5 +61,5 @@
   <%= render :partial => 'comments/comment', :collection => @project.comments.find_comments_for_commentable("Project",@project.id) %>
 </ul>
 
- 
+
 

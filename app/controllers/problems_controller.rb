@@ -36,7 +36,7 @@ class ProblemsController < ApplicationController
 
   def show
 	 # @problem = Problem.find(params[:id])
-	  @parent = @problem
+	  @objparent = @problem
   end
 
   # GET /problems/new

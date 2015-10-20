@@ -1,6 +1,5 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
-
 	attr_accessor :solution_abstract
 	attr_accessor :problem_id
 
@@ -31,7 +30,7 @@ end
 
 def show
     @project = Project.find(params[:id])
-   	@parent = @project
+   	@objparent = @project
 end
 
   # GET /projects/new

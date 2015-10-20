@@ -69,7 +69,7 @@ attr_accessor :user_id, :new_profile_name
 	def new
 		get_parent
 		get_options_list
-		@profile = @parent.profiles.new
+		@profile = @objparent.profiles.new
 	end
 
 	def update
@@ -88,7 +88,7 @@ attr_accessor :user_id, :new_profile_name
 	get_parent
     @profile.destroy
 		respond_to do |format|
-      format.html { redirect_to @parent, notice: 'Profile was successfully destroyed.' }
+      format.html { redirect_to @objparent, notice: 'Profile was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -97,56 +97,51 @@ attr_accessor :user_id, :new_profile_name
 	def get_parent
 
 		if params[:project_id]
-		  @parent = Project.find(params[:project_id])
+		  @objparent = Project.find(params[:project_id])
 		  @template_prefix = 'project/profiles/'
 
 		elsif params[:partnership_id]
-		  @parent = Partnership.find(params[:partnership_id])
+		  @objparent = Partnership.find(params[:partnership_id])
 		  @template_prefix = 'partnership/profiles/'
 
 		elsif params[:problem_id]
-		  @parent = Problem.find(params[:problem_id])
+		  @objparent = Problem.find(params[:problem_id])
 		  @template_prefix = 'problem/profiles/'
 
 		elsif  params[:profileable_type]
 		  @p_type = params[:profileable_type].singularize.capitalize.constantize
-		  @parent = @p_type.find(profile_params[:profileable_id]) unless params[:search]
+		  @objparent = @p_type.find(profile_params[:profileable_id]) unless params[:search]
 		  @template_prefix = "#{@p_type.to_s.downcase}" + '/profiles/'
 
 		elsif params[:profile_id]
-		  @parent = Profile.find(params[:profile_id])
+		  @objparent = Profile.find(params[:profile_id])
 		  @template_prefix = 'profile/profiles/'
 
 		elsif params[:search_problem_id]
-		  @parent = Search_problem.find(params[:search_problem_id])
+		  @objparent = Search_problem.find(params[:search_problem_id])
 		  @template_prefix = 'search_problem/profiles/'
 
 		elsif params[:simvol_id]
-		  @parent = Simvol.find(params[:simvol_id])
+		  @objparent = Simvol.find(params[:simvol_id])
 		  @template_prefix = 'simvol/profiles/'
 
 		elsif params[:solution_id]
-		  @parent = Solution.find(params[:solution_id])
+		  @objparent = Solution.find(params[:solution_id])
 		  @template_prefix = 'solution/profiles/'
 
 		elsif params[:comment_id]
-		  @parent = Comment.find(params[:comment_id])
+		  @objparent = Comment.find(params[:comment_id])
 		  @template_prefix = 'comment/profiles/'
 		  @parentid = params[:commentable_id]
 
 		elsif params[:user_id]
-		  @parent = current_user
+		  @objparent = current_user
 		  @template_prefix = 'user/profiles/'
 
 		elsif params[:id]
 			@profile_lookup = Profile.find(params[:id])
 			@parent_object = @profile_lookup.profileable_type.constantize
-			@parent = @parent_object.find(@profile_lookup.profileable_id)
-
-	#	elsif params[:search]
-	#		request.referer
-#		else
-#		  @parent = Profile.find(params[:id]).profileable_type.constantize
+			@objparent = @parent_object.find(@profile_lookup.profileable_id)
 
 		end
     end
