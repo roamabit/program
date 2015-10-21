@@ -15,10 +15,10 @@
 
 <% #@list is generated from the controller
 %>
-	
+
 <% options = options_from_collection_for_select(@list, 'to_s', 'to_s') %>
 <%= f.select :name,  options, :prompt => "Select a Profile" %>
-	
+
 <%= 'Or enter new profile' %>
 <%= text_field_tag :new_profile_name %>
 
@@ -49,7 +49,6 @@
 
 	<div class="actions">
 	<%= f.submit %>
-		This may need a redirect to Parent Index Otherwise defaults to Profile Index =<
 	</div>
 
 <% end %>

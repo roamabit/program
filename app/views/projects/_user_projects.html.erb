@@ -2,17 +2,14 @@
 
   <%= 'No user projects'  %>
 
-<% elsif @user.projects.count == '1' %>
-  <%= 'User has one project' %>
 <% else %>
 
    <table>
+   <tr>
+      <th>Title</th><th>Abstract</th><th>Role</th>
+    </tr>
 
     <% @user.projects.each do |up| %>
-
-        <tr>
-      <th>Name</th><th>Body</th><th>Partnership</th>
-    </tr>
 
     <tr>
       <td>
