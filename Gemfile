@@ -55,8 +55,8 @@ gem 'acts_as_commentable'
 
 #For some reason requires download from external website.
 gem 'gmaps4rails',
-  require: 'gmaps4rails',
-  git:     'git://github.com/apneadiving/Google-Maps-for-Rails.git'
+    require: 'gmaps4rails',
+    git:     'git://github.com/apneadiving/Google-Maps-for-Rails.git'
 
 
 gem 'underscore-rails' #asset-pipeline
@@ -96,3 +96,15 @@ gem 'capistrano', '~> 3.4.0' #remote server automation tool
 #gem 'nokogiri', :platforms => :ruby
 #use with original aws-sdk
 #spec.add_dependency('aws-sdk', '< 2.0')
+
+group :development, :test do
+  gem 'rspec-rails', '3.3'
+  gem 'fabrication', '2.11.3'
+  gem 'pry'
+  gem 'pry-nav'
+end
+
+group :test do
+  gem 'capybara', '2.4.1'
+  gem 'faker'
+end
