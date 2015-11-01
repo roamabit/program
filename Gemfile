@@ -97,6 +97,10 @@ gem 'capistrano', '~> 3.4.0' #remote server automation tool
 #use with original aws-sdk
 #spec.add_dependency('aws-sdk', '< 2.0')
 
+# All gems below this line were added by Andrew
+gem 'bootstrap-sass'
+gem 'bootstrap_form'
+
 group :development, :test do
   gem 'rspec-rails', '3.3'
   gem 'fabrication', '2.11.3'

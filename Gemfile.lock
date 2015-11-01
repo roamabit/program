@@ -40,6 +40,9 @@ GEM
       awesome_nested_set (>= 3.0)
     acts_as_votable (0.10.0)
     arel (5.0.1.20140414130214)
+    autoprefixer-rails (6.0.3)
+      execjs
+      json
     awesome_nested_set (3.0.2)
       activerecord (>= 4.0.0, < 5)
     aws-sdk (2.1.14)
@@ -54,6 +57,10 @@ GEM
     bcrypt (3.1.10)
     bcrypt (3.1.10-java)
     bcrypt (3.1.10-x86-mingw32)
+    bootstrap-sass (3.3.4.1)
+      autoprefixer-rails (>= 5.0.0.1)
+      sass (>= 3.2.19)
+    bootstrap_form (2.3.0)
     builder (3.2.2)
     capistrano (3.4.0)
       i18n
@@ -246,6 +253,8 @@ DEPENDENCIES
   acts_as_votable
   aws-sdk (~> 2)
   aws-sdk-v1
+  bootstrap-sass
+  bootstrap_form
   capistrano (~> 3.4.0)
   capybara (= 2.4.1)
   coffee-rails (~> 4.0.0)
