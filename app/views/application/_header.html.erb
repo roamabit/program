@@ -1,0 +1,23 @@
+<header role="banner">
+  <nav role="navigation" class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <%= link_to "Eight KM", root_path, class: "navbar-brand" %>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li><%= link_to "Users", users_path %></li>
+          <li><%= link_to "Problems", problems_path %></li>
+          <li><%= link_to "Projects", projects_path %></li>
+          <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+          <li><%= link_to "Search", new_search_problem_path %></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
