@@ -1,16 +1,25 @@
-<h1>User Profile</h1>
+<div class="text-center">
+  <h1>User Profile</h1>
+</div>
 
 <% if user_signed_in? %>
 
-<%= render 'profiles/user_profile' %>
-<br>
-<h1>User Projects</h1>
-<%= render 'projects/user_projects'  %>
-<br>
-<%= render 'user_friendships' %>
-<br>
-<%= render 'user_comments'  %>
-<br>
-<%= link_to 'Back to user listings', users_path %>
+  <%= render 'profiles/user_profile' %>
+  <br>
 
+  <div class="text-center">
+    <h1>User Projects</h1>
+  </div>
+
+  <%= render 'projects/user_projects' %>
+  <br>
+  <div class="text-center">
+    <h1>Friends</h1>
+  </div>
+  <%= render 'user_friendships' %>
+  <div class="text-center">
+    <br>
+    <%= render 'user_comments' %>
+    <br>
+    <%= link_to 'Back to user listings', users_path %>
 <% end %>

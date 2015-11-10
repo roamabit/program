@@ -1,51 +1,36 @@
-<hr>
-<table>
-<h3>
+<h3><%= link_to @user.email.first(@user.email.index('@')), @user  %></h3>
+
+<div class="container-fluid">
+  <div class="well">
+    <% @user_profile_headers = @user.profiles %>
+    <% @user_profile_headers.group(:name).where("profiles.made_public_at IS NOT NULL").each do |p| %>
+    <%= p.name %>
+
+    <% @user_profile_headers.each do |b| %>
+      <% if b.name == p.name %>
+	<%= link_to b.bio, b, class: "container profile-headers" %>
+
+      <% end %>
+    <% end %>
+    <% end %>
+  </div>
+</div>
+
+    
 
 
-<%= link_to @user.email.first(@user.email.index('@')), @user  %>
+    <% if @user == current_user %>
+      <%= link_to 'New Entry', new_user_profile_path(:user_id => current_user.id) %>
+    <% end %>
 
+    <br>
 
-</h3>
+    <% unless @user == current_user %>
+      <%= link_to "upvote", like_user_path(@user), method: :put %>
+      <%= link_to "downvote", dislike_user_path(@user), method: :put %>
+    <% end %>
 
-<% @user_profile_headers = @user.profiles %>
-
-<% @user_profile_headers.group(:name).where("profiles.made_public_at IS NOT NULL").each do |p| %>
-<td>
-<table>
-	<th><%= p.name %></th>
-
-
-	<% @user_profile_headers.each do |b| %>
-
-		<% if b.name == p.name %>
-
-			<tr><td>
-
-				<%= link_to b.bio, b  %>
-
-
-			</td>
-
-			</tr>
-
-		<% end %>
-	<% end %>
-</table>
-</td>
-<% end %>
-</table>
-
-<% if @user == current_user %>
-  <%= link_to 'New Entry', new_user_profile_path(:user_id => current_user.id) %>
-<% end %>
-
-<br>
-
-<% unless @user == current_user %>
-  <%= link_to "upvote", like_user_path(@user), method: :put %>
-  <%= link_to "downvote", dislike_user_path(@user), method: :put %>
-<% end %>
-
-<%= 'Rating: ' %>
-<%= @user.get_upvotes.size - @user.get_downvotes.size %> <br>
+    <%= 'Rating: ' %>
+    <%= @user.get_upvotes.size - @user.get_downvotes.size %> <br>
+  </div>
+</div>
