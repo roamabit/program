@@ -1,9 +1,9 @@
 class Profile < ActiveRecord::Base
   # belongs_to :user
   belongs_to :profileable, :polymorphic =>true
-
   has_many :comments, :as => :commentable, dependent: :destroy
 
+  validates_presence_of :user_id, :profileable_id, :profileable_type
   acts_as_commentable
   acts_as_votable
 
