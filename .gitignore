@@ -19,4 +19,7 @@
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+# Ignore .DS_Store files on OSX
 *.DS_Store*
+

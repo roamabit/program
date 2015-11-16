@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   end
 
   #def new
-  #    @user = User.new
+  # @user = User.new
   #end
 
   #def create
@@ -18,7 +18,8 @@ class UsersController < ApplicationController
   #end
 
   def show
-    #		unless params[:id] == ("sign_up" or "log_in" or "sign_in")
+    # unless params[:id] == ("sign_up" or "log_in" or "sign_in")
+
 
     if params[:format]
       @user = User.find(params[:format])
@@ -29,7 +30,7 @@ class UsersController < ApplicationController
   end
 
   # def edit
-  #     @user = User.find(params[:id])
+  #   @user = User.find(params[:id])
   # end
 
   # def update
@@ -50,7 +51,7 @@ class UsersController < ApplicationController
 
   #dorothy Lake
 
-  #************Voting
+  # Voting
   def upvote
     @user = User.find(params[:id])
     @user.upvote_by current_user
