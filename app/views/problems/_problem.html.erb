@@ -1,29 +1,20 @@
-<tr>
-    <div class="problem">
-      <td>
-        <h2><%= link_to problem.statement, problem %></h2>
-      </td>
-</tr>
-<tr>
-<td>
-  <div class="details">
-    <%= problem.location %>
-</td>
-<td>
-	<%=  problem.published_at %>
-</td>
+<div class="container problem">
+  <div class="row">
+    <div class="panel panel-default">
+      <h2><%= link_to problem.statement, problem, class: "panel-heading" %></h2>
+      <div class="panel-body">
+        <div class="details">
+          <%= problem.location %>
+
+          <%=  problem.published_at %>
+          <%= link_to "upvote", like_problem_path(problem), method: :put %>
+
+
+          <%= link_to "downvote", dislike_problem_path(problem), method: :put %>
+
+          <%= problem.get_upvotes.size - problem.get_downvotes.size%>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-		</tr>
-<tr>
-<td>
-	<%= link_to "upvote", like_problem_path(problem), method: :put %>
-
-
-	<%= link_to "downvote", dislike_problem_path(problem), method: :put %>
-
-<%= problem.get_upvotes.size - problem.get_downvotes.size%>
-
-	</td>
-
-</tr>
