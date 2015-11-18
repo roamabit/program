@@ -1,23 +1,32 @@
 <div class="text-center">
   <h1>Indentifying New Problems</h1>
 </div>
+
 <h3><%= link_to 'New Problem', new_problem_path %></h3>
 
 <div class="container">
-  <div class="row">
+  <div class="row"
+    <div class="col-md-3">
+      <%= render 'search_poblems_input' %>
+    </div>
 
-    <%= render 'search_poblems_input' %>
-  </div>
-  <div class ="row">
-    <div class="center-block">
+    <div class ="col-md-9">
       <%= render 'map' %>
     </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <a href="http://xkcd.com/1232/"> <img src="http://imgs.xkcd.com/comics/realistic_criteria.png"></a>
   </div>
 </div>
 
 <div class="text-center">
   <h1>Listing problems</h1>
 </div>
+
 
 <div class="container">
   <div class="row">
