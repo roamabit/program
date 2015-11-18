@@ -1,37 +1,19 @@
-<%= form_for(@problem) do |f| %>
-  <% if @problem.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@problem.errors.count, "error") %> prohibited this problem from being saved:</h2>
-
-      <ul>
-      <% @problem.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :statement %><br>
+<div class="well col-md-6">
+  <%= bootstrap_form_for(@problem, layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-9") do |f| %>
+    <% if @problem.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@problem.errors.count, "error") %> prohibited this problem from being saved:</h2>
+        <ul>
+          <% @problem.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
     <%= f.text_field :statement %>
-  </div>
-  <div class="field">
-    <%= f.label :body %><br>
     <%= f.text_area :body %>
-  </div>
-
-
-  <div class="field">
-    <%= f.label :location %><br>
     <%= f.text_field :location %>
-  </div>
-
-
-  <div class="field">
-    <%= f.datetime_field :published_at, :value => Time.now,:type => "hidden" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+    <%= f.datetime_field :published_at, :value => Time.now, :type => "hidden" %>
+    <%= f.submit "Create Problem" %>
+  <% end %>
+</div>

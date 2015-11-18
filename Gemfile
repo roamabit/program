@@ -69,7 +69,7 @@ gem 'geocoder'  #Google api
 
 
 #gem 'mysql', :platforms => :ruby
-gem 'mysql2'
+gem 'mysql2', '~> 0.3.13'
 #, platforms: [:mingw, :mswin]
 
 

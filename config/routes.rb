@@ -3,7 +3,8 @@ Rails.application.routes.draw do
 
   resources :friendships
 
-root 'welcome#index'
+
+root to: 'problems#index'
 get 'welcome/index'
 
   devise_for :users
