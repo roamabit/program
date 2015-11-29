@@ -1,33 +1,103 @@
-<div class="text-center">
-    <h1>Friends</h1>
-  </div>
+<div class="container" id="main">
+
+  <div class="row">
 
     <% unless current_user == @user %>
-        <%= link_to "Add Friend", friendships_path(:friend_id => @user), :method => :post %>
+    <div class="col-md-4 col-sm-6">
+      <div class="panel panel-default">
+           <div class="panel-heading">
+             <div class="panel-body">
+        <%= link_to "Add Friend", friendships_path(:friend_id => @user), :method => :post,:class=>'button' %>
+      </div></div></div></div>
+
     <% end %>
 
-    <h4>Friends</h4>
-    <ul>
-        <% @user.friends.each do |friend| %>
-        <li>
-          <%= link_to friend.email.first(friend.email.index('@')), friend %>
+
+<div class="col-md-4 col-sm-6">
+      <div class="panel panel-default">
+           <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Friends</h4></div>
+        <div class="panel-body">
+                <% @user.friends.each do |friend| %>
+
+
+              <div class="well well-sm">
+                <div class="media">
+                    <a class="thumbnail pull-left" href="#">
+                     <img class="media-object" src="//placehold.it/80">
+                    </a>
+
+                    <div class="media-body">
+                        <h4 class="media-heading">
+
+
+                        <%= link_to friend.email.first(friend.email.index('@')), friend %>
+
+                        </h4>
+
           <% if current_user == @user %>
-            <%= link_to "Remove", friendship_path(:id => friend), :method => :delete %>
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
 
-    <% if current_user == @user %>
 
-        <h4>Friend Requests</h4>
-        <ul>
-            <% @user.requested_friendships.each do |request| %>
-            <li>
-              <%=  link_to request.email.first(request.email.index('@')), request %>
-              <%= link_to "Accept", friendship_path(:id => request.id), :method => "put" %>
-              <%= link_to "Decline", friendship_path(:id => request), :method => :delete %>
-            </li>
-          <% end %>
-        </ul>
+                    <p>
+                      <span class="label label-info"> Unfriend:  </span>
+                      <span class="label label-primary">  <%= link_to "Remove", friendship_path(:id => friend), :method => :delete %>
+ </span>
+                    </p>
+                       <% end %>
+                        <p>
+                           <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-comment"></span> Message</a>
+                           <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-heart"></span> Favorite</a>
+                        </p>
+                    </div>
+                </div>
+               </div>
+               <% end %>
+            </div>
+         </div>
+    </div>
+
+
+<% if current_user == @user %>
+
+<div class="col-md-4 col-sm-6">
+      <div class="panel panel-default">
+           <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Friend Requests</h4></div>
+        <div class="panel-body">
+
+         <% @user.requested_friendships.each do |request| %>
+
+
+
+              <div class="well well-sm">
+                <div class="media">
+                    <a class="thumbnail pull-left" href="#">
+                     <img class="media-object" src="//placehold.it/80">
+                    </a>
+
+                    <div class="media-body">
+                        <h4 class="media-heading">
+ <%=  link_to request.email.first(request.email.index('@')), request %>
+                        </h4>
+
+          <% if current_user == @user %>
+
+
+                    <p>
+                <%= link_to "Accept", friendship_path(:id => request.id), :method => "put", :class=>"label label-primary" %>
+              <%= link_to "Decline", friendship_path(:id => request), :method => :delete, :class=>"label label-primary"  %>
+ </span>
+                    </p>
+                       <% end %>
+                        <p>
+                           <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-comment"></span> Message</a>
+                           <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-heart"></span> Favorite</a>
+                        </p>
+                    </div>
+                </div>
+               </div>
+               <% end %>
+            </div>
+         </div>
+    </div>
     <% end %>
+    </div>
+    </div>

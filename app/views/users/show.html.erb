@@ -9,11 +9,8 @@
 <% if user_signed_in? %>
 
   <%= render 'profiles/user_profile' %>
-
   <%= render 'projects/user_projects' %>
-
   <%= render 'user_friendships' %>
-
   <%= render 'user_comments' %>
 
     <%= link_to 'Back to user listings', users_path %>
