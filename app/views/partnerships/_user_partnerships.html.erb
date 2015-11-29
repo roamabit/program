@@ -5,31 +5,12 @@
 
 <% else %>
 
-	<table border style = "hairline">
-	  <thead>
-		<tr>
 
 			<th>Your Roles</th>
 
-		</tr>
-	  </thead>
 
-	  <tbody>
-		  <tr>
-
-			<td>
 		<% @project.partnerships.each do |r| %>
 <%=  link_to r.role, r, :method => 'get' if r.user_id == current_user.id %>
 
 		<% end %>
-
-
-
-			  </td>
-
-
-		  </tr>
-
-	  </tbody>
-	</table>
 <% end  %>

@@ -1,4 +1,4 @@
-<table>
+
 
 	<% if @objparent.nil? %>
 	<% @objparent = @user %>
@@ -9,39 +9,38 @@
 
 	<% @self_profile_headers.group(:name).each do |p| %>
 
-	<td>
-		<table>
-			<th>
-			<%= p.name %>
-		</th>
 
+          <div class="panel panel-default">
+          <div class="panel-heading"> <a></a><h4>
+			<%= p.name %>  </h4></div>
+ <div class="panel-body">
+              <div class="list-group">
 			<% @self_profile_headers.each do |b| %>
 
 			<% if b.name == p.name %>
 
-			<tr>
-					<td>
-					<% if b.bio =~ /http/ or b.bio =~ /www/ %>
 
+					<% if b.bio =~ /http/ or b.bio =~ /www/ or b.bio =~/:/ %>
 
-					<%= link_to b.bio[0..25], b.bio  %>
+<a class ='list-group-item'>
+					<%= link_to b.bio[0..25], b.bio, :class =>'list-group-item'  %>
 
-					<%= link_to 'Link', b %>
+					<%= link_to 'Link', b %> </a>
 
 					<% else %>
 
-					<%= link_to b.bio[0..25], b %>
+					<%= link_to b.bio[0..25], b, :class =>'list-group-item' %>
 
 					<% end %>
 
 
 
 					<small><br>
-					<% if b.made_public_at.nil? %>
-					<%= 'Private' %>
-					<% else %>
-					<%= b.made_public_at.to_date  %>
-					<% end %>
+						<% if b.made_public_at.nil? %>
+							<%= 'Private' %>
+						<% else %>
+							<%= b.made_public_at.to_date  %>
+						<% end %>
 					</small>
 
 					</td>
@@ -50,8 +49,10 @@
 
 			<% end %>
 			<% end %>
-		</table>
-	</td>
+              </div>
+            </div>
+	          </div>
+
 	<% end %>
 
-</table>
+

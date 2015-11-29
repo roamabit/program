@@ -1,35 +1,57 @@
-<div class="text-center">
+
+
+
+<div class="text-right">
   <h1>Indentifying New Problems</h1>
 </div>
 
-<h3><%= link_to 'New Problem', new_problem_path %></h3>
-
-<div class="container">
-  <div class="row"
-    <div class="col-md-3">
-      <%= render 'search_poblems_input' %>
-    </div>
-
-    <div class ="col-md-9">
-      <%= render 'map' %>
-    </div>
-  </div>
-</div>
+<%= render 'map' %>
 
 
-<div class="container">
+<div class="container" id="main">
+
   <div class="row">
-    <a href="http://xkcd.com/1232/"> <img src="http://imgs.xkcd.com/comics/realistic_criteria.png"></a>
-  </div>
+
+    <div class="col-md-4 col-sm-6">
+
+       <div class="well">
+             <form class="form-horizontal" role="form">
+              <h4>Submit New Problem</h4>
+               <div class="form-group" style="padding:14px;">
+                <textarea class="form-control" placeholder="Submit New Problem"></textarea>
+              </div>
+
+              <button class="btn btn-success pull-right" type="button">Post</button><ul class="list-inline"><li><a href="#"><i class="glyphicon glyphicon-align-left">
+
+               </i></a></li><li><a href="#"><i class="glyphicon glyphicon-align-center"></i></a></li><li><a href="#"><i class="glyphicon glyphicon-align-right"></i>
+               </a></li></ul>
+            </form>
+        </div>
+      </div>
+
+
+
+<div class="col-md-4 col-sm-6">
+          <div class="well">
+             <form class="form">
+              <h4>Search Problem Params</h4>
+              <div class="input-group text-center">
+
+            <%= render 'search_poblems_input' %>
+              </div>
+            </form>
+          </div>
 </div>
+
+
+
+
 
 <div class="text-center">
   <h1>Listing problems</h1>
 </div>
 
-
-<div class="container">
-  <div class="row">
     <%= render @problems %>
+
   </div>
 </div>

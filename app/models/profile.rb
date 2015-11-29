@@ -14,7 +14,7 @@ class Profile < ActiveRecord::Base
   def self.search(keywords, profileable_type)
     profiles = order(:name)
     profiles = profiles.where("bio like ?", "%#{keywords}%") if keywords.present?
-    profiles = profiles.where("profileable_type =?", "#{profileable_type}")
+    profiles = profiles.where("profileable_type =?", "#{profileable_type}") if keywords.present?
     profiles
   end
 
@@ -24,10 +24,10 @@ class Profile < ActiveRecord::Base
 
   def self.build_from(obj, user_id, bio, title, madepublic)
     new \
-      :profileable => obj,
-    :bio        => bio,
-    :user_id     => user_id,
-    :name		=> title,
+    :profileable    => obj,
+    :bio            => bio,
+    :user_id        => user_id,
+    :name		        => title,
     :made_public_at => madepublic
   end
 

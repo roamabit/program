@@ -1,7 +1,7 @@
 class RichMarkerBuilder extends Gmaps.Google.Builders.Marker #inherit from builtin builder
   #override create_marker method
 
-	#Awesome Method for creating Text Markers. 
+	#Awesome Method for creating Text Markers.
 #  create_marker: ->
 #    options = _.extend @marker_options(), @rich_marker_options()
 #    @serviceObject = new RichMarker options #assign marker to @serviceObject
@@ -11,7 +11,7 @@ class RichMarkerBuilder extends Gmaps.Google.Builders.Marker #inherit from built
 #    marker.setAttribute 'class', 'marker_container'
 #    marker.innerHTML = @args.title
 #    {content: marker}
-	
+
 #Start infobox
   # override method
   create_infowindow: ->
@@ -31,7 +31,7 @@ class RichMarkerBuilder extends Gmaps.Google.Builders.Marker #inherit from built
       width: "280px"
 
 #end infobox
-	
+
 @buildMap = (markers)->
 	handler = Gmaps.build 'Google', { builders: { Marker: RichMarkerBuilder} } #dependency injection
 
@@ -40,3 +40,4 @@ class RichMarkerBuilder extends Gmaps.Google.Builders.Marker #inherit from built
 	  markers = handler.addMarkers(markers)
 	  handler.bounds.extendWith(markers)
 	  handler.fitMapToBounds()
+

@@ -1,5 +1,9 @@
 <div class="text-center">
-  <h1>User Profile</h1>
+  <% if @user == current_user %>
+    <h1>My Profile</h1>
+  <% else %>
+    <h1>User Profile</h1>
+  <% end %>
 </div>
 
 <% if user_signed_in? %>
