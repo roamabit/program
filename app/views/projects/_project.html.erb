@@ -1,0 +1,44 @@
+<div class="col-md-4 col-sm-6">
+    <div class="panel panel-default">
+      <h2><%= link_to project.title, project, :class=>"panel-heading" %></h2>
+      <div class="panel-body">
+         <div class="list-group">
+
+<li class="list-group-item">
+          <%= project.body %>
+
+<li class="list-group-item">
+          <%=  project.published_at %>
+</li>
+          <li class="list-group-item">
+          <%= link_to "upvote", like_project_path(project), method: :put %>
+
+          <%= link_to "downvote", dislike_project_path(project), method: :put %>
+
+          <%= project.get_upvotes.size - project.get_downvotes.size%>
+        </li>
+
+<% if project.partnerships.find_by_user_id(current_user.id).nil? == false %>
+
+        <% @userprojectpartnerships = project.partnerships.find_by_user_id(current_user.id) %>
+        <% if @userprojectpartnerships.kind_of? Array %>
+          <%  @userprojectpartnerships.each do |upp| %>
+             <%= link_to 'My Role :'+upp.role,  upp.role , :class=>"list-group-item" %>
+          <% end %>
+        <% elsif @userprojectpartnerships.nil? %>
+
+        <% else %>
+          <%= link_to 'My Role :'+@userprojectpartnerships.role,  @userprojectpartnerships , :class=>"list-group-item" %>
+
+        <% end %>
+
+ <% end %>
+
+
+        </div>
+      </div>
+    </div>
+</div>
+
+
+

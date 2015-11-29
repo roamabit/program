@@ -1,0 +1,29 @@
+<div class="col-md-4 col-sm-6">
+    <div class="panel panel-default">
+      <h2><%= link_to @user.email.first(@user.email.index('@')), @user, :class=>"panel-heading" %></h2>
+      <div class="panel-body">
+         <div class="list-group">
+
+          <% @userprofiles = @user.profiles.where("title like 'name'") %>
+            <%  if @userprofiles.kind_of? Array %>
+              <% @userprofiles.each do |up| %>
+              <%= link_to up.bio, up, :class=>"list-group-item" %>
+            <% end %>
+          <% end %>
+
+          <li class="list-group-item">
+            <%= "Date Joined: "+ @user.created_at.to_s %>
+          </li>
+
+          <li class="list-group-item">
+            <%= "Supported Projects: " + @user.partnerships.count.to_s %>
+          </li>
+
+
+        </div>
+      </div>
+    </div>
+</div>
+
+
+

@@ -9,29 +9,22 @@
 
 	<% @self_profile_headers.group(:name).each do |p| %>
 
+<div class="col-md-4 col-sm-6">
 
-          <div class="panel panel-default">
-          <div class="panel-heading"> <a></a><h4>
-			<%= p.name %>  </h4></div>
- <div class="panel-body">
-              <div class="list-group">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+    	<a></a><h4>
+			<%= p.name %>
+			</h4></div>
+			 <div class="panel-body">
+          <div class="list-group">
 			<% @self_profile_headers.each do |b| %>
 
 			<% if b.name == p.name %>
 
 
-					<% if b.bio =~ /http/ or b.bio =~ /www/ or b.bio =~/:/ %>
-
-<a class ='list-group-item'>
-					<%= link_to b.bio[0..25], b.bio, :class =>'list-group-item'  %>
-
-					<%= link_to 'Link', b %> </a>
-
-					<% else %>
-
 					<%= link_to b.bio[0..25], b, :class =>'list-group-item' %>
 
-					<% end %>
 
 
 
@@ -43,9 +36,6 @@
 						<% end %>
 					</small>
 
-					</td>
-
-				</tr>
 
 			<% end %>
 			<% end %>
@@ -55,4 +45,4 @@
 
 	<% end %>
 
-
+</div>

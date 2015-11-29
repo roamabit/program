@@ -1,5 +1,6 @@
 <div class="container" id="main">
   <div class="row">
+
     <div class="col-md-4 col-sm-6">
 
           <div class="panel panel-default">
@@ -13,18 +14,23 @@
               <div class="list-group">
                   <a class ='list-group-item'> <%= @project.body %> </a>
                   <a class ='list-group-item'>  <%= @project.published_at %> </a>
-                  <%= link_to 'Edit Project', edit_project_path(@project), :class =>'list-group-item' %>
                 </div>
             </div>
         </div>
+    </div>
 
+<div class="col-md-4 col-sm-6">
     <div class="panel panel-default">
       <div class="panel-heading"> <h4>   Navigation </h4></div>
         <div class="panel-body">
           <div class="list-group">
-            <p id="notice" class ='list-group-item' ><%= notice %></p>
+            <% if notice %>
+            <li id="notice" class ='list-group-item' ><%= notice %></li>
+            <% end %>
+            <%= link_to 'Edit Project', edit_project_path(@project), :class =>'list-group-item' %>
             <%= link_to 'Back to Projects', projects_path, :class =>'list-group-item' %>
             <%= link_to 'New Profile Entry', new_project_profile_path(@project.id), :class =>'list-group-item'  %>
+
 
             <% if @project.partnerships.find_by_user_id(current_user.id).nil? == true %>
                 <span class="input-group-btn">
@@ -50,14 +56,14 @@
           </div>
         </div>
       </div>
-
-
+   </div>
 
 
 	<%= render 'profiles/self_profiles' %>
-  <%= render 'partnerships/project_partnerships' %>
-	<%= render 'partnerships/user_partnerships' %>
 
+  <%= render 'partnerships/project_partnerships' %>
+
+	<%= render 'partnerships/user_partnerships' %>
 
 
     <div class="panel panel-default">
@@ -82,7 +88,7 @@
 
 
 
-    </div>
+
   </div>
 </div>
 
