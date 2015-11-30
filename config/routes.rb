@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
-
-
   resources :friendships
-
 
   root to: 'welcome#index'
 
@@ -86,7 +83,6 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-
   resources :partnerships do
     resources :profiles
     resources :comments
@@ -94,9 +90,7 @@ Rails.application.routes.draw do
       put "like", to: "partnerships#upvote"
       put "dislike", to: "partnerships#downvote"
     end
-
   end
-
 
   resources :profiles do
     resources :profiles
