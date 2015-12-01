@@ -1,48 +1,21 @@
-<% if @user.projects.nil? %>
+ <div class="text-center">
+
+  <% if @user == current_user %>
+     <h1>My Projects</h1>
+     <% else %>
+    <h1>Projects</h1>
+    <% end %>
+  </div>
+
+
+<% @projects = @user.projects %>
+
+<% if @projects.nil? %>
 
   <%= 'No user projects'  %>
 
 <% else %>
 
-   <table>
-   <tr>
-      <th>Title</th><th>Abstract</th><th>Role</th>
-    </tr>
-
-    <% @user.projects.each do |up| %>
-
-    <tr>
-      <td>
-
-      <%= link_to up.title, up %>
-
-      </td>
-
-      <td>
-        <%= up.body  %>
-      </td>
-      <td>
-
-        <% @userprojectpartnerships =  up.partnerships.find_by_user_id(@user.id) %>
-
-        <% if @userprojectpartnerships.kind_of? Array %>
-
-          <%  @userprojectpartnerships.each do |upp| %>
-
-          <%= upp.role %>
-
-
-          <% end %>
-        <% else %>
-          <%= @userprojectpartnerships.role %>
-        <% end %>
-      </td>
-
-
-    </tr>
-
-    <% end %>
-
-  </table>
+<%= render @projects %>
 
 <% end %>

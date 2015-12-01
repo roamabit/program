@@ -29,5 +29,14 @@ class User < ActiveRecord::Base
     active_friends | passive_friends
   end
 
+  def self.search(keywords)
+    users = order(:email)
+    users = users.where("email like ?", "%#{keywords}%") if keywords.present?
+    users
+
+    #Include Profile Search array
+
+  end
+
 
 end

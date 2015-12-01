@@ -1,25 +1,23 @@
 <div class="text-center">
-  <h1>User Profile</h1>
+  <% if @user == current_user %>
+    <h1>My Profile</h1>
+  <% else %>
+    <h1>User Profile</h1>
+  <% end %>
 </div>
 
 <% if user_signed_in? %>
 
   <%= render 'profiles/user_profile' %>
-  <br>
-
-  <div class="text-center">
-    <h1>User Projects</h1>
-  </div>
-
   <%= render 'projects/user_projects' %>
-  <br>
-  <div class="text-center">
-    <h1>Friends</h1>
-  </div>
   <%= render 'user_friendships' %>
-  <div class="text-center">
-    <br>
-    <%= render 'user_comments' %>
-    <br>
+  <%= render 'user_comments' %>
+
     <%= link_to 'Back to user listings', users_path %>
 <% end %>
+
+<% if @user == current_user %>
+<%= render 'projects/friends_projects' %>
+<% end %>
+
+

@@ -9,7 +9,17 @@
 
 	<p>
 		<strong>Bio:</strong>
-		<%= @profile.bio %>
+
+
+					<% if @profile.bio =~ /http/ or @profile.bio =~ /www/ %>
+
+					<%= link_to @profile.bio[0..25], @profile.bio, :class =>'list-group-item'  %>
+
+					<% else %>
+
+					<%= @profile.bio %>
+
+					<% end %>
 	</p>
 
 	<p>
