@@ -14,10 +14,13 @@ def index
 	@projects = Project.all
 	@current_user = current_user
 	@recentprojects = Project.all.where("created_at > 'Date-10'").reverse
-
+  search_setup
 end
 
-
+  def search_setup
+    # part of index
+    @projects = Project.search(params[:search])
+  end
  #def add_new_comment
  #   project = Project.find(params[:id])
  #   project.comments << Project.new(params[:comment])
@@ -132,6 +135,20 @@ end #def create
       format.json { head :no_content }
     end
   end
+
+  #************Voting
+  def upvote
+    @project = Project.find(params[:id])
+    @project.upvote_by current_user
+    redirect_to @project
+  end
+
+  def downvote
+    @project = Project.find(params[:id])
+    @project.downvote_by current_user
+    redirect_to @project
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

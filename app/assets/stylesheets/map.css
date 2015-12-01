@@ -25,3 +25,14 @@
 .marker_container {
 border: 1px solid black; margin-top: 8px; background: white; padding: 5px;
 }
+
+
+#map {
+  width:33.3333%;
+    height:calc(100% - 0);
+    position:absolute;
+    left:1px;
+    top:50px;
+    bottom:0;
+    overflow:hidden;
+}

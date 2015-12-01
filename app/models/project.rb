@@ -17,13 +17,18 @@ class Project < ActiveRecord::Base
 	validates :user_id, :presence => true
 
 	acts_as_commentable
-	#acts_as_votable
+	acts_as_votable
 
 	def long_title
 		"#{title} - #{created_at}"
 	end
 
-
+  def self.search(keywords)
+    projects = order(:created_at)
+    projects = projects.where("title like ?", "%#{keywords}%") if keywords.present?
+    projects = projects.where("body like ?", "%#{keywords}%") if keywords.present?
+    projects
+  end
 
 #Rebeca June realpickylady@gmail.com
 

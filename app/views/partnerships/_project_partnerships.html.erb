@@ -1,24 +1,36 @@
+<div class="col-md-4 col-sm-6">
+      <div class="panel panel-default">
+           <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Partnerships</h4></div>
+        <div class="panel-body">
+              Profiles
+              <hr>
+            <% @project.partnerships.each do |r| %>
+              <div class="well well-sm">
+                <div class="media">
+                    <a class="thumbnail pull-left" href="#">
+                     <img class="media-object" src="//placehold.it/80">
+                    </a>
+
+                    <div class="media-body">
+                        <h4 class="media-heading">
+
+													<%= User.all.find(r.user_id).email %>
+                        </h4>
 
 
-<table border style = "hairline">
-	  <thead>
-		<tr>
 
-			<th colspan="2">All Project Partnerships</th>
-
-		</tr>
-		  <tr><th>Partner</th>
-			  <th>Role</th>
-		  </tr>
-	  </thead>
-
-	  <tbody>
-		  <% @project.partnerships.each do |r| %>
-		  <tr>
-			  
-			  <td><%= User.all.find(r.user_id).email %></td>
-		
-			 <td><%=  link_to r.role, r %> </td>		 </tr>
-<% end %>
-	  </tbody>
-	</table>
+                    <p>
+                    	<span class="label label-info">	Role:  </span>
+                    	<span class="label label-primary">	<%=  link_to r.role, r %> </span>
+                    </p>
+                        <p>
+                           <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-comment"></span> Message</a>
+                           <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-heart"></span> Favorite</a>
+                        </p>
+                    </div>
+                </div>
+               </div>
+               <% end %>
+            </div>
+         </div>
+    </div>

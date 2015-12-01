@@ -1,58 +1,15 @@
 <h2>Profiles Index</h2>
 
-
 <h1>User Profiles</h1>
 
 <% i=0 %>
-<table> 
-	
-	
+<table>
+
+
 <% @profiles.each do |profile| %>
-	
-	<% u = User.find(profile.user_id) %>
-			<tr>
 
-				<td>
+	<% @user = User.find(profile.user_id) %>
 
-		<table border style ="hairline">
-			<tr><td>
-		<%= u.email.first(u.email.index('@'))  %>
-		</td></tr>	</table> 
+  <%= render 'profiles/user_profile' %>
 
-				</td>
-
-		<% u.profiles.group(:name).where("profiles.made_public_at IS NOT NULL").each do |p| %>
-			<td>
-		<table border style ="hairline">
-
-		<th><%= p.name %></th>
-
-			<% u.profiles.each do |b| %>
-
-				<% if b.name==p.name %>
-					<tr><td>
-
-						<% if u.id == current_user.id %>
-							<%= link_to b.bio, b  %>
-						<% else %>
-							<%=b.bio %>
-						<% end %>
-
-					</td>
-
-					</tr>
-				<% end %>
-			
-			<% end %>
-		</table></td>
-		<% end %>
-
-			</tr>
-
-	
 <% end %>
-
-</table>
-
-
-<%= link_to 'New Entry', new_user_profile_path(:user_id => current_user.id)  %>

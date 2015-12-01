@@ -1,9 +1,8 @@
-<div class="container problem">
-  <div class="row">
+<div class="col-md-4 col-sm-6">
     <div class="panel panel-default">
-      <h2><%= link_to problem.statement, problem, class: "panel-heading" %></h2>
+      <h2><%= link_to problem.statement, problem, :class=>"panel-heading" %></h2>
       <div class="panel-body">
-        <div class="details">
+         <div class="list-group">
           <%= problem.location %>
 
           <%=  problem.published_at %>
@@ -16,5 +15,4 @@
         </div>
       </div>
     </div>
-  </div>
 </div>

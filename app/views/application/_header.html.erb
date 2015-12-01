@@ -1,23 +1,56 @@
+<% if current_user %>
+
 <header role="banner">
-  <nav role="navigation" class="navbar navbar-default">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <%= link_to "Eight KM", root_path, class: "navbar-brand" %>
-      </div>
-      <div class="navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-          <li><%= link_to "Users", users_path %></li>
-          <li><%= link_to "Problems", problems_path %></li>
-          <li><%= link_to "Projects", projects_path %></li>
-          <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
-          <li><%= link_to "Search", new_search_problem_path %></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+<nav class="navbar navbar-fixed-top header">
+  <div class="col-md-12">
+        <div class="navbar-header">
+
+          <a href="/" class="navbar-brand">Eight KM</a>
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse1">
+          <i class="glyphicon glyphicon-search"></i>
+          </button>
+
+        </div>
+       <div class="collapse navbar-collapse" id="navbar-collapse1">
+          <form class="navbar-form pull-left">
+              <div class="input-group" style="max-width:470px;">
+                <input type="text" class="form-control" placeholder="Search" name="search">
+
+                <div class="input-group-btn">
+                  <button class="btn btn-default btn-primary" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                </div>
+              </div>
+
+          </form>
+
+           <ul class="nav navbar-nav navbar-right">
+                  <li><%= link_to "Users", users_path %></li>
+                  <li><%= link_to "Problems", problems_path %></li>
+                  <li><%= link_to "Projects", projects_path %></li>
+                  <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+                  <li><%= link_to "Search", new_search_problem_path %></li>
+             <li>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-bell"></i></a>
+
+                <ul class="dropdown-menu">
+                  <li><a href="#"><span class="badge pull-right">40</span>Link</a></li>
+                  <li><a href="#"><span class="badge pull-right">2</span>Link</a></li>
+                  <li><a href="#"><span class="badge pull-right">0</span>Link</a></li>
+                  <li><a href="#"><span class="label label-info pull-right">1</span>Link</a></li>
+                  <li><a href="#"><span class="badge pull-right">13</span>Link</a></li>
+
+                </ul>
+             </li>
+             <li><a href="#" id="btnToggle"><i class="glyphicon glyphicon-th-large"></i></a></li>
+
+             <li><%= link_to "", current_user, :class=>"glyphicon glyphicon-user", :content_tag => 'i' %></li>
+
+           </ul>
+        </div>
+     </div>
+</nav>
+
+
 </header>
+
+<% end %>
