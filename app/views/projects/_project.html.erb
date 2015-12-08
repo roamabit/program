@@ -26,7 +26,7 @@
              <%= link_to 'My Role :'+upp.role,  upp.role , :class=>"list-group-item" %>
           <% end %>
         <% elsif @userprojectpartnerships.nil? %>
-
+          <%= 'No projects' %>
         <% else %>
           <%= link_to 'My Role :'+@userprojectpartnerships.role,  @userprojectpartnerships , :class=>"list-group-item" %>
 

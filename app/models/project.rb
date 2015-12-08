@@ -8,7 +8,7 @@ class Project < ActiveRecord::Base
 	#hehe... project has problems through solutions.
 	has_many :simvols
 	has_many :tags, :through => :simvols
-	#has_many :comments, :as => :commentable, :dependent => destroy
+
 	has_many :profiles, :as => :profileable, dependent: :destroy
 	has_many :comments, :as => :commentable, dependent: :destroy
 
@@ -25,8 +25,7 @@ class Project < ActiveRecord::Base
 
   def self.search(keywords)
     projects = order(:created_at)
-    projects = projects.where("title like ?", "%#{keywords}%") if keywords.present?
-    projects = projects.where("body like ?", "%#{keywords}%") if keywords.present?
+    projects = projects.where("title like ?", "%#{keywords}%")|projects.where("body like ?", "%#{keywords}%") if keywords.present?
     projects
   end
 
