@@ -29,12 +29,11 @@ class User < ActiveRecord::Base
     active_friends | passive_friends
   end
 
-  def self.search(keywords)
-    users = order(:email)
-    users = users.where("email like ?", "%#{keywords}%") if keywords.present?
-    users
-
-    #Include Profile Search array
+  def self.search(query)
+    words = query.to_s.downcase.strip.split(/\W+/).uniq
+    words.map! { |word| "email LIKE '%#{word}%'" }
+    sql = words.join(" or ")
+    self.where(sql).order('created_at desc')
 
   end
 

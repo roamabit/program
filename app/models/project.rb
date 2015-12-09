@@ -45,7 +45,7 @@ class Project < ActiveRecord::Base
       words = query.to_s.downcase.strip.split(/\W+/).uniq
       words.map! { |word| "title LIKE '%#{word}%' or body LIKE '%#{word}%'" }
       sql = words.join(" or ")
-      self.where(sql)
+      self.where(sql).order('created_at desc')
     end
 
 end
