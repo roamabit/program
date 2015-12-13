@@ -9,6 +9,13 @@ class ProblemsController < ApplicationController
     @problems = Problem.all
     search_setup
     gmaps_setup
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @problems.to_csv}
+      format.xls #{ send_data @problems.to_csv(col_sep: "\t")}
+    end
+
   end
 
   def search_setup
