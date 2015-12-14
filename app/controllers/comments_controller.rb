@@ -1,7 +1,6 @@
 class CommentsController < ApplicationController
 
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
-
   before_filter :get_parent
 
   def get_parent
