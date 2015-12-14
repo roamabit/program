@@ -17,6 +17,12 @@ class Problem < ActiveRecord::Base
   geocoded_by :location   # can also be an IP address
   after_validation :geocode,   :if => :location_change       # auto-fetch coordinates
 
+  #on public_activity Branch
+  include PublicActivity::Common
+    #tracked owner: ->(controller, model) { controller && controller.current_user }
+    #http://railscasts.com/episodes/406-public-activity
+
+
 
   def self.search(keywords)
     problems = order(:statement)
@@ -24,6 +30,7 @@ class Problem < ActiveRecord::Base
     problems
   end
 
+  #part of CSV download
   def self.to_csv(options={})
     CSV.generate(options) do |csv|
       csv << column_names
@@ -32,5 +39,8 @@ class Problem < ActiveRecord::Base
       end
     end
   end
+
+
+
 end
 

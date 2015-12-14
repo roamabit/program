@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+
   resources :friendships
 
 
@@ -45,6 +46,9 @@ Rails.application.routes.draw do
     end
 
   end
+
+
+  resources :activities #added on Public_ACtivity branch
 
 
   resources :problems do
