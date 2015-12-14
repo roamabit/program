@@ -10,7 +10,7 @@ class Problem < ActiveRecord::Base
   has_many :profiles, :as => :profileable, dependent: :destroy
 
   validates_presence_of :statement, :body
-  
+
   acts_as_votable
   acts_as_commentable
 
@@ -18,12 +18,12 @@ class Problem < ActiveRecord::Base
   after_validation :geocode,   :if => :location_change       # auto-fetch coordinates
 
 
-  def self.search(keywords)
-    problems = order(:statement)
-    problems = problems.where("statement like ?", "%#{keywords}%") if keywords.present?
-    problems
-  end
-
+    def self.search(query)
+      words = query.to_s.downcase.strip.split(/\W+/).uniq
+      words.map! { |word| "statement LIKE '%#{word}%' or body LIKE '%#{word}%'" }
+      sql = words.join(" or ")
+      self.where(sql).order('created_at desc')
+    end
 
 end
 

@@ -10,12 +10,11 @@ class Profile < ActiveRecord::Base
   #@profile.liked_by @user
   #@profile.votes_for.size
 
-
-  def self.search(keywords, profileable_type)
-    profiles = order(:name)
-    profiles = profiles.where("bio like ?", "%#{keywords}%") if keywords.present?
-    profiles = profiles.where("profileable_type =?", "#{profileable_type}") if keywords.present?
-    profiles
+  def self.search(query, profileable_type)
+    words = query.to_s.downcase.strip.split(/\W+/).uniq
+    words.map! { |word| "bio LIKE '%#{word}%' and profileable_type = '#{profileable_type}'" }
+    sql = words.join(" or ")
+    self.where(sql).order('created_at desc')
   end
 
   def self.find_profileable(profileable_str, profileable_id)
