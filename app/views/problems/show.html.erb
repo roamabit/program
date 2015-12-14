@@ -1,58 +1,83 @@
 <p id="notice"><%= notice %></p>
+<div class="col-md-4 col-sm-6">
+  <div class="panel panel-default">
+    <h2><%= link_to @problem.statement, @problem, :class=>"panel-heading" %></h2>
+    <div class="panel-body">
+      <div class="list-group">
+        <p>
+          <strong>Statement:</strong>
+          <%= @problem.statement %>
+        </p>
+        <p>
+          <strong>Body:</strong>
+          <%= @problem.body %>
+        </p>
+        <p>
+          <strong>Published at:</strong>
+          <%= @problem.published_at %>
+        </p>
 
-	<p>
-		<strong>Statement:</strong>
-		<%= @problem.statement %>
-	</p>
-
-	<p>
-		<strong>Body:</strong>
-		<%= @problem.body %>
-	</p>
-
-	<p>
-		<strong>Published at:</strong>
-		<%= @problem.published_at %>
-	</p>
-
-	<p>
-		<strong>Location:</strong>
-		<%= @problem.location %>
-	</p>
-
-
-	<%= link_to 'I have this same problem', problems_path(:problem => {:statement => @problem.statement, :body => @problem.body}), :method => 'clone' %>
-
-	<%= link_to 'Edit', edit_problem_path(@problem) %> |
-
-	<%= link_to 'Back', problems_path %>
-
-	<%= render 'profiles/self_profiles' %>
-
-
-	<%= link_to 'New Profile Entry', new_problem_profile_path(@problem.id)  %>
-
-<p>
-
-		<%= link_to "upvote", like_problem_path(@problem), method: :put %>
-
-
-	<%= link_to "downvote", dislike_problem_path(@problem), method: :put %>
-
-<%= @problem.get_upvotes.size - @problem.get_downvotes.size%>
+        <p>
+          <strong>Location:</strong>
+          <%= @problem.location %>
+        </p>
+        <br>
+        <%= link_to 'I have this same problem', problems_path(:problem => {:statement => @problem.statement, :body => @problem.body}), :method => 'clone' %>
+        <%= link_to 'Edit', edit_problem_path(@problem) %> |
+        <%= link_to 'Back', problems_path %>
+        <%= render 'profiles/self_profiles' %>
+        <%= link_to "upvote", like_problem_path(@problem), method: :put %> | <%= link_to "downvote", dislike_problem_path(@problem), method: :put %> <%= @problem.get_upvotes.size - @problem.get_downvotes.size%>
+        <%= render 'problem_comments'%>
+        <br>
+        <%= link_to 'New Profile Entry', new_problem_profile_path(@problem.id)  %>
+      </div>
+    </div>
+  </div>
+</div>
 
 
-</p>
 
-	<%= render 'problem_comments'%>
+<div class="col-md-4 col-sm-6">
+  <div class="panel panel-default">
 
- 	<%= render 'nearby_problems' %>
+    <div class="panel-body">
+      <div class="list-group">
+        <%= render 'nearby_problems' %>
+      </div>
+    </div>
+  </div>
+</div>
 
+<div class="col-md-4 col-sm-6">
+  <div class="panel panel-default">
 
-	<% render 'possible_solutions' %>
+    <div class="panel-body">
+      <div class="list-group">
+        <% render 'possible_solutions' %>
+      </div>
+    </div>
+  </div>
+</div>
 
-	<%= render 'proposed_solutions' %>
+<div class="col-md-4 col-sm-6">
+  <div class="panel panel-default">
 
-	<%= render 'problem_process' %>
+    <div class="panel-body">
+      <div class="list-group">
 
+        <%= render 'proposed_solutions' %>
+      </div>
+    </div>
+  </div>
+</div>
 
+<div class="col-md-4 col-sm-6">
+  <div class="panel panel-default">
+
+    <div class="panel-body">
+      <div class="list-group">
+        <%= render 'problem_process' %>
+      </div>
+    </div>
+  </div>
+</div>
