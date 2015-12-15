@@ -113,3 +113,4 @@ group :test do
   gem 'faker'
 end
 
+gem 'public_activity'
