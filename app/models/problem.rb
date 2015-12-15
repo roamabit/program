@@ -17,6 +17,12 @@ class Problem < ActiveRecord::Base
   geocoded_by :location   # can also be an IP address
   after_validation :geocode,   :if => :location_change       # auto-fetch coordinates
 
+  #on public_activity Branch
+  include PublicActivity::Common
+    #tracked owner: ->(controller, model) { controller && controller.current_user }
+    #http://railscasts.com/episodes/406-public-activity
+
+
 
     def self.search(query)
       words = query.to_s.downcase.strip.split(/\W+/).uniq
@@ -24,6 +30,19 @@ class Problem < ActiveRecord::Base
       sql = words.join(" or ")
       self.where(sql).order('created_at desc')
     end
+
+
+  #part of CSV download
+  def self.to_csv(options={})
+    CSV.generate(options) do |csv|
+      csv << column_names
+      all.each do |problem|
+        csv << problem.attributes.values_at(*column_names)
+      end
+    end
+  end
+
+
 
 end
 

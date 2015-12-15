@@ -112,3 +112,5 @@ group :test do
   gem 'capybara', '2.4.1'
   gem 'faker'
 end
+
+gem 'public_activity'
