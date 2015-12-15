@@ -10,7 +10,7 @@ class Problem < ActiveRecord::Base
   has_many :profiles, :as => :profileable, dependent: :destroy
 
   validates_presence_of :statement, :body
-  
+
   acts_as_votable
   acts_as_commentable
 
@@ -24,6 +24,13 @@ class Problem < ActiveRecord::Base
     problems
   end
 
-
+  def self.to_csv(options={})
+    CSV.generate(options) do |csv|
+      csv << column_names
+      all.each do |problem|
+        csv << problem.attributes.values_at(*column_names)
+      end
+    end
+  end
 end
 

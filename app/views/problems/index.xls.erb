@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">Title</Data></Cell>
+        <Cell><Data ss:Type="String">Description</Data></Cell>
+        <Cell><Data ss:Type="String">Date Created</Data></Cell>
+                <Cell><Data ss:Type="String">Location</Data></Cell>
+                <Cell><Data ss:Type="String">Lat</Data></Cell>
+
+                <Cell><Data ss:Type="String">Long</Data></Cell>
+
+
+      </Row>
+    <% @problems.each do |problem| %>
+      <Row>
+        <Cell><Data ss:Type="String"><%= problem.statement %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= problem.body %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= problem.created_at %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= problem.location %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= problem.latitude %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= problem.longitude %></Data></Cell>
+
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>
