@@ -2,17 +2,11 @@
 <div class="col-md-4 col-sm-6">
   <div class="panel panel-default">
     <h2><%= link_to @problem.statement, @problem, :class=>"panel-heading" %></h2>
+    <hr>
     <div class="panel-body">
       <div class="list-group">
-        <p>
-          <strong>Statement:</strong>
-          <%= @problem.statement %>
-        </p>
-        <p>
-          <strong>Body:</strong>
-          <%= @problem.body %>
-        </p>
-        <p>
+          <p><%= @problem.body %></p>
+                  <p>
           <strong>Published at:</strong>
           <%= @problem.published_at %>
         </p>
