@@ -1,0 +1,13 @@
+$LOAD_PATH.unshift "#{File.dirname(__FILE__)}/../lib"
+
+require 'axlsx'
+
+p = Axlsx::Package.new
+wb = xlsx_package.workbook
+ style_shout = wb.styles.add_style sz: 16, b: true, alignment: { horizontal: :center }
+ wb.add_worksheet(name: "#{Time.now.to_date}") do |sheet|
+   sheet.add_row params[:problem_ids]
+   @problems.each_with_index do |problem, index|
+     sheet.add_row params[:problem_ids].map {|e| problem.send(e) }
+   end
+ end
