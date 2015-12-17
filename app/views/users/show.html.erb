@@ -10,14 +10,18 @@
 
   <%= render 'profiles/user_profile' %>
   <%= render 'projects/user_projects' %>
-  <%= render 'user_friendships' %>
+
   <%= render 'user_comments' %>
 
     <%= link_to 'Back to user listings', users_path %>
 <% end %>
 
 <% if @user == current_user %>
+<%= render 'user_friendships' %>
 <%= render 'projects/friends_projects' %>
+
+<%= render 'activities/index'  %>
+
 <% end %>
 
 
