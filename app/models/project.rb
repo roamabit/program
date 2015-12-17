@@ -19,6 +19,9 @@ class Project < ActiveRecord::Base
 	acts_as_commentable
 	acts_as_votable
 
+  include PublicActivity::Common
+
+
 	def long_title
 		"#{title} - #{created_at}"
 	end

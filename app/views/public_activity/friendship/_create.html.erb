@@ -1,0 +1,7 @@
+proposed a friendship
+
+<% if activity.trackable %>
+  <%= link_to activity.trackable.statement, activity.trackable %>
+<% else %>
+  which has since been anulled
+<% end %>

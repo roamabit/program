@@ -8,5 +8,7 @@ class Friendship < ActiveRecord::Base
     acts_as_votable
 
     validates_presence_of :user_id, :friend_id
-end
 
+    include PublicActivity::Common
+
+end

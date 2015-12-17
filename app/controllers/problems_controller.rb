@@ -67,10 +67,6 @@ class ProblemsController < ApplicationController
                        :problem_id => @problem.id, :role => 'Author')
   end
 
-  def log_activity
-    @problem.create_activity :create, owner: current_user
-  end
-
   # POST /problems
   # POST /problems.json
   def create
@@ -114,6 +110,9 @@ class ProblemsController < ApplicationController
   def update
     respond_to do |format|
       if @problem.update(problem_params)
+
+        log_activity
+
         format.html { redirect_to @problem, notice: 'Problem was successfully updated.' }
         format.json { render :show, status: :ok, location: @problem }
       else
@@ -128,6 +127,9 @@ class ProblemsController < ApplicationController
   # DELETE /problems/1.json
   def destroy
     @problem.destroy
+
+      #log_activity #doesnt work with call backs
+
     respond_to do |format|
       format.html { redirect_to problems_url,
                                 notice: 'Problem was successfully destroyed.' }
