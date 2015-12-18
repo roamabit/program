@@ -6,22 +6,34 @@
   <% end %>
 </div>
 
-<% if user_signed_in? %>
-
-  <%= render 'profiles/user_profile' %>
-  <%= render 'projects/user_projects' %>
-
-  <%= render 'user_comments' %>
-
-    <%= link_to 'Back to user listings', users_path %>
-<% end %>
-
-<% if @user == current_user %>
-<%= render 'user_friendships' %>
-<%= render 'projects/friends_projects' %>
-
-<%= render 'activities/index'  %>
-
-<% end %>
+<div class="container" id="main">
+  <div class="row">
 
 
+
+      <% if user_signed_in? %>
+
+        <%= render 'navigation' %>
+
+        <%= render 'profiles/user_profile' %>
+        <%= render 'projects/user_projects' %>
+        <%= render 'user_comments' %>
+
+      <% end %>
+
+
+
+      <% if @user == current_user %>
+
+          <%= render 'user_friendships' %>
+
+          <%= render 'projects/friends_projects' %>
+
+          <%= render 'activities/index'  %>
+
+
+      <% end %>
+ </div>
+
+
+</div>

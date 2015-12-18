@@ -1,7 +1,7 @@
-proposed a friendship
+made a friend with
 
 <% if activity.trackable %>
-  <%= link_to activity.trackable.statement, activity.trackable %>
+  <%= link_to activity.trackable.friend.email, activity.trackable.friend %>
 <% else %>
-  which has since been anulled
+  which has since been destroyed
 <% end %>

@@ -22,7 +22,7 @@ include PublicActivity::StoreController
         @p = @problem
       elsif params[:project]
         @p = @project
-      elsif params[:friendship]
+      elsif params[:friendship] or params[:friend_id] or request.original_fullpath.include?("friend")
         @p = @friendship
       elsif params[:partnership]
         @p = @partnership
