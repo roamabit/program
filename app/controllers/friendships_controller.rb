@@ -23,18 +23,31 @@ class FriendshipsController < ApplicationController
     # POST /friendships
     # POST /friendships.json
  def create
+
+      if @user.friendships.to_a.include?(params[:friend_id])
+        flash[:notice] = "It's polite to ask once."
+      else
+
+
       @friendship = current_user.friendships.build(:friend_id => params[:friend_id], approved: "false")
+
       if @friendship.save
 
+
+       else
         log_activity
 
         flash[:notice] = "Friend requested."
+
+        end
+
         redirect_to :back
       else
         flash[:error] = "Unable to request friendship."
         redirect_to :back
       end
     end
+  end
 
     # PATCH/PUT /friendships/1
     # PATCH/PUT /friendships/1.json
