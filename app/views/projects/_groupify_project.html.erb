@@ -1,0 +1,11 @@
+<% @project.groups.each do |g|  %>
+  <h1><%= g.id %></h1>
+  <hr>
+    <% g.mship.each do |m| %>
+      <%= link_to m.member.attributes.select { |key, value| key.to_s.match("email")  } , m.member %>
+
+
+    <% end %>
+    <% #User.find(g.mship[:member_id]).email %>
+
+  <% end %>

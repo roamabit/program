@@ -96,6 +96,7 @@ GEM
       i18n (~> 0.5)
     ffi (1.9.10-java)
     geocoder (1.2.9)
+    groupify (0.7.1)
     hike (1.2.3)
     i18n (0.7.0)
     jbuilder (2.3.1)
@@ -284,6 +285,7 @@ DEPENDENCIES
   faker
   geocoder
   gmaps4rails!
+  groupify
   jbuilder (~> 2.0)
   jquery-rails
   json

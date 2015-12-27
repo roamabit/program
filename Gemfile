@@ -113,4 +113,6 @@ group :test do
   gem 'faker'
 end
 
-gem 'public_activity'
+gem 'public_activity' #
+
+gem 'groupify' #https://github.com/dwbutler/groupify
