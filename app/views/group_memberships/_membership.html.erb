@@ -1,0 +1,5 @@
+<% @project.group_memberships(member_type: @type).each do |m| %>
+
+  <%= link_to m.member , m.member %>
+
+<% end %>

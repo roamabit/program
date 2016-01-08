@@ -29,7 +29,6 @@ class User < ActiveRecord::Base
   groupify :group_member
   groupify :named_group_member
 
-
   def friends
     active_friends | passive_friends
   end
