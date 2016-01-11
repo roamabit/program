@@ -1,0 +1,30 @@
+
+<% if @obj.group_memberships.count >1 %>
+
+  <%=  'Merge Groups'  %>
+
+<% end %>
+<% @gm = @obj.group_memberships.each do |g| %>
+
+<div class="col-md-4 col-sm-6">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+<%= 'Group ID: '  %>
+      <%= @g = g.group_id %>
+
+    </div>
+
+    <% #need a way to show hide cards for view all options %>
+
+
+
+    <%= render 'group_memberships/g_members' %>
+
+
+
+
+    </div>
+  </div>
+</div>
+
+<% end %>
