@@ -1,5 +1,15 @@
-<% @project.group_memberships(member_type: @type).each do |m| %>
+<% @gm = @project.group_memberships.each do |g| %>
+<% @g = g.group_id %>
 
-  <%= link_to m.member , m.member %>
+
+<% Group.find(@g).group_memberships.where("member_type = 'User'").each do |m| %>
+<% #if m.member[:member_type] %>
+  <%= link_to m.member.email , m.member %>
+
+<% # end %>
+
+<% end %>
+
+<%# unit test the variables individually %>
 
 <% end %>
