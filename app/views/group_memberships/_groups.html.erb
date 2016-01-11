@@ -1,6 +1,6 @@
 
-
-<% @gm = @obj.group_memberships.each do |g| %>
+<% @gm = @obj.group_memberships %>
+<% @gm.each do |g| %>
 
 <div class="col-md-4 col-sm-6">
   <div class="panel panel-default">
@@ -11,7 +11,7 @@
     </div>
 
     <% #need a way to show hide cards for view all options %>
-
+    <% #build collection of group objects for the merge button %>
 
 
     <%= render 'group_memberships/g_members' %>
@@ -24,5 +24,6 @@
 </div>
 
 <% end %>
+
 
 
