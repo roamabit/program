@@ -1,9 +1,5 @@
 
-<% if @obj.group_memberships.count >1 %>
 
-  <%=  'Merge Groups'  %>
-
-<% end %>
 <% @gm = @obj.group_memberships.each do |g| %>
 
 <div class="col-md-4 col-sm-6">
@@ -28,3 +24,5 @@
 </div>
 
 <% end %>
+
+
