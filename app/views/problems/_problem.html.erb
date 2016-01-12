@@ -1,11 +1,11 @@
-<% if problem.published_at != nil %>
+<% if problem.published_at != nil && problem.user_id == @user_id %>
   <div class="col-md-4 col-sm-6">
     <div class="panel panel-default">
       <h2><%= link_to problem.statement, problem, :class=>"panel-heading" %></h2>
       <div class="panel-body">
         <div class="list-group">
+            <strong>Author:</strong><br>
           <strong>Location:</strong> <%= problem.location %><br>
-
           <strong>Published:</strong> <%= problem.published_at %><br>
 
           <%= link_to "upvote", like_problem_path(problem), method: :put %> | <%= link_to "downvote", dislike_problem_path(problem), method: :put %> (<%= problem.get_upvotes.size - problem.get_downvotes.size%>)
