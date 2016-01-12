@@ -1,0 +1,7 @@
+made a friend with
+
+<% if activity.trackable %>
+  <%= link_to activity.trackable.friend.email, activity.trackable.friend %>
+<% else %>
+  which has since been destroyed
+<% end %>

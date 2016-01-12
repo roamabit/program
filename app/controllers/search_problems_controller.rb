@@ -28,6 +28,10 @@ class SearchProblemsController < ApplicationController
 
     respond_to do |format|
       if @search_problem.save
+
+        log_activity
+
+
         format.html { redirect_to @search_problem, notice: 'Search problem was successfully created.' }
         format.json { render :show, status: :created, location: @search_problem }
       else
@@ -42,6 +46,10 @@ class SearchProblemsController < ApplicationController
   def update
     respond_to do |format|
       if @search_problem.update(search_problem_params)
+
+        log_activity
+
+
         format.html { redirect_to @search_problem, notice: 'Search problem was successfully updated.' }
         format.json { render :show, status: :ok, location: @search_problem }
       else
@@ -55,6 +63,11 @@ class SearchProblemsController < ApplicationController
   # DELETE /search_problems/1.json
   def destroy
     @search_problem.destroy
+
+
+      #log_activity #doesnt work with call backs
+
+
     respond_to do |format|
       format.html { redirect_to search_problems_url, notice: 'Search problem was successfully destroyed.' }
       format.json { head :no_content }

@@ -9,5 +9,6 @@ class Solution < ActiveRecord::Base
 	validates :problem_id, :presence => true
 	#validates :role, :presence => true
 
+  include PublicActivity::Common
 
 end

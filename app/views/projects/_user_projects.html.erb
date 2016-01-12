@@ -1,12 +1,5 @@
  <div class="text-center">
 
-  <% if @user == current_user %>
-     <h1>My Projects</h1>
-     <% else %>
-    <h1>Projects</h1>
-    <% end %>
-  </div>
-
 
 <% @projects = @user.projects %>
 

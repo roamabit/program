@@ -1,0 +1,7 @@
+posted new profile:
+
+<% if activity.trackable %>
+  <%= link_to activity.trackable.name, activity.trackable.profileable %>
+<% else %>
+  which has since been removed
+<% end %>
