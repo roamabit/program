@@ -55,6 +55,10 @@ attr_accessor :user_id, :new_profile_name
 
 		respond_to do |format|
 		  if @profile.save
+
+      log_activity
+
+
 			format.html { redirect_to @obj, notice: 'Profile was successfully created.' }
 			format.json { render :show, status: :created, bio: @profile }
 		  else
@@ -75,6 +79,10 @@ attr_accessor :user_id, :new_profile_name
 	def update
 		  respond_to do |format|
 			  if @profile.update(profile_params)
+
+        log_activity
+
+
 				format.html { redirect_to @profile, notice: 'profile was successfully updated.' }
 				format.json { render :show, status: :ok, location: @profile }
 			  else
@@ -87,6 +95,10 @@ attr_accessor :user_id, :new_profile_name
 	 def destroy
 	get_parent
     @profile.destroy
+
+      #log_activity #doesnt work with call backs
+
+
 		respond_to do |format|
       format.html { redirect_to @objparent, notice: 'Profile was successfully destroyed.' }
       format.json { head :no_content }

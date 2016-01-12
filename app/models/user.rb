@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   acts_as_votable
 
   #Yay Friends!
-  has_many :friendships
+  has_many :friendships, dependent: :destroy
   has_many :passive_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
 
   has_many :active_friends, -> { where(friendships: { approved: true}) }, :through => :friendships, :source => :friend

@@ -1,6 +1,6 @@
 class Friendship < ActiveRecord::Base
 
-    belongs_to :user, dependent: :destroy
+    belongs_to :user
     belongs_to :friend, :class_name => "User"
     has_many :comments, :as => :commentable, dependent: :destroy
 
@@ -8,5 +8,7 @@ class Friendship < ActiveRecord::Base
     acts_as_votable
 
     validates_presence_of :user_id, :friend_id
-end
 
+    include PublicActivity::Common
+
+end

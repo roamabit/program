@@ -16,12 +16,17 @@ class UsersController < ApplicationController
 
   def show
 
-    if params[:format]
+    if params[:format] #not sure why this is needed (MR)
       @user = User.find(params[:format])
     else
       @user = User.find(params[:id])
     end
     #	end
+    #Generate user activities
+    if @user == current_user
+      @activities = PublicActivity::Activity.order("created_at desc").where(owner_id: current_user.friends, owner_type: "User")
+    end
+
   end
 
   # Voting

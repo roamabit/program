@@ -32,6 +32,9 @@ class PartnershipsController < ApplicationController
 
     respond_to do |format|
       if @partnership.save
+
+        log_activity
+
         format.html { redirect_to @partnership, notice: 'Partnership was successfully created.' }
         format.json { render :show, status: :created, location: @partnership }
       else
@@ -47,6 +50,9 @@ class PartnershipsController < ApplicationController
   def update
     respond_to do |format|
       if @partnership.update(partnership_params)
+
+        log_activity
+
         format.html { redirect_to @partnership, notice: 'Partnership was successfully updated.' }
         format.json { render :show, status: :ok, location: @partnership }
       else
@@ -60,6 +66,10 @@ class PartnershipsController < ApplicationController
   # DELETE /partnerships/1.json
   def destroy
     @partnership.destroy
+
+      #log_activity #doesnt work with call backs
+
+
     respond_to do |format|
       format.html { redirect_to partnerships_url, notice: 'Partnership was successfully destroyed.' }
       format.json { head :no_content }

@@ -32,6 +32,10 @@ before_action :set_supporter, only: [:show, :edit, :update, :destroy]
 
     respond_to do |format|
       if @supporter.save
+
+        log_activity
+
+
         format.html { redirect_to @supporter, notice: 'supporter was successfully created.' }
         format.json { render :show, status: :created, location: @supporter }
       else
@@ -47,6 +51,10 @@ before_action :set_supporter, only: [:show, :edit, :update, :destroy]
   def update
     respond_to do |format|
       if @supporter.update(supporter_params)
+
+        log_activity
+
+
         format.html { redirect_to @supporter, notice: 'supporter was successfully updated.' }
         format.json { render :show, status: :ok, location: @supporter }
       else
@@ -60,6 +68,9 @@ before_action :set_supporter, only: [:show, :edit, :update, :destroy]
   # DELETE /supporters/1.json
   def destroy
     @supporter.destroy
+
+      #log_activity #doesnt work with call backs
+
     respond_to do |format|
       format.html { redirect_to supporters_url, notice: 'supporter was successfully destroyed.' }
       format.json { head :no_content }

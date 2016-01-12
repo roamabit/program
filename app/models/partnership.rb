@@ -18,5 +18,7 @@ class Partnership < ActiveRecord::Base
 	validates :user_id, :presence => true
 	validates :role, :presence => true
 
+  include PublicActivity::Common
+
 
 end

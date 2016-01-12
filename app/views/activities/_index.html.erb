@@ -1,0 +1,24 @@
+ <div class="col-md-4 col-sm-6">
+
+          <div class="panel panel-default">
+             <div class="panel-heading"><a href="#" class="pull-right">
+
+              <%= link_to 'View All', '/activities'  %>
+
+             </a> </div>
+            <div class="panel-heading">
+              <h4>Activities</h4>
+            </div>
+
+            <div class="panel-body">
+              <div class="list-group">
+<% @activities.each do |activity| %>
+<div class="list-group-item">
+    <%= link_to activity.owner.email, activity.owner if activity.owner %>
+    <%= render_activity activity %>
+</div>
+<% end %>
+                </div>
+            </div>
+        </div>
+    </div>
