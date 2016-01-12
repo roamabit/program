@@ -1,36 +1,35 @@
 <div class="col-md-4 col-sm-6">
-      <div class="panel panel-default">
-           <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Partnerships</h4></div>
-        <div class="panel-body">
-              Profiles
-              <hr>
-            <% @project.partnerships.each do |r| %>
-              <div class="well well-sm">
-                <div class="media">
-                    <a class="thumbnail pull-left" href="#">
-                     <img class="media-object" src="//placehold.it/80">
-                    </a>
+  <div class="panel panel-default">
+   <div class="panel-heading">
+    <a href="#" class="pull-right">View all</a> <h4>Partnerships</h4>
+  </div>
+  <div class="panel-body">
+    <% @project.users.each do |r| %>
+      <div class="well well-sm">
+        <div class="media">
+            <a class="thumbnail pull-left" href="#">
+             <img class="media-object" src="//placehold.it/80">
+            </a>
 
-                    <div class="media-body">
-                        <h4 class="media-heading">
+            <div class="media-body">
+                <h4 class="media-heading">
+  								<%= r.email.first(r.email.index('@')) %>
+                </h4>
 
-													<%= User.all.find(r.user_id).email %>
-                        </h4>
-
-
-
-                    <p>
-                    	<span class="label label-info">	Role:  </span>
-                    	<span class="label label-primary">	<%=  link_to r.role, r %> </span>
-                    </p>
-                        <p>
-                           <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-comment"></span> Message</a>
-                           <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-heart"></span> Favorite</a>
-                        </p>
-                    </div>
-                </div>
-               </div>
-               <% end %>
+            <p>
+            	<span class="label label-info">	Role:</span>
+            	<span class="label label-primary">	<%=  link_to r.partnerships.find_by_project_id(@project.id).role, r %> </span>
+            </p>
+                <p>
+                   <a href="#" class="btn btn-xs btn-default">
+                    <span class="glyphicon glyphicon-comment"></span> Message</a>
+                   <a href="#" class="btn btn-xs btn-default">
+                    <span class="glyphicon glyphicon-heart"></span> Favorite</a>
+                </p>
             </div>
-         </div>
+        </div>
+      </div>
+      <% end %>
     </div>
+  </div>
+</div>

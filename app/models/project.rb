@@ -19,6 +19,9 @@ class Project < ActiveRecord::Base
 	acts_as_commentable
 	acts_as_votable
 
+  #For Groupify Gem
+  groupify :group_member
+
   include PublicActivity::Common
 
 

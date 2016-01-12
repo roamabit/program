@@ -17,6 +17,8 @@ Rails.application.routes.draw do
       put "like", to: "users#upvote"
       put "dislike", to: "users#downvote"
     end
+    resources :group
+    resources :group_membership
   end
 
 

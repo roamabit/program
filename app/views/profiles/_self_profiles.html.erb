@@ -1,48 +1,45 @@
 
+  <% if @objparent.nil? %>
+  <% @objparent = @user %>
+  <% end %>
 
-	<% if @objparent.nil? %>
-	<% @objparent = @user %>
-	<% end %>
+  <% @self_profile_headers = @objparent.profiles.where("made_public_at IS NOT NULL or user_id = " + current_user.id.to_s) %>
 
-
-	<% @self_profile_headers = @objparent.profiles.where("made_public_at IS NOT NULL or user_id = " + current_user.id.to_s) %>
-
-	<% @self_profile_headers.group(:name).each do |p| %>
+  <% @self_profile_headers.group(:name).each do |p| %>
 
 <div class="col-md-4 col-sm-6">
-
   <div class="panel panel-default">
     <div class="panel-heading">
-    	<a></a><h4>
-			<%= p.name %>
-			</h4></div>
-			 <div class="panel-body">
-          <div class="list-group">
-			<% @self_profile_headers.each do |b| %>
+    	<h4><%= p.name %></h4>
+    </div>
 
-			<% if b.name == p.name %>
+			<div class="panel-body">
+      <div class="list-group">
 
 
-					<%= link_to b.bio[0..25], b, :class =>'list-group-item' %>
+        <% @self_profile_headers.each do |b| %>
+
+  			<% if b.name == p.name %>
 
 
+  					<li class ="list-group-item" ><%= link_to b.bio[0..25], b %>
 
+  					<small><br>
+  						<% if b.made_public_at.nil? %>
+  							<%= 'Private' %>
+  						<% else %>
+  							<%= b.made_public_at.to_date  %>
+  						<% end %>
+  					</small>
+            </li>
 
-					<small><br>
-						<% if b.made_public_at.nil? %>
-							<%= 'Private' %>
-						<% else %>
-							<%= b.made_public_at.to_date  %>
-						<% end %>
-					</small>
+  			<% end %>
+        <% end %>
 
+      </div>
 
-			<% end %>
-			<% end %>
-              </div>
-            </div>
-	          </div>
-
-	<% end %>
-
+    </div>
+	</div>
 </div>
+
+<% end %>

@@ -1,0 +1,11 @@
+
+    <% mship(@project, "user").each do |m| %>
+      <%= link_to m.member.attributes.select { |key, value| key.to_s.match(/^email$/)  } , m.member %>
+
+      <%= %>
+
+
+
+
+    <% end %>
+

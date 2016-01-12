@@ -1,0 +1,29 @@
+<div class="panel-body">
+  <div class="list-group">
+    <h4>Users</h4>
+    <% @group = Group.find(@g)%>
+    <% @group.group_memberships.where("member_type = 'User'").each do |m| %>
+
+    <a><%= link_to m.member.email , m.member, :class => 'list-group-item'  %></a>
+    <% end %>
+
+  </div>
+    <span class="input-group-btn">
+    <%= button_to 'Join Group', @group.add(current_user),:class=>'btn btn-lg btn-primary', :type=>'button' %>
+    </span>
+
+</div>
+
+
+<div class="panel-body">
+  <div class="list-group">
+    <h4>Projects</h4>
+
+    <% @group.group_memberships.where("member_type = 'Project'").each do |m| %>
+
+    <a><%= link_to m.member.title , m.member, :class => 'list-group-item' %></a>
+
+    <% end %>
+
+  </div>
+</div>
