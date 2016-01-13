@@ -1,0 +1,24 @@
+<div class="col-md-4 col-sm-6">
+    <div class="panel panel-default">
+      <div class="panel-heading"> <h4>   Navigation </h4></div>
+        <div class="panel-body">
+          <div class="list-group">
+            <% if notice %>
+            <li id="notice" class ='list-group-item' ><%= notice %></li>
+            <% end %>
+            <%= link_to 'Back to user listings', users_path, :class =>'list-group-item' %>
+            <% if @user==current_user %>
+              <%= link_to 'New Profile Entry', new_user_profile_path(:user_id => current_user.id), :class =>'list-group-item' %>
+            <% end %>
+
+            <% unless @user.friends.to_a.include?(current_user.id) or @user == current_user %>
+                      <span class="input-group-btn">
+            <%= button_to 'Add Friend',friendships_path(:friend_id => @user), :method => :post, :class=>'btn btn-lg btn-primary', :type=>'button' %>
+              </span>
+            <% end %>
+
+
+           </div>
+        </div>
+      </div>
+   </div>

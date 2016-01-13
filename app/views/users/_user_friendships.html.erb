@@ -2,16 +2,6 @@
 
   <div class="row">
 
-    <% unless current_user == @user %>
-    <div class="col-md-4 col-sm-6">
-      <div class="panel panel-default">
-           <div class="panel-heading">
-             <div class="panel-body">
-        <%= link_to "Add Friend", friendships_path(:friend_id => @user), :method => :post,:class=>'button' %>
-      </div></div></div></div>
-
-    <% end %>
-
 
 <div class="col-md-4 col-sm-6">
       <div class="panel panel-default">

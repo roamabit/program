@@ -1,90 +1,20 @@
 <div class="container" id="main">
   <div class="row">
 
-    <div class="col-md-4 col-sm-6">
 
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h4>
-                <%= @project.title %>
-              </h4>
-            </div>
+  <%= render 'projectCard' %>
 
-            <div class="panel-body">
-              <div class="list-group">
-                  <a class ='list-group-item'> <%= @project.body %> </a>
-                  <a class ='list-group-item'>  <%= @project.published_at %> </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-<div class="col-md-4 col-sm-6">
-    <div class="panel panel-default">
-      <div class="panel-heading"> <h4>   Navigation </h4></div>
-        <div class="panel-body">
-          <div class="list-group">
-            <% if notice %>
-            <li id="notice" class ='list-group-item' ><%= notice %></li>
-            <% end %>
-            <%= link_to 'Edit Project', edit_project_path(@project), :class =>'list-group-item' %>
-            <%= link_to 'Back to Projects', projects_path, :class =>'list-group-item' %>
-            <%= link_to 'New Profile Entry', new_project_profile_path(@project.id), :class =>'list-group-item'  %>
-
-
-            <% if @project.partnerships.find_by_user_id(current_user.id).nil? == true %>
-                <span class="input-group-btn">
-<%= button_to 'Join Project', partnerships_path(:partnership => {:project_id => @project.id, :created_at => Date.today, :updated_at => Date.today, :role => 'Observer', :user_id => current_user.id}) , :method => 'POST', :class=>'btn btn-lg btn-primary', :type=>'button' %>
-               </span>
-              <%end%>
-
-
-            <% @project.partnerships.each do |r| %>
-
-              <%  if r.user_id = current_user.id and r.role == "Author"  %>
-
-
-                <span class="input-group-btn">
-                  <%= button_to 'Delete Project', @project, method: :delete, data: { confirm: 'Are you sure?' }, :class=>'btn btn-lg btn-primary', :type=>'button' %>
-                </span>
-
-
-              <% end %>
-            <% end %>
-
-
-          </div>
-        </div>
-      </div>
-   </div>
-
+  <%= render 'navigation' %>
 
 	<%= render 'profiles/self_profiles' %>
 
   <%= render 'partnerships/project_partnerships' %>
 
-	<%= render 'partnerships/user_partnerships' %>
+  <% @obj = @project %>
 
+  <%= render 'group_memberships/groups'%>
 
-    <div class="panel panel-default">
-      <div class="panel-heading"> <h4>   Comments </h4></div>
-        <div class="panel-body">
-          <div class="list-group">
-
-
-<p><%= link_to 'Add a Comment', new_project_comment_path(@project), :class =>'list-group-item' %></p>
-
-
-
-<ul class="comment_list">
-  <%= render :partial => 'comments/comment', :collection => @project.comments.find_comments_for_commentable("Project",@project.id) , :class =>'list-group-item'%>
-</ul>
-
-
-
-          </div>
-        </div>
-      </div>
+  <%# render 'comments' %>
 
 
 

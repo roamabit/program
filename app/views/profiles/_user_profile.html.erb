@@ -1,11 +1,7 @@
 <h3><%= link_to @user.email.first(@user.email.index('@')), @user  %></h3>
 
-<% if @user==current_user %>
-<%= link_to 'New Entry', new_user_profile_path(:user_id => current_user.id)  %>
-<% end %>
-<div class="container" id="main">
     <% @user_profile_headers = @user.profiles %>
-    <div class="row">
+
       <% @user_profile_headers.group(:name).where("profiles.made_public_at IS NOT NULL").each do |p| %>
         <div class="col-md-4 col-sm-6">
           <div class="panel panel-default">
@@ -23,8 +19,7 @@
           </div>
         </div>
       <% end %>
-  </div>
-</div>
+
 
 
 

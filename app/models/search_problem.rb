@@ -6,6 +6,8 @@ class SearchProblem < ActiveRecord::Base
   geocoded_by :location   # can also be an IP address
   after_validation :geocode,   :if => :location_change       # auto-fetch coordinates
 
+  include PublicActivity::Common
+
 
   def problems
     @problems ||= find_problems

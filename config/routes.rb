@@ -3,7 +3,6 @@ Rails.application.routes.draw do
 
   resources :friendships
 
-
   root to: 'welcome#index'
 
   devise_for :users
@@ -18,6 +17,8 @@ Rails.application.routes.draw do
       put "like", to: "users#upvote"
       put "dislike", to: "users#downvote"
     end
+    resources :group
+    resources :group_membership
   end
 
 
@@ -45,6 +46,9 @@ Rails.application.routes.draw do
     end
 
   end
+
+
+  resources :activities #added on Public_ACtivity branch
 
 
   resources :problems do
@@ -86,7 +90,6 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-
   resources :partnerships do
     resources :profiles
     resources :comments
@@ -94,9 +97,7 @@ Rails.application.routes.draw do
       put "like", to: "partnerships#upvote"
       put "dislike", to: "partnerships#downvote"
     end
-
   end
-
 
   resources :profiles do
     resources :profiles

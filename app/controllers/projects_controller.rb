@@ -77,6 +77,7 @@ end
 
 		 Partnership.create(:user_id => current_user.id, :project_id => @project.id, :role => 'Author')
 
+     log_activity
 
     if params[:problem_id].nil? == false
 
@@ -115,6 +116,10 @@ end #def create
   def update
     respond_to do |format|
       if @project.update(project_params)
+
+        log_activity
+
+
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
         format.json { render :show, status: :ok, location: @project }
       else
@@ -130,6 +135,10 @@ end #def create
   def destroy
 	#Simvol.find_by_name(@project.title).destroy
     @project.destroy
+
+      #log_activity #doesnt work with call backs
+
+
     respond_to do |format|
       format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
       format.json { head :no_content }

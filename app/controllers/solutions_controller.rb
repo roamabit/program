@@ -1,29 +1,24 @@
 class SolutionsController < ApplicationController
   before_action :set_solution, only: [:show, :edit, :update, :destroy]
-
-	attr_accessor :solution_abstract
+  attr_accessor :solution_abstract
 
   # GET /solutions
   # GET /solutions.json
 
   def index
-
     @solutions = Solution.all
-
   end
 
   # GET /solutions/1
   # GET /solutions/1.json
 
   def show
-
   end
 
   # GET /solutions/new
   def new
-	#@problem = Problem.find(params[:format])
-
-	@solution = Solution.new
+    #@problem = Problem.find(params[:format])
+    @solution = Solution.new
 
   end
 
@@ -39,10 +34,14 @@ class SolutionsController < ApplicationController
 
     respond_to do |format|
       if @solution.save
+
+        log_activity
+
+
         format.html { redirect_to @solution, notice: 'Solution was successfully created.' }
         format.json { render :show, status: :created, location: @solution }
       else
-        format.html { render :new }
+        format.html { render :new, warning: "Solution has not been created." }
         format.json { render json: @solution.errors, status: :unprocessable_entity }
       end
     end
@@ -53,6 +52,10 @@ class SolutionsController < ApplicationController
   def update
     respond_to do |format|
       if @solution.update(solution_params)
+
+        log_activity
+
+
         format.html { redirect_to @solution, notice: 'Solution was successfully updated.' }
         format.json { render :show, status: :ok, location: @solution }
       else
@@ -66,6 +69,11 @@ class SolutionsController < ApplicationController
   # DELETE /solutions/1.json
   def destroy
     @solution.destroy
+
+          #log_activity #doesnt work with call backs
+
+
+
     respond_to do |format|
       format.html { redirect_to solutions_url, notice: 'Solution was successfully destroyed.' }
       format.json { head :no_content }
@@ -73,13 +81,13 @@ class SolutionsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_solution
-      @solution = Solution.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_solution
+    @solution = Solution.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def solution_params
-      params.require(:solution).permit(:problem_id, :project_id, :solution_abstract, :published_at)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def solution_params
+    params.require(:solution).permit(:problem_id, :project_id, :solution_abstract, :published_at)
+  end
 end

@@ -9,6 +9,13 @@ class ProblemsController < ApplicationController
     @problems = Problem.all
     search_setup
     gmaps_setup
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @problems.to_csv}
+      format.xls #{ send_data @problems.to_csv(col_sep: "\t")}
+    end
+
   end
 
   def search_setup
@@ -55,15 +62,19 @@ class ProblemsController < ApplicationController
 
   end
 
+  def create_supporter
+    Supporter.create(:user_id => current_user.id,
+                       :problem_id => @problem.id, :role => 'Author')
+  end
+
   # POST /problems
   # POST /problems.json
   def create
     @problem = Problem.new(problem_params)
     if @problem.save
 
-      Supporter.create(:user_id => current_user.id,
-                       :problem_id => @problem.id, :role => 'Author')
-
+      log_activity
+      create_supporter
 
       if params[:user_id].nil? == false
 
@@ -99,6 +110,9 @@ class ProblemsController < ApplicationController
   def update
     respond_to do |format|
       if @problem.update(problem_params)
+
+        log_activity
+
         format.html { redirect_to @problem, notice: 'Problem was successfully updated.' }
         format.json { render :show, status: :ok, location: @problem }
       else
@@ -113,6 +127,9 @@ class ProblemsController < ApplicationController
   # DELETE /problems/1.json
   def destroy
     @problem.destroy
+
+      #log_activity #doesnt work with call backs
+
     respond_to do |format|
       format.html { redirect_to problems_url,
                                 notice: 'Problem was successfully destroyed.' }
