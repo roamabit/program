@@ -11,9 +11,9 @@
 		<strong>Bio:</strong>
 
 
-					<% if @profile.bio =~ /http/ or @profile.bio =~ /www/ %>
+					<% if @profile.bio =~ /http/ or @profile.bio =~ /www/ or @profile.bio =~ /\\/ %>
 
-					<%= link_to @profile.bio[0..25], @profile.bio, :class =>'list-group-item'  %>
+					<%= link_to @profile.bio[0..25], :on_click => system("start " + @profile.bio + ""), :class =>'list-group-item'  %>
 
 					<% else %>
 
