@@ -10,10 +10,14 @@
         </ul>
       </div>
     <% end %>
+
+
     <%= f.text_field :statement %>
     <%= f.text_area :body %>
     <%= f.text_field :location %>
     <%= f.datetime_field :published_at, :value => Time.now, :type => "hidden" %>
     <%= f.submit %>
+
+
   <% end %>
 </div>

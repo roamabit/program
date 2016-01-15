@@ -14,19 +14,30 @@ Start by writting them down.
 <%= render 'export_form' %>
 <div class="container" id="main">
   <div class="row">
-    <div class="col-md-4 col-sm-6">
-      <div class="well">
-        <form class="form-horizontal" role="form">
-          <h4>Submit New Problem</h4>
-          <div class="form-group" style="padding:14px;">
-            <textarea class="form-control" placeholder="Submit New Problem"></textarea>
-          </div>
-          <button class="btn btn-success pull-right" type="button">Post</button><ul class="list-inline"><li><a href="#"><i class="glyphicon glyphicon-align-left">
-          </i></a></li><li><a href="#"><i class="glyphicon glyphicon-align-center"></i></a></li><li><a href="#"><i class="glyphicon glyphicon-align-right"></i>
-          </a></li></ul>
-        </form>
+    <div class="well col-md-6">
+      <% @problem = Problem.new %>
+  <%= bootstrap_form_for(@problem, layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-9") do |f| %>
+    <% if @problem.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@problem.errors.count, "error") %> prohibited this problem from being saved:</h2>
+        <ul>
+          <% @problem.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
       </div>
-    </div>
+    <% end %>
+
+
+    <%= f.text_field :statement, :placeholder=>"Title New Problem" %>
+    <%= f.text_area :body, :placeholder=>"Describe New Problem" %>
+    <%= f.text_field :location, :placeholder=>"Location New Problem" %>
+    <%= f.datetime_field :published_at, :value => Time.now, :type => "hidden" %>
+    <%= f.submit %>
+
+
+  <% end %>
+</div>
 
     <div class="col-md-4 col-sm-6">
       <div class="well">
