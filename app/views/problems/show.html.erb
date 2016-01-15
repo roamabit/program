@@ -19,9 +19,9 @@
         <%= link_to 'I have this same problem', problems_path(:problem => {:statement => @problem.statement, :body => @problem.body}), :method => 'clone' %>
         <%= link_to 'Edit', edit_problem_path(@problem) %> |
         <%= link_to 'Back', problems_path %>
-        <%= render 'profiles/self_profiles' %>
+
         <%= link_to "upvote", like_problem_path(@problem), method: :put %> | <%= link_to "downvote", dislike_problem_path(@problem), method: :put %> <%= @problem.get_upvotes.size - @problem.get_downvotes.size%>
-        <%= render 'problem_comments'%>
+
         <br>
         <%= link_to 'New Profile Entry', new_problem_profile_path(@problem.id)  %>
       </div>
@@ -29,7 +29,9 @@
   </div>
 </div>
 
+  <%= render 'profiles/self_profiles' %>
 
+  <%= render 'problem_comments'%>
 
 <div class="col-md-4 col-sm-6">
   <div class="panel panel-default">
