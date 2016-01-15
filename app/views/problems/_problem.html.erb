@@ -4,7 +4,7 @@
       <h2><%= link_to problem.statement, problem, :class=>"panel-heading" %></h2>
       <div class="panel-body">
         <div class="list-group">
-          <% @user = User.find(problem.supporters.where("role = 'Author'")) %>
+          <% @user = User.find(problem.supporters.where("role = 'Author'").first.user_id) %>
             <strong>Author:</strong>  <%= link_to @user.email.first(@user.email.index('@')), @user %><br>
           <strong>Location:</strong> <%= problem.location %><br>
           <strong>Published:</strong> <%= problem.published_at %><br>

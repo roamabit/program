@@ -1,3 +1,8 @@
+<div class="col-md-4 col-sm-6">
+      <div class="well">
+        <form class="form">
+          <h4>Search Problem Params</h4>
+          <div class="input-group text-center">
 
       <%= form_tag problems_path, method: :get do %>
         <%= text_field_tag :search, params[:search] %>
@@ -5,3 +10,7 @@
       <% end %>
 
       <p><%= link_to "Advanced Search", new_search_problem_path %></p>
+      </div>
+    </form>
+  </div>
+</div>
