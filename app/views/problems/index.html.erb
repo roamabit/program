@@ -1,61 +1,20 @@
-<div class="text-center">
-  <h1>Solve world problems</h1>
-<h2>Why? </h2>
-<p class="manifesto-text">
-
-Because we care, because we should, Because we can.<br>
-Because you can.<br><br>
-
-Start by writting them down.
-</p>
-</div>
-
 <%= render 'map' %>
 <%= render 'export_form' %>
+
 <div class="container" id="main">
   <div class="row">
-    <div class="well col-md-6">
-      <% @problem = Problem.new %>
-  <%= bootstrap_form_for(@problem, layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-9") do |f| %>
-    <% if @problem.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@problem.errors.count, "error") %> prohibited this problem from being saved:</h2>
-        <ul>
-          <% @problem.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
 
+  <%= render 'index_newproblem' %>
+  <%= render 'search_poblems_input' %>
 
-    <%= f.text_field :statement, :placeholder=>"Title New Problem" %>
-    <%= f.text_area :body, :placeholder=>"Describe New Problem" %>
-    <%= f.text_field :location, :placeholder=>"Location New Problem" %>
-    <%= f.datetime_field :published_at, :value => Time.now, :type => "hidden" %>
-    <%= f.submit %>
-
-
-  <% end %>
-</div>
-
-    <div class="col-md-4 col-sm-6">
-      <div class="well">
-        <form class="form">
-          <h4>Search Problem Params</h4>
-          <div class="input-group text-center">
-
-            <%= render 'search_poblems_input' %>
-          </div>
-        </form>
-      </div>
-    </div>
   </div>
 
   <div class="text-center">
     <h1>Listing problems</h1>
   </div>
+
   <div class ="container">
     <%= render @problems %>
   </div>
+
 </div>
