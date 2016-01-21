@@ -1,0 +1,6 @@
+<%  %>
+<% @users.each do |u| %>
+<%= u.email %>
+<% @objparent = u %>
+<%= render 'profiles/self_profiles'  %>
+<% end %>
