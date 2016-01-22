@@ -12,6 +12,8 @@ class Project < ActiveRecord::Base
 	has_many :profiles, :as => :profileable, dependent: :destroy
 	has_many :comments, :as => :commentable, dependent: :destroy
 
+  has_many :user_profiles , :through=>:users, :source=>:profiles
+
 	validates :title, :presence => true
 	validates :body, :presence => true
 	validates :user_id, :presence => true
@@ -23,6 +25,7 @@ class Project < ActiveRecord::Base
   groupify :group_member
 
   include PublicActivity::Common
+
 
 
 	def long_title
