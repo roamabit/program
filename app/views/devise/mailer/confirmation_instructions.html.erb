@@ -1,5 +1,10 @@
-<p>Welcome <%= @email %>!</p>
+<div class="with-margin-top well col-md-6 col-md-offset-3">
+  <h2>Welcome <%= @email %>!</h2>
+  <br/>
+  <p>You can confirm your account email through the link below:</p>
 
-<p>You can confirm your account email through the link below:</p>
+  <p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+</div>
+
+
