@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     #Generate user activities
     if @user == current_user
       #need to replace this with an Activities_controller index reference
-      @activities = PublicActivity::Activity.order("created_at desc").where(current_user.friends, owner_type: "User").limit(5)
+      @activities = PublicActivity::Activity.order("created_at desc").where(owner_id: current_user.friends, owner_type: "User").limit(5)
     end
 
   end

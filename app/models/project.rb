@@ -12,7 +12,7 @@ class Project < ActiveRecord::Base
 	has_many :profiles, :as => :profileable, dependent: :destroy
 	has_many :comments, :as => :commentable, dependent: :destroy
 
-  has_many :user_profiles , :through=>:users, :source=>:profiles
+  has_many :user_profiles,:as => :profileable, :source=>:profiles, :through=>:users
 
 	validates :title, :presence => true
 	validates :body, :presence => true
