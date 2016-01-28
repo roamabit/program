@@ -1,21 +1,30 @@
 
-<% @profiles =  @project.user_profiles %>
+<% @user_profiles =  current_user.profiles %>
 
-<% @self_profile_headers = @profiles.where("made_public_at IS NOT NULL or user_id = " + current_user.id.to_s) if @self_profile_headers.nil? %>
+<% if @obj.instance_of? User %>
+  <% @obj.friends.profiles.each do |u| %>
+    <% @user_profiles<<u.profiles %>
+  <% end %>
+<% else %>
+  <% @obj.users.each do |u| %>
+    <% @user_profiles<<u.profiles %>
+  <% end %>
+<% end %>
 
-  <% @self_profile_headers.group(:name).each do |p| %>
+<% @user_profiles.group(:name).each do |p| %>
 
 <div class="col-md-4 col-sm-6">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h4><%= p.name %></h4>
+
+      <h4><%= "Partnership's " + p.name.pluralize %></h4>
     </div>
 
       <div class="panel-body">
       <div class="list-group">
 
 
-        <% @self_profile_headers.each do |b| %>
+        <% @user_profiles.each do |b| %>
 
         <% if b.name == p.name %>
 
