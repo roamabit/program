@@ -1,12 +1,12 @@
-<p id="notice"><%= notice %></p>
 <div class="col-md-4 col-sm-6">
   <div class="panel panel-default">
     <h2><%= link_to @problem.statement, @problem, :class=>"panel-heading" %></h2>
     <hr>
     <div class="panel-body">
       <div class="list-group">
-          <p><%= @problem.body %></p>
-                  <p>
+        <p><%= @problem.body %></p>
+        <hr>
+        <p>
           <strong>Published at:</strong>
           <%= @problem.published_at %>
         </p>
@@ -15,23 +15,21 @@
           <strong>Location:</strong>
           <%= @problem.location %>
         </p>
-        <br>
-        <%= link_to 'I have this same problem', problems_path(:problem => {:statement => @problem.statement, :body => @problem.body}), :method => 'clone' %>
-        <%= link_to 'Edit', edit_problem_path(@problem) %> |
-        <%= link_to 'Back', problems_path %>
+
+        <%= link_to 'Edit', edit_problem_path(@problem) %> | <%= link_to 'Back', problems_path %> <br>
+
+        <%= render 'problem_comments'%> <%= link_to 'I have this same problem', problems_path(:problem => {:statement => @problem.statement, :body => @problem.body}), :method => 'clone' %><br>
 
         <%= link_to "upvote", like_problem_path(@problem), method: :put %> | <%= link_to "downvote", dislike_problem_path(@problem), method: :put %> <%= @problem.get_upvotes.size - @problem.get_downvotes.size%>
 
         <br>
-        <%= link_to 'New Profile Entry', new_problem_profile_path(@problem.id)  %>
+            <%= link_to 'New Profile Entry', new_problem_profile_path(@problem.id)  %>
       </div>
     </div>
   </div>
 </div>
 
-  <%= render 'profiles/self_profiles' %>
-
-  <%= render 'problem_comments'%>
+<%= render 'profiles/self_profiles' %>
 
 <div class="col-md-4 col-sm-6">
   <div class="panel panel-default">
@@ -57,10 +55,8 @@
 
 <div class="col-md-4 col-sm-6">
   <div class="panel panel-default">
-
     <div class="panel-body">
       <div class="list-group">
-
         <%= render 'proposed_solutions' %>
       </div>
     </div>
