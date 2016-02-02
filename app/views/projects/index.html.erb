@@ -1,25 +1,25 @@
 
-<%= link_to 'New Project', new_project_path %>
+<div class="text-center">
+
+  <p class="manifesto-text">
+  "Help someone with their project."<br>
+  "Someone out there loves what you love."<br>
+  "They see what you see."<br>
+  "The same frustrations, the same goals." <br>
+  "Same purpose."<br>
+  <br>
+  Find a common purpose and change the world. Today is the day. <br>
+
+  </p>
+</div>
+
+<%= render 'index_new_project' %>
 
 <div class="container" id="main">
 
   <div class="row">
 
-    <div class="col-md-4 col-sm-6">
+<%= render @projects %>
 
-       <div class="well">
-             <form class="form-horizontal" role="form">
-              <h4>Submit New Project</h4>
-               <div class="form-group" style="padding:14px;">
-                <textarea class="form-control" placeholder="Submit New Problem"></textarea>
-              </div>
-
-              <button class="btn btn-success pull-right" type="button">Post</button><ul class="list-inline"><li><a href="#"><i class="glyphicon glyphicon-align-left">
-
-               </i></a></li><li><a href="#"><i class="glyphicon glyphicon-align-center"></i></a></li><li><a href="#"><i class="glyphicon glyphicon-align-right"></i>
-               </a></li></ul>
-            </form>
-        </div>
-      </div>
-
-      <%= render @projects %>
+</div>
+</div>

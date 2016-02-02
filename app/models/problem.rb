@@ -9,7 +9,7 @@ class Problem < ActiveRecord::Base
   has_many :comments, :as => :commentable, dependent: :destroy
   has_many :profiles, :as => :profileable, dependent: :destroy
 
-  validates_presence_of :statement, :body
+  validates_presence_of :statement, :body, :location
 
   acts_as_votable
   acts_as_commentable
@@ -17,7 +17,6 @@ class Problem < ActiveRecord::Base
   geocoded_by :location   # can also be an IP address
   after_validation :geocode,   :if => :location_change       # auto-fetch coordinates
 
-  #on public_activity Branch
   include PublicActivity::Common
     #tracked owner: ->(controller, model) { controller && controller.current_user }
     #http://railscasts.com/episodes/406-public-activity

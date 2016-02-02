@@ -7,7 +7,8 @@ class Profile < ActiveRecord::Base
   acts_as_commentable
   acts_as_votable
 
-  include PublicActivity::Common
+  include PublicActivity::Model
+  tracked
 
   #@profile.liked_by @user
   #@profile.votes_for.size

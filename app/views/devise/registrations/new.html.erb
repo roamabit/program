@@ -1,11 +1,15 @@
-<h2>Sign up</h2>
-<div class="well col-md-6">
+
+<div class="with-margin-top well col-md-6 col-md-offset-3">
+  <h2>Sign up</h2>
+  <br/>
   <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-9") do |f| %>
     <%= devise_error_messages! %>
 
     <%= f.email_field :email, autofocus: true %>
     <%= f.password_field :password, autocomplete: "off" %>
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
-    <%= f.submit "Sign up" %>
+    <div class="col-sm-9 col-sm-offset-3">
+      <%= f.submit "Sign up" %>
+    </div>
   <% end %>
 </div>
