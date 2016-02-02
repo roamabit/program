@@ -25,6 +25,7 @@ class Project < ActiveRecord::Base
   include PublicActivity::Common
 
 
+
 	def long_title
 		"#{title} - #{created_at}"
 	end

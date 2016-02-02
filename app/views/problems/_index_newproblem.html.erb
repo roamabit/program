@@ -1,5 +1,3 @@
-
-
 <div class="well col-md-6">
       <% @problem = Problem.new %>
   <%= bootstrap_form_for(@problem, layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-9") do |f| %>
@@ -14,11 +12,12 @@
       </div>
     <% end %>
 
+<% f.text_field :location_default,:value =>[request.location.latitude, request.location.longitude], :type=>'hidden' %>
 
     <%= f.text_field :statement, :placeholder=>"Title New Problem" %>
     <%= f.text_area :body, :placeholder=>"Describe New Problem" %>
     <%= f.text_field :location, :placeholder=>[request.location.latitude, request.location.longitude]  %>
-    <%= f.datetime_field :published_at, :value => Time.now, :type => "hidden" %>
+    <%= f.datetime_field :published_at, :value => Time.now, :type => 'hidden' %>
     <%= f.submit %>
 
 
