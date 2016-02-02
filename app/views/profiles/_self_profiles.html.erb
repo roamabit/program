@@ -3,7 +3,7 @@
   <% @objparent = @user %>
   <% end %>
 
-  <% @self_profile_headers = @objparent.profiles.where("made_public_at IS NOT NULL or user_id = " + current_user.id.to_s) %>
+  <% @self_profile_headers = @objparent.profiles.where("made_public_at IS NOT NULL or profiles.user_id = " + current_user.id.to_s) if @self_profile_headers.nil? %>
 
   <% @self_profile_headers.group(:name).each do |p| %>
 

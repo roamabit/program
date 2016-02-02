@@ -1,0 +1,52 @@
+
+<% @user_profiles =  current_user.profiles %>
+
+<% if @obj.instance_of? User %>
+  <% @obj.friends.profiles.each do |u| %>
+    <% @user_profiles<<u.profiles %>
+  <% end %>
+<% else %>
+  <% @obj.users.each do |u| %>
+    <% @user_profiles<<u.profiles %>
+  <% end %>
+<% end %>
+
+<% @user_profiles.group(:name).each do |p| %>
+
+<div class="col-md-4 col-sm-6">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+
+      <h4><%= "Partnership's " + p.name.pluralize %></h4>
+    </div>
+
+      <div class="panel-body">
+      <div class="list-group">
+
+
+        <% @user_profiles.each do |b| %>
+
+        <% if b.name == p.name %>
+
+
+            <li class ="list-group-item" ><%= link_to b.bio[0..25], b %>
+
+            <small><br>
+              <% if b.made_public_at.nil? %>
+                <%= 'Private' %>
+              <% else %>
+                <%= b.made_public_at.to_date  %>
+              <% end %>
+            </small>
+            </li>
+
+        <% end %>
+        <% end %>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<% end %>

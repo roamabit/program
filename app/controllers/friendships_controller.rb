@@ -24,7 +24,7 @@ class FriendshipsController < ApplicationController
     # POST /friendships.json
  def create
 
-      if @user.friendships.to_a.include?(params[:friend_id])
+      if current_user.friends.include?(params[:friend_id])
         flash[:notice] = "It's polite to ask once."
       else
 
@@ -34,12 +34,12 @@ class FriendshipsController < ApplicationController
       if @friendship.save
 
 
-       else
+
         log_activity
 
         flash[:notice] = "Friend requested."
 
-        end
+
 
         redirect_to :back
       else

@@ -18,7 +18,6 @@
   <% end %>
 
 
-
        <div class="well">
              <form class="form-horizontal" role="form">
               <h4>Submit New Project</h4>
@@ -36,7 +35,7 @@
   <% end %>
 
     <%= f.text_field :user_id, :value => current_user.id, :type => "hidden" %>
-    <%= f.datetime_field :published_at, :value => Time.now,:type => "hidden" %>
+    <%= f.datetime_field :published_at, :value => Time.now, :type => "hidden" %>
 
 
 <button class="btn btn-success pull-right" type="button">
