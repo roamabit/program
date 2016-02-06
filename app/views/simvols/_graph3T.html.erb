@@ -1,26 +1,28 @@
 
-<% @graph = ( %>
+<% @graph = [] %>
+
 <% @simvol.tags.each do |t| %>
 
-	<% t.name + ',' %>
+	<% @graph << t %>
 
 	<% Simvol.find(t).tags.each do |t2|  %>
 
-		<% t2.name + ',' %> 
+		<% @graph << t2   %>
 
-		<% Simvol.find(t2).tags.each do |t3| %>
+			<% Simvol.find(t2).tags.each do |t3| %>
 
-			<% t3.name + ',' %>
+				<% @graph << t3 %>
+
+					<% Simvol.find(t3).tags.each do |t4| %>
+
+						<% @graph << t4 %>
+
+					<% end %>
 
 		<% end %>
 	<% end %>
 <% end %>
-	<% ).to_a %>
 
-	<hr> 
+<hr>
 
-<% @graph.each do |g|  %>
-	<%= g.name %>
-	<%= g.name.count(g.name) %><br><br>
 
-<% end %> 

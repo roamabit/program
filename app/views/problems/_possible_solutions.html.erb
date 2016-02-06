@@ -5,6 +5,8 @@
 
 <list>
 
+
+
   <% @projects.where(:title => 'Sierras Project').each  do |proposedproject| %>
 
     <li>
@@ -25,15 +27,22 @@ Problem Statment (parse by word)
     <% Simvol.find_by_name(ws).tags.each do |tag| %>
 
       <% @simvol = tag %>
-      <%= render '/simvols/graph3T_IDArray' %>
+      <%= render '/simvols/graph3T' %>
+				<% @graph.uniq.each do |g|  %>
+				<%= g.id %>
+					<%= g.name %>
+					<%= g.name.count(g.name) %><br><br>
 
+				<% end %>
 
     <% end %>
   <% else %>
 
-    Create Simvol:	<%= button_to ws, simvols_path(:simvol => {:name => ws,  :created_at => Date.today, :updated_at => Date.today}, ) %>
+   <% simvols_path(:simvol => {:name => ws,  :created_at => Date.today, :updated_at => Date.today}, :method => 'create') %>
 
   <% end %>
-
+	<% if @simvol %>
+		<%= render 'simvols/tagform' %>
+	<% end %>
   <hr>
 <% end %>
