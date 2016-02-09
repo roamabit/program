@@ -33,25 +33,20 @@ before_action :set_simvol, only: [:show, :edit, :update, :destroy]
 	  respond_to do |format|
 
 
-		if @simvol.save
-			format.html { redirect_to @simvol, notice: 'simvol was successfully created.' }
-			format.json { render :show, status: :created, location: @simvol }
+  		if @simvol.save
+  			format.html { redirect_to @simvol, notice: 'simvol was successfully created.' }
+  			format.json { render :show, status: :created, location: @simvol }
 
-		if Simvol.find_by_name(params[:currentsimvol]).any? #added 2/5/16
+        if params[:currentsimvol]
+    			@simvol.tags << Simvol.find_by_name(params[:currentsimvol])
+    		end
 
-			format.html { render :new }
-			format.json { render json: @simvol.errors, status: :unprocessable_entity }
-			else
+  		else
+  			format.html { render :new }
+  			format.json { render json: @simvol.errors, status: :unprocessable_entity }
 
-			 @simvol.tags << Simvol.find_by_name(params[:currentsimvol])
-		end
-
-			else
-			format.html { render :new }
-			format.json { render json: @simvol.errors, status: :unprocessable_entity }
-
-			end
-    	end
+  		end
+    end
 
 
 	end

@@ -1,11 +1,7 @@
-<hr>
 <h2>Possible Solutions - (Auto)</h2>
 <% @projects = Project.all %>
 
-
 <list>
-
-
 
   <% @projects.where(:title => 'Sierras Project').each  do |proposedproject| %>
 
@@ -19,30 +15,33 @@
 
 </list>
 
-Problem Statment (parse by word)
+<% #Problem Statment (parse by word) %>
 
+<% @wordlist = [] %>
 <% @problem.body.split(/\W+/).each do |ws| %>
-  <%= ws  %>:
-  <% if Simvol.find_by_name(ws).nil? == false %>
-    <% Simvol.find_by_name(ws).tags.each do |tag| %>
-
-      <% @simvol = tag %>
-      <%= render '/simvols/graph3T' %>
-				<% @graph.uniq.each do |g|  %>
-				<%= g.id %>
-					<%= g.name %>
-					<%= g.name.count(g.name) %><br><br>
-
-				<% end %>
-
-    <% end %>
-  <% else %>
-
-   <% simvols_path(:simvol => {:name => ws,  :created_at => Date.today, :updated_at => Date.today}, :method => 'create') %>
-
-  <% end %>
-	<% if @simvol %>
-		<%= render 'simvols/tagform' %>
-	<% end %>
-  <hr>
+	<% @wordlist << ws %>
 <% end %>
+
+
+<%= render '/simvols/graph3T' %>
+<% @words = [] #setup array for taged word search%>
+		<% @graph.uniq.each do |g| #graph is an array of tagged words %>
+			<%= g.id %>
+			<%= g.name %>
+			<%= g.name.count(g.name) %><br><br>
+	<% @simvol = g %>
+	<% @words << g.name #fill up the words array with simvol names %>
+	<%= render 'simvols/tagform' %>
+
+		<% end #g %>
+
+     <% @words.map! { |word| "title LIKE '%#{word}%' or body LIKE '%#{word}%'" } %>
+     <% sql = @words.join(" or ") %>
+     <% @projects = Project.where(sql).order('created_at desc') %>
+
+<% @projects.each do |p| %>
+		<% @project = p %>
+		<%= link_to p.title, p %><br>
+<% end %>
+
+
