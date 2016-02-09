@@ -28,28 +28,51 @@ before_action :set_simvol, only: [:show, :edit, :update, :destroy]
 	end
 
 	def create
-		@simvol = Simvol.new(simvol_params)
+@simvol = Simvol.find_or_create_by(name: simvol_params[:name])
 
-	  respond_to do |format|
+if @simvol.present?
 
+      respond_to do |format|
 
-  		if @simvol.save
-  			format.html { redirect_to @simvol, notice: 'simvol was successfully created.' }
-  			format.json { render :show, status: :created, location: @simvol }
+          if params[:currentsimvol]
+            @simvol.tags << Simvol.find_by_name(params[:currentsimvol])
 
-        if params[:currentsimvol]
-    			@simvol.tags << Simvol.find_by_name(params[:currentsimvol])
-    		end
-
-  		else
-  			format.html { render :new }
-  			format.json { render json: @simvol.errors, status: :unprocessable_entity }
-
-  		end
-    end
+          end #currentsimvol
 
 
-	end
+        format.html { redirect_to request.referer , notice: 'simvol was successfully created.' }
+        format.json { render :show, status: :created, location: request.referer }
+
+
+      end #respond
+    else #find or create
+
+    @simvol = Simvol.new(simvol_params)
+
+      respond_to do |format|
+
+
+    		if @simvol.save
+    			format.html { redirect_to @simvol, notice: 'simvol was successfully created.' }
+    			format.json { render :show, status: :created, location: @simvol }
+
+          if params[:currentsimvol]
+      			@simvol.tags << Simvol.find_by_name(params[:currentsimvol])
+            format.html { redirect_to request.referer, notice: 'Thank you!' }
+
+      		end #currentsimvol
+
+    		else #. no save
+    			format.html { render :new }
+    			format.json { render json: @simvol.errors, status: :unprocessable_entity }
+
+    		end #.save
+      end #respond
+
+    end #unless
+
+
+	end #def
 
 
 
