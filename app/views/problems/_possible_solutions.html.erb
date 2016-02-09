@@ -5,22 +5,26 @@
 	<% @wordlist << ws %>
 <% end %>
 
-
+<!-- #this needs to move to the model  -->
 <%= render '/simvols/graph3T' %>
-<% @words = [] #setup array for taged word search%>
-<% @graph.uniq.each do |g| #graph is an array of tagged words %>
-	<% #g.tags.count %>
-	<% #g.name %>
+
+<!--#setup array for taged word search -->
+
+<% @words = [] %>
+
+<!--#graph is an array of tagged words-->
+
+<% @graph.uniq.each do |g|  %>
+
 	<% @simvol = g %>
-	<% @words << g.name #fill up the words array with simvol names %>
 
-	<% if g.tags.count <= 3 %>
-		<%= render 'simvols/tagform' %>
-	<% end #g.name.count %>
+<!--#fill up the words array with simvol names-->
+	<% @words << g.name  %>
 
-<% end #g %>
+<!--#g-->
+<% end  %>
 
-<%= 'Possible Project solutions'  %> <br>
+'Possible Project solutions' <br>
 
      <% @words.map! { |word| "title LIKE '%#{word}%' or body LIKE '%#{word}%'" } %>
      <% sql = @words.join(" or ") %>
@@ -29,6 +33,22 @@
 <% @projects.each do |p| %>
 		<% @project = p %>
 		<%= link_to p.title, p %><br>
-<% end %>
+
+		<!--#p-->
+<% end  %>
+<br>
+I can find more projects if you help me understand these words. <br>
+
+<% @graph.uniq.each do |g|  %>
+
+	<% @simvol = g %>
 
 
+	<% if g.tags.count <= 3 %>
+		<%= render "simvols/tagform" %>
+
+		<!--#g.tags.count-->
+	<% end  %>
+
+<!--#g-->
+<% end  %>

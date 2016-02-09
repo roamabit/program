@@ -6,13 +6,13 @@
       <ul>
       <% @simvol.errors.full_messages.each do |message| %>
         <li><%= message %></li>
-      <% end %>
+      <% end #message %>
       </ul>
     </div>
-  <% end %>
+  <% end #if errors %>
 
   <div class="field">
-    <%= f.label 'Tell me more, what is a ' +  @simvol.name.capitalize %><br>
+    <%= f.label "Tell me more, what is a " +  @simvol.name.capitalize %><br>
     <%= f.text_field :name %>
 
   </div>
@@ -27,4 +27,4 @@
 
   </div>
 
-<% end %>
+<% end #f %>
