@@ -1,41 +1,58 @@
 <h2>Possible Solutions - (Auto)</h2>
 
 <% @wordlist = [] %>
-<% @problem.body.split(/\W+/).each do |ws| %>
-	<% @wordlist << ws %>
-<% end %>
+<% @wordlist = @problem.body.split(/\W+/).map {|w| w.downcase} %>
 
 <!-- #this needs to move to the model  -->
 <%= render '/simvols/graph3T' %>
 
 <!--#setup array for taged word search -->
 
-<% @words = [] %>
+<% @words_ary = [] %>
 
 <!--#graph is an array of tagged words-->
 
 <% @graph.uniq.each do |g|  %>
 
-	<% @simvol = g %>
-
 <!--#fill up the words array with simvol names-->
-	<% @words << g.name  %>
+<% @words_ary << g.name.downcase  %>
 
 <!--#g-->
 <% end  %>
+<% @wa = @words_ary.join(" ") %>
+<% @words_ary = @wa.split(/\W+/).map {|w| w} %>
 
 'Possible Project solutions' <br>
+  <% @words = @words_ary.map { |word| "title LIKE '%#{word}%' or body LIKE '%#{word}%'" } %>
+  <% sql = @words.join(" or ") %>
+  <% @projects = Project.where(sql).order('created_at desc') %>
 
-     <% @words.map! { |word| "title LIKE '%#{word}%' or body LIKE '%#{word}%'" } %>
-     <% sql = @words.join(" or ") %>
-     <% @projects = Project.where(sql).order('created_at desc') %>
+	<% @project_ws = [] %>
+	<% @projects_to_sort = []%>
 
-<% @projects.each do |p| %>
-		<% @project = p %>
-		<%= link_to p.title, p %><br>
+	<% @projects.each do |p| %>
+		<% @project_ws = p.body.split(/\W+/).map {|w| w} %>
+			<% p.title.split(/\W+/).each do |ws| %>
+				<% @project_ws << ws.downcase %>
+			<!--ws-->
+			<% end %>
 
-		<!--#p-->
-<% end  %>
+			<!--create the matching words array @tractor. Why Tractor?-->
+		<% @tractor = @project_ws & @words_ary %>
+		<% @projects_to_sort << [p, @tractor.count.to_f.send(:/,@project_ws.count).send(:*,100).to_i] %>
+	<!--#p-->
+	<% end  %>
+
+<!--Sort the found projects by the number of matching words which should roughly correlate to the number of words in the project-->
+<% @projects_sorted = @projects_to_sort.sort_by { |x| -x[1] } %>
+
+<% @projects_sorted.each do |ps|  %>
+
+	<%= link_to ps.first.title, ps.first %><br>
+	<%=  ps[1].to_s + ' % Relevant'  %><br>
+
+<% end %>
+
 <br>
 I can find more projects if you help me understand these words. <br>
 
@@ -43,11 +60,10 @@ I can find more projects if you help me understand these words. <br>
 
 	<% @simvol = g %>
 
-
-	<% if g.tags.count <= 3 %>
+	<% if g.tags.count <= 2 %>
 		<%= render "simvols/tagform" %>
 
-		<!--#g.tags.count-->
+	<!--#g.tags.count-->
 	<% end  %>
 
 <!--#g-->
