@@ -3,15 +3,10 @@
       <h2><%= link_to project.title, project, :class=>"panel-heading" %></h2>
       <div class="panel-body">
          <div class="list-group">
-
-<li class="list-group-item">
-          <%= project.body %>
-
-<li class="list-group-item">
-          <%=  project.published_at %>
-</li>
+          <li class="list-group-item"><%= project.body %></li>
+          <li class="list-group-item"><%=  project.published_at %></li>
           <li class="list-group-item">
-          <%= link_to "upvote", like_project_path(project), method: :put %>
+          <%= link_to "upvote", like_project_path(project), method: :put %>||
 
           <%= link_to "downvote", dislike_project_path(project), method: :put %>
 
