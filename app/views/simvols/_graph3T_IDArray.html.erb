@@ -1,6 +1,16 @@
 
-<% @graph = ( %>
-<%= @simvol.tag_ids ) %>
+<% render 'simvols/graph3T' %>
 
+<% @graph.each do |g|  %>
+
+
+
+  <%= g.name %>
+  <%= g.name.count(g.name) %><br><br>
+  <% if request.referrer ~= '%problem%' %>
+    <% Project.search %>
+  <% end %>
+
+<% end %>
 
 
