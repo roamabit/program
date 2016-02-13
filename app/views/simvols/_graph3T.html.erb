@@ -1,26 +1,27 @@
 
-<% @graph = ( %>
-<% @simvol.tags.each do |t| %>
+<% @graph = [] %>
 
-	<% t.name + ',' %>
+<% @wordlist.each do |wl| %>
+	<% Simvol.find_or_create_by(name: wl).tags.each do |wlt|  #Find by name or make new record, AKA BEST THING EVER!!!!%>
 
-	<% Simvol.find(t).tags.each do |t2|  %>
 
-		<% t2.name + ',' %> 
+		<% wlt.tags.each do |t| %>
 
-		<% Simvol.find(t2).tags.each do |t3| %>
+			<% @graph << t %>
 
-			<% t3.name + ',' %>
+			<% Simvol.find(t).tags.each do |t2|  %>
 
-		<% end %>
-	<% end %>
-<% end %>
-	<% ).to_a %>
+				<% @graph << t2   %>
 
-	<hr> 
+					<% Simvol.find(t2).tags.each do |t3| %>
 
-<% @graph.each do |g|  %>
-	<%= g.name %>
-	<%= g.name.count(g.name) %><br><br>
+						<% @graph << t3 %>
 
-<% end %> 
+				<% end #t3 %>
+			<% end #t2 %>
+		<% end #t %>
+	<% end #wlt %>
+
+<% end #wl %>
+
+

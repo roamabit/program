@@ -1,39 +1,70 @@
-<hr>
 <h2>Possible Solutions - (Auto)</h2>
-<% @projects = Project.all %>
 
+<% @wordlist = [] %>
+<% @wordlist = @problem.body.split(/\W+/).map {|w| w.downcase} %>
 
-<list>
+<!-- #this needs to move to the model  -->
+<%= render '/simvols/graph3T' %>
 
-  <% @projects.where(:title => 'Sierras Project').each  do |proposedproject| %>
+<!--#setup array for taged word search -->
 
-    <li>
+<% @words_ary = [] %>
 
-      <%= link_to proposedproject.title, solutions_path(:solution => {:problem_id => @problem.id, :created_at => Date.today, :project_id => proposedproject.id}), :method => 'POST' %>
+<!--#graph is an array of tagged words-->
 
-    </li>
+<% @graph.uniq.each do |g|  %>
 
-  <% end %>
+<!--#fill up the words array with simvol names-->
+<% @words_ary << g.name.downcase  %>
 
-</list>
+<!--#g-->
+<% end  %>
+<% @wa = @words_ary.join(" ") %>
+<% @words_ary = @wa.split(/\W+/).map {|w| w} %>
 
-Problem Statment (parse by word)
+'Possible Project solutions' <br>
+  <% @words = @words_ary.map { |word| "title LIKE '%#{word}%' or body LIKE '%#{word}%'" } %>
+  <% sql = @words.join(" or ") %>
+  <% @projects = Project.where(sql).order('created_at desc') %>
 
-<% @problem.body.split(/\W+/).each do |ws| %>
-  <%= ws  %>:
-  <% if Simvol.find_by_name(ws).nil? == false %>
-    <% Simvol.find_by_name(ws).tags.each do |tag| %>
+	<% @project_ws = [] %>
+	<% @projects_to_sort = []%>
 
-      <% @simvol = tag %>
-      <%= render '/simvols/graph3T_IDArray' %>
+	<% @projects.each do |p| %>
+		<% @project_ws = p.body.split(/\W+/).map {|w| w} %>
+			<% p.title.split(/\W+/).each do |ws| %>
+				<% @project_ws << ws.downcase %>
+			<!--ws-->
+			<% end %>
 
+			<!--create the matching words array @tractor. Why Tractor?-->
+		<% @tractor = @project_ws & @words_ary %>
+		<% @projects_to_sort << [p, @tractor.count.to_f.send(:/,@project_ws.count).send(:*,100).to_i] %>
+	<!--#p-->
+	<% end  %>
 
-    <% end %>
-  <% else %>
+<!--Sort the found projects by the number of matching words which should roughly correlate to the number of words in the project-->
+<% @projects_sorted = @projects_to_sort.sort_by { |x| -x[1] } %>
 
-    Create Simvol:	<%= button_to ws, simvols_path(:simvol => {:name => ws,  :created_at => Date.today, :updated_at => Date.today}, ) %>
+<% @projects_sorted.each do |ps|  %>
 
-  <% end %>
+	<%= link_to ps.first.title, ps.first %><br>
+	<%=  ps[1].to_s + ' % Relevant'  %><br>
 
-  <hr>
 <% end %>
+
+<br>
+I can find more projects if you help me understand these words. <br>
+
+<% @graph.uniq.each do |g|  %>
+
+	<% @simvol = g %>
+
+	<% if g.tags.count <= 2 %>
+		<%= render "simvols/tagform" %>
+
+	<!--#g.tags.count-->
+	<% end  %>
+
+<!--#g-->
+<% end  %>

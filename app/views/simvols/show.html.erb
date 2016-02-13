@@ -10,11 +10,6 @@
   <%= @simvol.created_at %>
 </p>
 
-<p>
- <%= render 'graph3T'%>
-<hr>
-</p>
-
 
 <%= render 'tagform' %>
 
@@ -26,9 +21,9 @@
 
 
 <h2>Comments</h2>
- 
+
 <p><%= link_to 'Add a Comment', new_simvol_comment_path(@simvol) %></p>
- 
+
 <ul class="comment_list">
   <%= render :partial => 'comments/comment', :collection => @simvol.comments.find_comments_for_commentable("Simvol",@simvol.id) %>
 </ul>
