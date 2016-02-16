@@ -16,7 +16,7 @@
 
     <%= f.text_field :statement, :placeholder=>"Title New Problem" %>
     <%= f.text_area :body, :placeholder=>"Describe New Problem" %>
-    <%= f.text_field :location, :placeholder=>[request.location.latitude, request.location.longitude]  %>
+    <%= f.text_field :location, :placeholder=>"Where did you experience this issue?"  %>
     <%= f.datetime_field :published_at, :value => Time.now, :type => 'hidden' %>
     <%= f.submit %>
 
