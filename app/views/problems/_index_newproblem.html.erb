@@ -12,8 +12,6 @@
       </div>
     <% end %>
 
-<% f.text_field :location_default,:value =>[request.location.latitude, request.location.longitude], :type=>'hidden' %>
-
     <%= f.text_field :statement, :placeholder=>"Title New Problem" %>
     <%= f.text_area :body, :placeholder=>"Describe New Problem" %>
     <%= f.text_field :location, :placeholder=>"Where did you experience this issue?"  %>
