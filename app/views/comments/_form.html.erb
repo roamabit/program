@@ -1,3 +1,6 @@
+
+
+
 <%= form_for(@comment) do |f| %>
 
   <% if @comment.errors.any? %>
@@ -13,7 +16,11 @@
   <% end %>
 
   <% if params[:comment_id] %>
-    <%= ' comment thread before this comment' %>
+  <%= ' comment thread before this comment' %>
+  <%= f.text_field :op_id, :value => @op.id , :type =>'hidden' %>
+  <% #f.text_field :op_parentable, :value => @objparent.class.name , :type =>'hidden' %>
+  <% #f.text_field :op_parentable_id, :value => @objparent.id , :type =>'hidden' %>
+
   <% end %>
 
   <div  class="field">
@@ -39,15 +46,7 @@
     <%= f.text_field :commentable_id, :type => 'hidden'  %>
   </div>
 
-  <div>
-    <% if params[:comment_id] %>
-      <%= f.text_field :parent_id, :value => @comment.commentable_id, :type => 'hidden'  %> 	<% end %>
-
-  </div>
-
-
-
-  <% @comment.has_children? %>
+    <% @comment.has_children? %>
 
   <div class="actions">
     <%= f.submit  %>
