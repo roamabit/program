@@ -52,4 +52,7 @@ include PublicActivity::StoreController
 
   end #def log_activity
 
+
+
+
 end

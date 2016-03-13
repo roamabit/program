@@ -1,3 +1,8 @@
+<div class="container" id="main">
+
+  <div class="row">
+
+
 <div class="col-md-4 col-sm-6">
   <div class="panel panel-default">
     <h2><%= link_to @problem.statement, @problem, :class=>"panel-heading" %></h2>
@@ -18,7 +23,7 @@
 
         <%= link_to 'Edit', edit_problem_path(@problem) %> | <%= link_to 'Back', problems_path %> <br>
 
-        <%= render 'problem_comments'%> <%= link_to 'I have this same problem', problems_path(:problem => {:statement => @problem.statement, :body => @problem.body}), :method => 'clone' %><br>
+        <%= link_to 'I have this same problem', problems_path(:problem => {:statement => @problem.statement, :body => @problem.body}), :method => 'clone' %><br>
 
         <%= link_to "upvote", like_problem_path(@problem), method: :put %> | <%= link_to "downvote", dislike_problem_path(@problem), method: :put %> <%= @problem.get_upvotes.size - @problem.get_downvotes.size%>
 
@@ -29,25 +34,13 @@
   </div>
 </div>
 
-<%= render 'profiles/self_profiles' %>
+
 
 <div class="col-md-4 col-sm-6">
   <div class="panel panel-default">
-
     <div class="panel-body">
       <div class="list-group">
         <%= render 'nearby_problems' %>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="col-md-4 col-sm-6">
-  <div class="panel panel-default">
-
-    <div class="panel-body">
-      <div class="list-group">
-        <% render 'possible_solutions' %>
       </div>
     </div>
   </div>
@@ -65,7 +58,16 @@
 
 <div class="col-md-4 col-sm-6">
   <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="list-group">
+        <%= render 'possible_solutions' %>
+      </div>
+    </div>
+  </div>
+</div>
 
+<div class="col-md-4 col-sm-6">
+  <div class="panel panel-default">
     <div class="panel-body">
       <div class="list-group">
         <%= render 'problem_process' %>
@@ -74,13 +76,17 @@
   </div>
 </div>
 
-<div class="col-md-4 col-sm-6">
-  <div class="panel panel-default">
+<%= render 'profiles/self_profiles' %>
 
+<div class="col-lg-12 col-md-12 col-sm-12">
+  <div class="panel panel-large">
     <div class="panel-body">
       <div class="list-group">
-        <%= render 'possible_solutions' %>
+        <%= render 'problem_comments'%>
       </div>
     </div>
   </div>
+</div>
+
+ </div>
 </div>
