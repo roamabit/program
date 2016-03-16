@@ -1,4 +1,4 @@
-<%= 'DELETED SHOW VIEW... IT IS A BUG'  %>
+<%= 'DELETED SHOW VIEW... IT IS A BUG unless we want to introduce forums... '  %>
 
 <p id="notice"><%= notice %></p>
 
@@ -13,7 +13,7 @@
 	<%= link_to 'Back', comment_path(Comment.find(@comment.commentable_id)) %>
 <% end %>
 
-<% @comment.acts_as_nested_set_options %>
+<% #@comment.acts_as_nested_set_options %>
 
 <%= link_to "upvote", like_comment_path(@comment), method: :put %>
 <%= link_to "downvote", dislike_comment_path(@comment), method: :put %>

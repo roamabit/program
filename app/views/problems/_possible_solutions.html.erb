@@ -54,17 +54,19 @@
 <% end %>
 
 <br>
-I can find more projects if you help me understand these words. <br>
+I can find more projects if you help me understand some words. <br>
+
+
 
 <% @graph.uniq.each do |g|  %>
 
-	<% @simvol = g %>
+  <% @simvol = g %>
 
-	<% if g.tags.count <= 2 %>
-		<%= render "simvols/tagform" %>
+  <% if g.tags.count <= 2 %>
+    <%= render "simvols/tagform" %>
 
-	<!--#g.tags.count-->
-	<% end  %>
+  <!--#g.tags.count-->
+  <% end  %>
 
 <!--#g-->
 <% end  %>
