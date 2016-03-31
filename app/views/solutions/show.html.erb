@@ -26,9 +26,9 @@
 
 
 <h2>Comments</h2>
- 
+
 <p><%= link_to 'Add a Comment', new_solution_comment_path(@solution) %></p>
- 
+
 <ul class="comment_list">
-  <%= render :partial => 'comments/comment', :collection => @solution.comments.find_comments_for_commentable("Solution",@solution.id) %>
+  <%= render :partial => 'comments/comment', :collection => @solution.comments.roots %>
 </ul>

@@ -4,7 +4,8 @@ class Comment < ActiveRecord::Base
   acts_as_nested_set :scope => [:commentable_id, :commentable_type]
   acts_as_votable
 
-  validates_presence_of :title, :subject, :body, :user_id, :parent_id
+  validates_presence_of :title, :subject, :body, :user_id
+#, :problem_id
 
 
   # NOTE: install the acts_as_votable plugin if you
@@ -21,9 +22,9 @@ class Comment < ActiveRecord::Base
   # example in readme
   def self.build_from(obj, user_id, comment)
 
-    if (comment.has_key?(:parent_id))
-      @parent = Comment.find(comment[:parent_id])
-    end
+    #if (comment.has_key?(:parent_id))
+    #  @parent = Comment.find(comment[:parent_id])
+    #end
 
 
 
@@ -31,12 +32,11 @@ class Comment < ActiveRecord::Base
       :commentable => obj,
       :body        => comment[:body],
       :user_id     => user_id,
-	  :title		=> comment[:title],
-	  :subject		=> comment[:subject],
-    :parent_id => @parent
-	#  :parent_id 	=> parentid
+  	  :title		=> comment[:title],
+  	  :subject		=> comment[:subject]
+    #  :parent_id => comment[:parent_id]
 
-
+    #  @original_comment = obj
 
   end
 

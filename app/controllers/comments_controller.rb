@@ -3,6 +3,9 @@ class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
   before_filter :get_parent
 
+
+  require "pry"
+
   def get_parent
 
     if params[:project_id]
@@ -38,9 +41,18 @@ class CommentsController < ApplicationController
       @template_prefix = 'friendship/comments/'
 
     elsif params[:comment_id]
-      @objparent = Comment.find(params[:comment_id])
+
+      #binding.pry
+      @op = Comment.find(params[:comment_id])
+      @objparent = @op.commentable_type.constantize.find(@op.commentable_id)
+
+  #    @op_params << @op.id
+ #     @op_params << @op.commentable_type
+#      @op_params << @op.commentable_id
+
       @template_prefix = 'comment/comments/'
-      @parentid = params[:commentable_id]
+      #binding.pry
+
 
     elsif params[:user_id]
       @objparent = User.find(params[:user_id])
@@ -53,14 +65,10 @@ class CommentsController < ApplicationController
 
   end
 
-  #	def make_a_baby#
-  #		@comment.make_child_of(Comment.find(72))
-  #	end
-
   # Then you can set up your index to be more generic
   def index
 
-    @comments = @objparent.comments.all
+    @comments = @objparent.comments
     render :template => @template_prefix + 'index'
   end
 
@@ -82,33 +90,49 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     #**********************
-    @comment_hash = params[:comment]
-    @p_obj = @comment_hash[:commentable_type].constantize.find(@comment_hash[:commentable_id])
+  #  binding.pry
+   # @comment_hash = params[:comment]
+
+    @p_obj = params[:comment][:commentable_type].constantize.find(params[:comment][:commentable_id])
 
     #@all_comments = @obj.comment_threads
 
     @comment = Comment.build_from(@p_obj, current_user.id, params[:comment])
+
+
     #@comment = Comment.build_from(@p_obj, current_user.id,  @comment_hash[:body], @comment_hash[:title], @comment_hash[:subject], @parentid)
 
     respond_to do |format|
 
       if @comment.save
+#binding.pry
+
+        if params[:comment][:op_id]
+
+ #         binding.pry
+
+          @op= Comment.find(params[:comment][:op_id])
+          @comment.move_to_child_of(@op)
+
+        end
+
+ #binding.pry
 
         format.html { redirect_to @p_obj, notice: 'Comment was successfully created.' }
         format.json { render :show, status: :created, location: @comment }
 
 
 
-      #if params[:comment_id]
-      # params[:parent_id => params[:commentable_id]]
-      # @comment.update
+   #   if params[:comment_id]
+    #   params[:parent_id => params[:commentable_id]]
+     #  @comment.update
       #end
 
 
       else
 	@comment.errors
         format.html { render :new }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
+       format.json { render json: @comment.errors, status: :unprocessable_entity }
 
       end
     end
@@ -161,7 +185,7 @@ class CommentsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def comment_params
 
-    params.require(:comment).permit(:body,:user_id, :commentable_id, :commentable_type, :title, :subject, :parent_id, :lft, :rgt, :created_at, :updated_at)
+    params.require(:comment).permit(:body,:user_id, :op_id, :op_parentable, :op_parentable_id, :commentable_id, :commentable_type, :title, :subject, :parent_id, :lft, :rgt, :created_at, :updated_at)
 
   end
 

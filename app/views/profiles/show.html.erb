@@ -60,5 +60,5 @@
 <p><%= link_to 'Add a Comment', new_profile_comment_path(@profile) %></p>
 
 <ul class="comment_list">
-  <%= render :partial => 'comments/comment', :collection => @profile.comments.find_comments_for_commentable("Profile",@profile.id) %>
+  <%= render :partial => 'comments/comment', :collection => @profile.comments.roots %>
 </ul>
