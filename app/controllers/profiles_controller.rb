@@ -197,13 +197,13 @@ attr_accessor :user_id, :new_profile_name
 	def upvote
 		@profile = Profile.find(params[:id])
 		@profile.upvote_by current_user
-		redirect_to @profile
+		redirect_to @profile.profileable
 	end
 
 	def downvote
 	  @profile = Profile.find(params[:id])
 	  @profile.downvote_by current_user
-	  redirect_to @profile
+	  redirect_to @profile.profileable
 	end
 
 	 def profile_params
