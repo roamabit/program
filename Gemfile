@@ -118,3 +118,6 @@ gem 'public_activity' #
 gem 'groupify' #https://github.com/dwbutler/groupify
 
 #numberouno gem interprets word numbers into actual numbers hundred five  => 105
+
+#For mailer
+gem 'mailgun-ruby', require: 'mailgun'

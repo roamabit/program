@@ -2,14 +2,6 @@
 
 <h1>User Profiles</h1>
 
-<% i=0 %>
-<table>
+<%= 'The is not the page you were looking for.' %>
 
-
-<% @profiles.each do |profile| %>
-
-	<% @user = User.find(profile.user_id) %>
-
-  <%= render 'profiles/user_profile' %>
-
-<% end %>
+<% #@profiles.each do |profile|  #@user = User.find(profile.user_id)  #render 'profiles/user_profile' #end %>
