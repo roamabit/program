@@ -1,0 +1,10 @@
+ModelMailer#new_record_notification
+
+Hi,
+
+A new record has been added:
+<% @record.attributes.values_at(1,2).each do |attr_name, attr_value| %>
+    <%= attr_name %>: <%= attr_value %><br>
+<% end %>
+
+Thanks

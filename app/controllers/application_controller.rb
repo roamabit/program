@@ -36,7 +36,9 @@ include PublicActivity::StoreController
         @p = @solution
       elsif params[:user]
         @p = @user
-      elsif
+      elsif params[:comment]
+        @p = @comment
+      else
         bomb
       end #@p setup
 
@@ -49,6 +51,8 @@ include PublicActivity::StoreController
         @p.create_activity :create, owner: current_user
       end #action
     #end
+
+    ModelMailer.new_record_notification(User.find(1).email, @p).deliver
 
   end #def log_activity
 

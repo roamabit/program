@@ -18,20 +18,30 @@ Rails.application.configure do
 
   # defined default url options in your environments files.
   #config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-  
+
   # Email
   config.action_mailer.default_url_options = { :host => 'www.eightkm.com' }
 
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    address:              'smtp.gmail.com',
-    port:                 587,
-    domain:               "gmail.com",
-    user_name:            'eightkminc@gmail.com',
-    password:             'There is a spoon!',
-    authentication:       'plain',
-    enable_starttls_auto: true  
-  }
+ # config.action_mailer.smtp_settings = {
+ #   address:              'smtp.gmail.com',
+ #   port:                 587,
+ #   domain:               "gmail.com",
+ #   user_name:            'eightkminc@gmail.com',
+ #   password:             'There is a spoon!',
+ #   authentication:       'plain',
+ #   enable_starttls_auto: true
+ # }
+
+ config.action_mailer.smtp_settings = {
+  :authentication => :plain,
+  :address => "smtp.mailgun.org",
+  :port => 587,
+  :domain => "mg.eightkm.mailgun.org",
+  :user_name => "Eliza@mg.eightkm.com",
+  :password => "faf6ed2c2163d4fd221cf92c27782696"
+}
+
   config.action_mailer.perform_deliveries = true
 
 
