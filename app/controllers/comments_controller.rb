@@ -106,7 +106,7 @@ class CommentsController < ApplicationController
 
       if @comment.save
 #binding.pry
-
+log_activity
 
         if params[:comment][:op_id]
 
