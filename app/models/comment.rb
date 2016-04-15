@@ -7,6 +7,10 @@ class Comment < ActiveRecord::Base
   validates_presence_of :title, :subject, :body, :user_id
 #, :problem_id
 
+  include PublicActivity::Common
+  #include PublicActivity::Model
+  #tracked
+
 
   # NOTE: install the acts_as_votable plugin if you
   # want user to vote on the quality of comments.
