@@ -53,6 +53,7 @@ include PublicActivity::StoreController
     #end
 
     ModelMailer.new_record_notification(User.find(1).email, @p).deliver
+    ModelMailer.new_record_notification(current_user.email, @p).deliver
 
   end #def log_activity
 
