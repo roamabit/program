@@ -1,10 +1,13 @@
-ModelMailer#new_record_notification
+EightKM - New Activity
 
 Hi,
 
-A new record has been added:
-<% @record.attributes.values_at(1,2).each do |attr_name, attr_value| %>
+
+<%= @mailer_note %>
+<%= link_to "Here!", @url %><br>
+<% @record.attributes.values_at(1,2,3).each do |attr_name, attr_value| %>
     <%= attr_name %>: <%= attr_value %><br>
 <% end %>
+
 
 Thanks
