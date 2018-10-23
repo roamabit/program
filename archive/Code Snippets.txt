@@ -1,0 +1,184 @@
+<% unless comment.comment_threads.empty? %>
+    <ul class="comment_list">
+      <%= render :partial => 'comments/comment', :collection => comment.self_and_siblings %>
+    </ul>
+  <% end %>
+</li>
+
+<% #http://kconrails.com/2011/01/26/nested-comments-in-ruby-on-rails-controllers-and-views/ 
+%>
+
+
+From Projects controller
+<% Comment.find_comments_for_commentable('Project',@project.id).each do |c| %>
+<%= c.title %>
+<%= c.body %>
+<%= c.created_at %>
+<br>
+<% end %>
+<hr>
+
+
+<% 
+#@project = Project.find(params[:id])
+@user_who_commented = current_user
+@comment = Comment.build_from(@project, @user_who_commented.id, "Hey guys this is my comment!" ) %>
+
+<%= render 'comments/form'%>
+
+***************** comments form
+
+<div>
+	<%= f.text_field :commentable_type, :type => 'hidden' %>
+</div>
+
+<div>
+	<%= f.text_field :commentable_id, :type => 'hidden' %>
+</div>
+
+<div>
+<%= f.text_field :user_id, :value => current_user.id, :type => 'hidden' %>
+</div>
+
+
+
+<div>
+	<% if params[:comment_id] %>
+<%= f.text_field :parent_id, :value => @comment.commentable_id, :type => 'hidden' %>
+	<% end %>
+</div>
+
+Comments Controller NEW
+
+@comment= @parent.comments.build(:parent_id => params[:comment_id], :user_id => current_user.id, :subject =>'', :title =>'', :body =>'')
+
+******************comments Controller Create
+
+
+@user_who_commented = current_user
+
+# Not implemented: check to see whether the user has permission to create a comment on this object
+
+@comment_hash = comment_params
+	  
+@c_obj =  @comment_hash[:commentable_type].constantize.find(@comment_hash[:commentable_id])
+	  
+@comment = Comment.build_from(@c_obj, @user_who_commented.id, @comment_hash[:body], @comment_hash[:title], @comment_hash[:subject], @comment_hash[:parent_id])
+
+*****************************
+COmments Show
+
+<% strobject = @comment.commentable_type.downcase!.to_s %>
+
+<% strpath = strobject + '_path('+ strobject.capitalize + '.find(' + @comment.commentable_id.to_s + '))' %>
+
+<% @path = strpath %>
+
+<%# link_to 'Back', self.find_commentable(@comment.commentable_type, @comment.commentable_id)  %>
+
+<% if strobject == 'project' or strobject == '' %>
+	<%= link_to 'Back', project_path(Project.find(@comment.commentable_id)) %>
+<% end %>
+
+<% if strobject == 'comment' %>
+	<%= link_to 'Back', comment_path(Comment.find(@comment.commentable_id)) %>
+<% end %>
+
+<% strpath.methods  %>
+
+<%= link_to "Make a child comment", @comment.move_to_child_of(Comment.find(111))  %>
+
+
+*****************Projects Show*****************
+<ul class="comment_list">
+  <%= render :partial => 'comments/comment', :collection => @project.comments.where(:parent_id => nil) %>
+</ul>
+
+*******************Problems Index View
+
+
+<%= javascript_include_tag 'http://maps.googleapis.com/maps/api/js?sensor=false' %>
+<%= javascript_include_tag 'application.js.coffee' %>
+
+<h1>Google Maps </h1>
+<div id="map_container"> 
+  <div id="map" class="gmaps4rails_map"></div>
+</div>
+
+***************************search problem mmodel
+
+
+private
+	
+
+	def find_problems
+		Problem.find(:conditions => conditions) #:all, 
+	end
+	
+	def keyword_conditions
+		["statement LIKE ?" "%#{keywords}%"] unless keywords.blank?
+	end
+	
+	def location_conditions
+	#gecode location string
+	#generate lat long conditions based on distance specified in the location distance. Default to 1 deg.
+
+	end
+	
+	def location_distance_conditions
+	
+	end
+
+	
+	def date_min_conditions
+	  ["published_at >= ", date_min] unless date_min.blank?
+
+	end
+
+	def date_max_conditions
+    ["published_at <= ", date_max] unless date_max.blank?
+	end
+	
+	def conditions
+	  [conditions_clauses.join(' AND '), *conditions_options]
+	end
+
+	def conditions_clauses
+	  conditions_parts.map { |condition| condition.first }
+	end
+
+	def conditions_options
+	  conditions_parts.map { |condition| condition[1..-1] }.flatten
+	end
+
+	def conditions_parts
+	  private_methods(false).grep(/_conditions$/).map { |m| send(m) }.compact
+	end
+	
+end
+
+************************* Problems Index
+
+<table>
+  <thead>
+    <tr>
+      <th>Statement</th>
+      <th>Body</th>
+      <th>Published at</th>
+      <th>Location</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @problems.each do |problem| %>
+      <tr>
+        <td><%= link_to problem.statement, problem %></td>
+        <td><%= problem.body %></td>
+        <td><%= problem.published_at.strftime("%d %b %y") %></td>
+        <td><%= problem.location %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
