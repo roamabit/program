@@ -88,7 +88,7 @@ gem 'therubyracer', :platforms => :ruby #Java runtime live environment
 gem 'unicorn', '4.6.0', :platforms => :ruby #server request handler
 gem 'passenger', :platforms => :ruby #Server
 gem 'sinatra', :platforms => :ruby  #Rack web server interface
-gem 'json', :platforms => :ruby #server environment parser
+gem 'json',  '~> 1.8.5' #:platforms => :ruby #server environment parser
 gem 'rack-parser', :platforms => :ruby #parse incoming post data into param hashes
 
 gem 'capistrano', '~> 3.4.0' #remote server automation tool

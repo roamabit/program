@@ -1,1 +1,0 @@
-ssh -i "Thinky.pem" ubuntu@ec2-52-89-183-194.us-west-2.compute.amazonaws.com
