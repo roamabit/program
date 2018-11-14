@@ -1,4 +1,4 @@
-class CreateSearchProblems < ActiveRecord::Migration
+class CreateSearchProblems < ActiveRecord::Migration[5.2]
   def change
     create_table :search_problems do |t|
       t.integer :user_id

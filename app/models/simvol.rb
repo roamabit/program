@@ -1,4 +1,4 @@
-class Simvol < ActiveRecord::Base
+class Simvol < ApplicationRecord
 	has_many :simtags, dependent: :destroy
 	has_many :tags, :through => :simtags, :source => :tag
 	has_many :comments, :as => :commentable, dependent: :destroy

@@ -1,6 +1,6 @@
-class Simtag < ActiveRecord::Base
-	belongs_to :simvol
-	belongs_to :tag, :class_name => "Simvol"
+class Simtag < ApplicationRecord
+	belongs_to :simvol, optional: true
+	belongs_to :tag, :class_name => "Simvol", optional: true
 acts_as_commentable
 
 	after_create :connect__bothways

@@ -1,4 +1,4 @@
-class Comment < ActiveRecord::Base
+class Comment < ApplicationRecord
 
   acts_as_commentable
   acts_as_nested_set :scope => [:commentable_id, :commentable_type]
@@ -16,10 +16,10 @@ class Comment < ActiveRecord::Base
   # want user to vote on the quality of comments.
     #acts_as_votable
 
-	belongs_to :commentable, :polymorphic => true
+  belongs_to :commentable, :polymorphic => true, optional: true
 
   # NOTE: Comments belong to a user
-  belongs_to :user
+  belongs_to :user, optional: true
 
   # Helper class method that allows you to build a comment
   # by passing a commentable object, a user_id, and comment text

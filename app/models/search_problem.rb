@@ -1,4 +1,4 @@
-class SearchProblem < ActiveRecord::Base
+class SearchProblem < ApplicationRecord
 
   has_many :comments, :as => :commentable, dependent: :destroy
   acts_as_commentable

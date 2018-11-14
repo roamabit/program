@@ -1,4 +1,4 @@
-class GroupifyMigration < ActiveRecord::Migration
+class GroupifyMigration < ActiveRecord::Migration[5.2]
   def change
     create_table :groups do |t|
       t.string     :type

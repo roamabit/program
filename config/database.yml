@@ -8,9 +8,9 @@
 
 development:
   adapter: mysql2
-  database: db/dbteamup_development
+  database: db/dbteamup_development2018
   username: root
-  password: asdlkj10
+  password: nihongo
   pool: 5
   timeout: 5000
 
@@ -20,15 +20,15 @@ development:
 
 test:
   adapter: mysql2
-  database: db/dbteamup_test
+  database: db/dbteamup_test2018
   username: root
-  password: asdlkj10
+  password: nihongo
   pool: 5
   timeout: 5000
 
 production:
   adapter: mysql2
-  database: db/dbteamup_production
+  database: db/dbteamup_production2018
   username: root
   password: asdlkj10
   pool: 5
