@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   resources :friendships
 
   root to: 'welcome#index'
@@ -115,8 +114,5 @@ Rails.application.routes.draw do
       put "like", to: "supporters#upvote"
       put "dislike", to: "supporters#downvote"
     end
-
   end
-
-
 end

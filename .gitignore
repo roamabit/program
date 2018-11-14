@@ -23,3 +23,5 @@
 # Ignore .DS_Store files on OSX
 *.DS_Store*
 
+# Ignore Database Credentials
+config/database.yml

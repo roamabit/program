@@ -1,4 +1,4 @@
-class CreateSimvols < ActiveRecord::Migration
+class CreateSimvols < ActiveRecord::Migration[5.2]
   def change
     create_table :simvols do |t|
 		

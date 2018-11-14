@@ -1,4 +1,4 @@
-class Problem < ActiveRecord::Base
+class Problem < ApplicationRecord
   has_many :projects, :through => :solutions
   has_many :solutions, dependent: :destroy #Projects Link
 

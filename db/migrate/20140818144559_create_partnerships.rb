@@ -1,4 +1,4 @@
-class CreatePartnerships < ActiveRecord::Migration
+class CreatePartnerships < ActiveRecord::Migration[5.2]
   def change
     create_table :partnerships do |t|
 		t.integer :user_id

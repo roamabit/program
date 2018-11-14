@@ -17,7 +17,7 @@ class SolutionsController < ApplicationController
 
   # GET /solutions/new
   def new
-    #@problem = Problem.find(params[:format])
+    #@problem = Problem.find(params[:id])
     @solution = Solution.new
 
   end
@@ -29,13 +29,12 @@ class SolutionsController < ApplicationController
   # POST /solutions
   # POST /solutions.json
   def create
-
     @solution = Solution.new(solution_params)
 
     respond_to do |format|
       if @solution.save
 
-        log_activity
+ #       log_activity 
 
 
         format.html { redirect_to @solution, notice: 'Solution was successfully created.' }
@@ -53,7 +52,7 @@ class SolutionsController < ApplicationController
     respond_to do |format|
       if @solution.update(solution_params)
 
-        log_activity
+#        log_activity
 
 
         format.html { redirect_to @solution, notice: 'Solution was successfully updated.' }

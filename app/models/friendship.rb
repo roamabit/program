@@ -1,7 +1,7 @@
-class Friendship < ActiveRecord::Base
+class Friendship < ApplicationRecord
 
-    belongs_to :user
-    belongs_to :friend, :class_name => "User"
+    belongs_to :user, optional: true
+    belongs_to :friend, :class_name => "User", optional: true
     has_many :comments, :as => :commentable, dependent: :destroy
 
     acts_as_commentable

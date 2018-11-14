@@ -1,4 +1,4 @@
-class Project < ActiveRecord::Base
+class Project < ApplicationRecord
 	has_many :users, :through => :partnerships
 	has_many :partnerships, dependent: :destroy
 

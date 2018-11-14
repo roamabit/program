@@ -1,6 +1,6 @@
-class Profile < ActiveRecord::Base
-  # belongs_to :user
-  belongs_to :profileable, :polymorphic =>true
+class Profile < ApplicationRecord
+  # belongs_to :user, optional: true
+  belongs_to :profileable, :polymorphic =>true, optional: true
   has_many :comments, :as => :commentable, dependent: :destroy
 
   validates_presence_of :user_id, :profileable_id, :profileable_type

@@ -10,11 +10,19 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require bootstrap-sprockets
-//= require jquery_ujs
+//= require rails-ujs
+//= require activestorage
 //= require turbolinks
-//= require_tree
+//= require_tree .
+//
+// For Bootstrap 4
+//= require jquery3
+//= require popper
+//= require bootstrap
+//
+// For GMaps
 //= require gmaps/google
 //= require gmaps/base
-//= require underscore
+//
+
+
