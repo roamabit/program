@@ -4,7 +4,7 @@ class Comment < ApplicationRecord
   acts_as_nested_set :scope => [:commentable_id, :commentable_type]
   acts_as_votable
 
-  validates_presence_of :title, :subject, :body, :user_id
+  validates_presence_of :title, :subject, :body, :user_id, :parent_id
 #, :problem_id
 
   include PublicActivity::Common
